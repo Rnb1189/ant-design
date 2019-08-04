@@ -14,7 +14,33 @@ title:
 The simplest use.
 
 ```jsx
-import { Radio } from 'antd';
+import { Radio, Button, Icon, Switch } from '../../index';
 
-ReactDOM.render(<Radio>Radio</Radio>, mountNode);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const dirStyle = { direction: `${this.state.isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div style={dirStyle}>
+          <Radio>Radio</Radio>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

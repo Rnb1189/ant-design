@@ -1,6 +1,6 @@
 declare module '*.svg';
 
-declare module 'rc-calendar*';
+// declare module 'rc-calendar*';
 
 declare module 'rc-time-picker*';
 
@@ -43,7 +43,7 @@ declare module 'rc-tree/lib/util';
 
 declare module 'rc-tooltip*';
 
-declare module 'rc-calendar';
+// declare module 'rc-calendar';
 
 declare module 'rc-input-number';
 
@@ -109,3 +109,5 @@ declare module 'react-copy-to-clipboard';
 
 declare module 'rnb-rc-tabs*';
 declare module 'rnb-rc-menu';
+declare module 'rnb-rc-calendar';
+declare module 'rnb-rc-calendar*';

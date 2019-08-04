@@ -14,30 +14,53 @@ title:
 If you need several buttons, we recommend that you use 1 primary button + n secondary buttons, and if there are more than three operations, you can group some of them into `Dropdown.Button`.
 
 ```jsx
-import { Button, Menu, Dropdown, Icon } from 'antd';
+import { Button, Menu, Dropdown, Icon, Switch } from '../../index';
 
-function handleMenuClick(e) {
-  console.log('click', e);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  handleMenuClick = e => {
+    console.log('click', e);
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    const menu = (
+      <Menu isRtl={isRtl} onClick={this.handleMenuClick}>
+        <Menu.Item key="1">1st item</Menu.Item>
+        <Menu.Item key="2">2nd item</Menu.Item>
+        <Menu.Item key="3">3rd item</Menu.Item>
+      </Menu>
+    );
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div style={dirStyle}>
+          <Button isRtl={isRtl} type="primary">
+            primary
+          </Button>
+          <Button isRtl={isRtl}>secondary</Button>
+          <Dropdown isRtl={isRtl} overlay={menu}>
+            <Button isRtl={isRtl}>
+              Actions <Icon type="down" />
+            </Button>
+          </Dropdown>
+        </div>
+      </div>
+    );
+  }
 }
 
-const menu = (
-  <Menu onClick={handleMenuClick}>
-    <Menu.Item key="1">1st item</Menu.Item>
-    <Menu.Item key="2">2nd item</Menu.Item>
-    <Menu.Item key="3">3rd item</Menu.Item>
-  </Menu>
-);
-
-ReactDOM.render(
-  <div>
-    <Button type="primary">primary</Button>
-    <Button>secondary</Button>
-    <Dropdown overlay={menu}>
-      <Button>
-        Actions <Icon type="down" />
-      </Button>
-    </Dropdown>
-  </div>,
-  mountNode,
-);
+ReactDOM.render(<App />, mountNode);
 ```

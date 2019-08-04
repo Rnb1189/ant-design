@@ -14,16 +14,45 @@ title:
 There are `primary` button, `default` button, `dashed` button, `danger` button and `link` button in antd.
 
 ```jsx
-import { Button } from 'antd';
+import { Button, Switch } from '../../index';
 
-ReactDOM.render(
-  <div>
-    <Button type="primary">Primary</Button>
-    <Button>Default</Button>
-    <Button type="dashed">Dashed</Button>
-    <Button type="danger">Danger</Button>
-    <Button type="link">Link</Button>
-  </div>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const dirStyle = { direction: `${this.state.isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div style={dirStyle}>
+          <Button isRtl={this.state.isRtl} type="primary">
+            Primary
+          </Button>
+          <Button isRtl={this.state.isRtl}>Default</Button>
+          <Button isRtl={this.state.isRtl} type="dashed">
+            Dashed
+          </Button>
+          <Button isRtl={this.state.isRtl} type="danger">
+            Danger
+          </Button>
+          <Button isRtl={this.state.isRtl} type="link">
+            Link
+          </Button>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

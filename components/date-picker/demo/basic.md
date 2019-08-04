@@ -16,10 +16,6 @@ Basic use case. Users can select or input a date in panel.
 ```jsx
 import { DatePicker, Switch } from '../../index';
 const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
-// import moment from 'moment';
-// import moment from 'jalali-moment';
-import * as moment from 'moment';
-import jmoment from 'jalali-moment/jalali-moment';
 
 class App extends React.Component {
   state = {
@@ -40,13 +36,12 @@ class App extends React.Component {
 
   render() {
     const dirStyle = { direction: `${this.state.isRtl ? 'rtl' : 'ltr'}` };
-    const value = jmoment().locale('fa');
     return (
       <div>
         <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
         <br />
         <div style={dirStyle}>
-          <DatePicker onChange={this.onChange} value={value} />
+          <DatePicker onChange={this.onChange} />
           <br />
           <MonthPicker onChange={this.onChange} placeholder="Select month" />
           <br />

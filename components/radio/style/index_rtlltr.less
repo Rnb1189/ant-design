@@ -1,27 +1,20 @@
-@import '../../style/themes/index';
-@import '../../style/mixins/index';
+@import './index_shared';
 
-// @import './index_shared';
+@L: e('.a-ltr');
+@R: e('.a-rtl');
 
-@radio-prefix-cls: ~'@{ant-prefix}-radio';
-@radio-group-prefix-cls: ~'@{radio-prefix-cls}-group';
-@radio-inner-prefix-cls: ~'@{radio-prefix-cls}-inner';
-@radio-duration: 0.3s;
-@radio-focused-outline: 3px solid fade(@radio-dot-color, 6%);
-@radio-dot-size: @radio-size - 8px;
+// @R: e(%('html[direction=%d]', 'rtl'));
+// @L: e(%('html:not([direction=%d])', 'rtl'));
 
-@R: e(%('html[direction=%d]', 'rtl'));
-@L: e(%('html:not([direction=%d])', 'rtl'));
-
-@{L} .@{radio-prefix-cls}-wrapper {
+@{L}.@{radio-prefix-cls}-wrapper {
   margin-right: 8px;
 }
-@{R} .@{radio-prefix-cls}-wrapper {
+@{R}.@{radio-prefix-cls}-wrapper {
   margin-left: 8px;
 }
 //_____
 
-@{L} .@{radio-prefix-cls} {
+@{L}.@{radio-prefix-cls} {
   &-inner {
     &::after {
       left: (@radio-size - @radio-dot-size) / 2 - 1px;
@@ -30,7 +23,7 @@
     left: 0;
   }
 }
-@{R} .@{radio-prefix-cls} {
+@{R}.@{radio-prefix-cls} {
   &-inner {
     &::after {
       right: (@radio-size - @radio-dot-size) / 2 - 1px;
@@ -41,7 +34,7 @@
 }
 //_____
 
-@{L} .@{radio-prefix-cls}-button-wrapper {
+@{L}.@{radio-prefix-cls}-button-wrapper {
   border-left: 0;
   > .@{radio-prefix-cls}-button {
     margin-left: 0;
@@ -64,7 +57,7 @@
     }
   }
 }
-@{R} .@{radio-prefix-cls}-button-wrapper {
+@{R}.@{radio-prefix-cls}-button-wrapper {
   border-right: 0;
   > .@{radio-prefix-cls}-button {
     margin-right: 0;

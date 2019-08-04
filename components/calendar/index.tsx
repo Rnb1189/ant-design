@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import * as moment from 'moment';
-import FullCalendar from 'rc-calendar/lib/FullCalendar';
+import FullCalendar from 'rnb-rc-calendar/lib/FullCalendar';
 import Header, { HeaderRender } from './Header';
 import enUS from './locale/en_US';
 import LocaleReceiver from '../locale-provider/LocaleReceiver';

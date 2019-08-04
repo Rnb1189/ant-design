@@ -14,24 +14,51 @@ title:
 `ghost` property will make button's background transparent, it is common used in colored background.
 
 ```jsx
-import { Button } from 'antd';
+import { Button, Icon, Switch } from '../../index';
 
-ReactDOM.render(
-  <div style={{ background: 'rgb(190, 200, 200)', padding: '26px 16px 16px' }}>
-    <Button type="primary" ghost>
-      Primary
-    </Button>
-    <Button ghost>Default</Button>
-    <Button type="dashed" ghost>
-      Dashed
-    </Button>
-    <Button type="danger" ghost>
-      danger
-    </Button>
-    <Button type="link" ghost>
-      link
-    </Button>
-  </div>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div style={dirStyle}>
+          <div style={{ background: 'rgb(190, 200, 200)', padding: '26px 16px 16px' }}>
+            <Button isRtl={isRtl} type="primary" ghost>
+              Primary
+            </Button>
+            <Button isRtl={isRtl} ghost>
+              Default
+            </Button>
+            <Button isRtl={isRtl} type="dashed" ghost>
+              Dashed
+            </Button>
+            <Button isRtl={isRtl} type="danger" ghost>
+              danger
+            </Button>
+            <Button isRtl={isRtl} type="link" ghost>
+              link
+            </Button>
+          </div>
+          ,
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

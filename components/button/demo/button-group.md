@@ -18,46 +18,67 @@ Buttons can be grouped by placing multiple `Button` components into a `Button.Gr
 The `size` can be set to `large`, `small` or left unset resulting in a default size.
 
 ```jsx
-import { Button, Icon } from 'antd';
-
+import { Button, Icon, Switch } from '../../index';
 const ButtonGroup = Button.Group;
 
-ReactDOM.render(
-  <div>
-    <h4>Basic</h4>
-    <ButtonGroup>
-      <Button>Cancel</Button>
-      <Button>OK</Button>
-    </ButtonGroup>
-    <ButtonGroup>
-      <Button disabled>L</Button>
-      <Button disabled>M</Button>
-      <Button disabled>R</Button>
-    </ButtonGroup>
-    <ButtonGroup>
-      <Button>L</Button>
-      <Button>M</Button>
-      <Button>R</Button>
-    </ButtonGroup>
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
 
-    <h4>With Icon</h4>
-    <ButtonGroup>
-      <Button type="primary">
-        <Icon type="left" />
-        Go back
-      </Button>
-      <Button type="primary">
-        Go forward
-        <Icon type="right" />
-      </Button>
-    </ButtonGroup>
-    <ButtonGroup>
-      <Button type="primary" icon="cloud" />
-      <Button type="primary" icon="cloud-download" />
-    </ButtonGroup>
-  </div>,
-  mountNode,
-);
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div style={dirStyle}>
+          <h4>Basic</h4>
+          <ButtonGroup isRtl={isRtl}>
+            <Button>Cancel</Button>
+            <Button>OK</Button>
+          </ButtonGroup>
+          <ButtonGroup isRtl={isRtl}>
+            <Button disabled>L</Button>
+            <Button disabled>M</Button>
+            <Button disabled>R</Button>
+          </ButtonGroup>
+          <ButtonGroup isRtl={isRtl}>
+            <Button>L</Button>
+            <Button>M</Button>
+            <Button>R</Button>
+          </ButtonGroup>
+
+          <h4>With Icon</h4>
+          <ButtonGroup isRtl={isRtl}>
+            <Button type="primary">
+              <Icon type="left" />
+              Go back
+            </Button>
+            <Button type="primary">
+              Go forward
+              <Icon type="right" />
+            </Button>
+          </ButtonGroup>
+          <ButtonGroup isRtl={isRtl}>
+            <Button type="primary" icon="cloud" />
+            <Button type="primary" icon="cloud-download" />
+          </ButtonGroup>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```
 
 <style>

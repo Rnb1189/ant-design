@@ -18,24 +18,49 @@ title:
 If you want specific control over the positioning and placement of the `Icon`, then that should be done by placing the `Icon` component within the `Button` rather than using the `icon` property.
 
 ```jsx
-import { Button } from 'antd';
+import { Button, Switch } from '../../index';
 
-ReactDOM.render(
-  <div>
-    <Button type="primary" shape="circle" icon="search" />
-    <Button type="primary" icon="search">
-      Search
-    </Button>
-    <Button shape="circle" icon="search" />
-    <Button icon="search">Search</Button>
-    <br />
-    <Button shape="circle" icon="search" />
-    <Button icon="search">Search</Button>
-    <Button type="dashed" shape="circle" icon="search" />
-    <Button type="dashed" icon="search">
-      Search
-    </Button>
-  </div>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const dirStyle = { direction: `${this.state.isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div style={dirStyle}>
+          <Button isRtl={this.state.isRtl} type="primary" shape="circle" icon="search" />
+          <Button isRtl={this.state.isRtl} type="primary" icon="search">
+            Search
+          </Button>
+          <Button isRtl={this.state.isRtl} shape="circle" icon="search" />
+          <Button isRtl={this.state.isRtl} icon="search">
+            Search
+          </Button>
+          <br />
+          <Button isRtl={this.state.isRtl} shape="circle" icon="search" />
+          <Button isRtl={this.state.isRtl} icon="search">
+            Search
+          </Button>
+          <Button isRtl={this.state.isRtl} type="dashed" shape="circle" icon="search" />
+          <Button isRtl={this.state.isRtl} type="dashed" icon="search">
+            Search
+          </Button>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

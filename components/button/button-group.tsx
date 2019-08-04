@@ -4,6 +4,8 @@ import { ButtonSize } from './button';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 
 export interface ButtonGroupProps {
+  //NEw:
+  isRtl?: boolean;
   size?: ButtonSize;
   style?: React.CSSProperties;
   className?: string;
@@ -35,7 +37,19 @@ const ButtonGroup: React.SFC<ButtonGroupProps> = props => (
           [`${prefixCls}-${sizeCls}`]: sizeCls,
         },
         className,
+        //NEw
+        { 'a-rtl': !!props.isRtl, 'a-ltr': !props.isRtl },
       );
+
+      //NEw:
+      // set the rtl of children acording to button group
+      others.children = React.Children.map(others.children, (child: any, index) => {
+        let result = child;
+        if (child && child.props && child.props.isRtl === undefined) {
+          result = React.cloneElement(child, { isRtl: props.isRtl });
+        }
+        return result;
+      });
 
       return <div {...others} className={classes} />;
     }}

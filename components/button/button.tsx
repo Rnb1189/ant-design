@@ -73,6 +73,7 @@ const ButtonHTMLTypes = tuple('submit', 'button', 'reset');
 export type ButtonHTMLType = (typeof ButtonHTMLTypes)[number];
 
 export interface BaseButtonProps {
+  isRtl?: boolean;
   type?: ButtonType;
   icon?: string;
   shape?: ButtonShape;
@@ -252,6 +253,9 @@ class Button extends React.Component<ButtonProps, ButtonState> {
     }
 
     const classes = classNames(prefixCls, className, {
+      //NEw:
+      'a-rtl': !!this.props.isRtl,
+      'a-ltr': !this.props.isRtl,
       [`${prefixCls}-${type}`]: type,
       [`${prefixCls}-${shape}`]: shape,
       [`${prefixCls}-${sizeCls}`]: sizeCls,

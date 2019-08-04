@@ -14,34 +14,66 @@ title:
 To mark a button as disabled, add the `disabled` property to the `Button`.
 
 ```jsx
-import { Button } from 'antd';
+import { Button, Icon, Switch } from '../../index';
 
-ReactDOM.render(
-  <div>
-    <Button type="primary">Primary</Button>
-    <Button type="primary" disabled>
-      Primary(disabled)
-    </Button>
-    <br />
-    <Button>Default</Button>
-    <Button disabled>Default(disabled)</Button>
-    <br />
-    <Button type="dashed">Dashed</Button>
-    <Button type="dashed" disabled>
-      Dashed(disabled)
-    </Button>
-    <br />
-    <Button type="link">Link</Button>
-    <Button type="link" disabled>
-      Link(disabled)
-    </Button>
-    <div style={{ padding: '8px 8px 0 8px', background: 'rgb(190, 200, 200)' }}>
-      <Button ghost>Ghost</Button>
-      <Button ghost disabled>
-        Ghost(disabled)
-      </Button>
-    </div>
-  </div>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div style={dirStyle}>
+          <Button isRtl={isRtl} type="primary">
+            Primary
+          </Button>
+          <Button isRtl={isRtl} type="primary" disabled>
+            Primary(disabled )
+          </Button>
+          <br />
+          <Button isRtl={isRtl}>Default</Button>
+          <Button isRtl={isRtl} disabled>
+            Default(disabled)
+          </Button>
+          <br />
+          <Button isRtl={isRtl} type="dashed">
+            Dashed
+          </Button>
+          <Button isRtl={isRtl} type="dashed" disabled>
+            Dashed(disabled)
+          </Button>
+          <br />
+          <Button isRtl={isRtl} type="link">
+            Link
+          </Button>
+          <Button isRtl={isRtl} type="link" disabled>
+            Link(disabled)
+          </Button>
+          <div style={{ padding: '8px 8px 0 8px', background: 'rgb(190, 200, 200)' }}>
+            <Button isRtl={isRtl} ghost>
+              Ghost
+            </Button>
+            <Button isRtl={isRtl} ghost disabled>
+              Ghost(disabled)
+            </Button>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

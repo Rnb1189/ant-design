@@ -14,46 +14,66 @@ title:
 A loading indicator can be added to a button by setting the `loading` property on the `Button`.
 
 ```jsx
-import { Button } from 'antd';
+import { Button, Icon, Switch } from 'antd';
 
 class App extends React.Component {
   state = {
     loading: false,
     iconLoading: false,
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
   };
 
   enterLoading = () => {
-    this.setState({ loading: true });
+    this.setState({ ...this.state, loading: true });
   };
 
   enterIconLoading = () => {
-    this.setState({ iconLoading: true });
+    this.setState({ ...this.state, iconLoading: true });
   };
 
   render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
     return (
       <div>
-        <Button type="primary" loading>
-          Loading
-        </Button>
-        <Button type="primary" size="small" loading>
-          Loading
-        </Button>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
         <br />
-        <Button type="primary" loading={this.state.loading} onClick={this.enterLoading}>
-          Click me!
-        </Button>
-        <Button
-          type="primary"
-          icon="poweroff"
-          loading={this.state.iconLoading}
-          onClick={this.enterIconLoading}
-        >
-          Click me!
-        </Button>
-        <br />
-        <Button shape="circle" loading />
-        <Button type="primary" shape="circle" loading />
+        <div style={dirStyle}>
+          <Button isRtl={isRtl} type="primary" loading>
+            Loading
+          </Button>
+          <Button isRtl={isRtl} type="primary" size="small" loading>
+            Loading
+          </Button>
+          <br />
+          <Button
+            isRtl={isRtl}
+            type="primary"
+            loading={this.state.loading}
+            onClick={this.enterLoading}
+          >
+            Click me!
+          </Button>
+          <Button
+            isRtl={isRtl}
+            type="primary"
+            icon="poweroff"
+            loading={this.state.iconLoading}
+            onClick={this.enterIconLoading}
+          >
+            Click me!
+          </Button>
+          <br />
+          <Button isRtl={isRtl} shape="circle" loading />
+          <Button isRtl={isRtl} type="primary" shape="circle" loading />
+        </div>
       </div>
     );
   }
