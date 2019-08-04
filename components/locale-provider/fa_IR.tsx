@@ -4,6 +4,8 @@ import TimePicker from '../time-picker/locale/fa_IR';
 import Calendar from '../calendar/locale/fa_IR';
 
 export default {
+  Shared: { IsRtl: true },
+
   locale: 'fa',
   Pagination,
   DatePicker,

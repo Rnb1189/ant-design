@@ -249,9 +249,25 @@ class Tooltip extends React.Component<TooltipProps, any> {
       [openClassName || `${prefixCls}-open`]: true,
     });
 
+    //NEw:
+    const rtlTransition = childProps.isRtl
+      ? {
+          placement:
+            typeof props.placement === 'string'
+              ? props.placement
+                  .replace('right', 'omid')
+                  .replace('left', 'right')
+                  .replace('omid', 'left')
+              : undefined,
+          transitionName: 'zoom-big-fast-rlt',
+        }
+      : null;
+
     return (
       <RcTooltip
         {...this.props}
+        //NEw:
+        {...rtlTransition}
         prefixCls={prefixCls}
         getTooltipContainer={getPopupContainer || getTooltipContainer || getContextPopupContainer}
         ref={this.saveTooltip}

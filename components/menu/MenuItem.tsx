@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Item } from 'rc-menu';
+import { Item } from 'rnb-rc-menu';
 import { ClickParam } from '.';
 import MenuContext, { MenuContextProps } from './MenuContext';
 import Tooltip, { TooltipProps } from '../tooltip';

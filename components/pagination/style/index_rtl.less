@@ -1,0 +1,55 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+@import '../../input/style/mixin';
+
+@pagination-prefix-cls: ~'@{ant-prefix}-pagination';
+html[direction='rtl'] {
+  .@{pagination-prefix-cls} {
+    .reset-component;
+    &-total-text {
+      margin-left: 8px;
+      margin-right: initial;
+    }
+
+    &-item {
+      margin-left: 8px;
+      margin-right: initial;
+    }
+
+    &-prev,
+    &-jump-prev,
+    &-jump-next {
+      margin-left: 8px;
+      margin-right: initial;
+    }
+
+    &-slash {
+      // margin: 0 10px 0 5px;
+      margin: 0 5px 0 10px;
+    }
+
+    &-options {
+      margin-right: 16px;
+      margin-left: initial;
+      &-size-changer.@{ant-prefix}-select {
+        margin-left: 8px;
+        margin-right: initial;
+      }
+    }
+
+    &-simple &-simple-pager {
+      margin-left: 8px;
+      margin-right: initial;
+      input {
+        margin-left: 8px;
+        margin-right: initial;
+      }
+    }
+
+    &.mini &-jump-prev,
+    &.mini &-jump-next {
+      margin-left: 0;
+      margin-right: initial;
+    }
+  }
+}

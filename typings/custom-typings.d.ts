@@ -32,7 +32,7 @@ declare module 'rc-editor-mention';
 
 declare module 'rc-progress';
 
-declare module 'rc-menu';
+// declare module 'rc-menu';
 
 declare module 'rc-drawer';
 
@@ -106,3 +106,6 @@ declare module 'raf';
 declare module 'react-lifecycles-compat';
 
 declare module 'react-copy-to-clipboard';
+
+declare module 'rnb-rc-tabs*';
+declare module 'rnb-rc-menu';

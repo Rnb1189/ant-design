@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import RcTabs, { TabPane } from 'rc-tabs';
-import TabContent from 'rc-tabs/lib/TabContent';
+import RcTabs, { TabPane } from 'rnb-rc-tabs';
+import TabContent from 'rnb-rc-tabs/lib/TabContent';
 import TabBar from './TabBar';
 import classNames from 'classnames';
 import Icon from '../icon';

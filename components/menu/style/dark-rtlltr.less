@@ -1,0 +1,62 @@
+@import './dark-shared';
+
+@L: e('.a-ltr');
+@R: e('.a-rtl');
+
+//L_____
+.@{menu-prefix-cls} {
+  @{L}&-dark&-inline,
+  @{L}&-dark&-vertical,
+  @{L}&-dark&-vertical-left,
+  @{L}&-dark&-vertical-right {
+    border-right: 0;
+  }
+
+  @{L}&-dark&-inline &-item,
+  @{L}&-dark&-vertical &-item,
+  @{L}&-dark&-vertical-left &-item,
+  @{L}&-dark&-vertical-right &-item {
+    left: 0;
+    margin-left: 0;
+    border-right: 0;
+    &::after {
+      border-right: 0;
+    }
+  }
+
+  @{L}&-dark &-item-selected {
+    border-right: 0;
+    &::after {
+      border-right: 0;
+    }
+  }
+}
+
+//R_____
+.@{menu-prefix-cls} {
+  @{R}&-dark&-inline,
+  @{R}&-dark&-vertical,
+  @{R}&-dark&-vertical-left,
+  @{R}&-dark&-vertical-right {
+    border-left: 0;
+  }
+
+  @{R}&-dark&-inline &-item,
+  @{R}&-dark&-vertical &-item,
+  @{R}&-dark&-vertical-left &-item,
+  @{R}&-dark&-vertical-right &-item {
+    right: 0;
+    margin-right: 0;
+    border-left: 0;
+    &::after {
+      border-left: 0;
+    }
+  }
+
+  @{R}&-dark &-item-selected {
+    border-left: 0;
+    &::after {
+      border-left: 0;
+    }
+  }
+}

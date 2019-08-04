@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import { SubMenu as RcSubMenu } from 'rc-menu';
+import { SubMenu as RcSubMenu } from 'rnb-rc-menu';
 import classNames from 'classnames';
 
 import MenuContext, { MenuContextProps } from './MenuContext';

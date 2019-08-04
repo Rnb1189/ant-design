@@ -5,7 +5,10 @@ import defaultLocaleData from './default';
 export interface LocaleReceiverProps {
   componentName?: string;
   defaultLocale?: object | Function;
-  children: (locale: object, localeCode?: string) => React.ReactNode;
+
+  //NEw:
+  // children: (locale: object, localeCode?: string) => React.ReactNode;
+  children: (locale: object, localeCode?: string, sharedLocalData?: object) => React.ReactNode;
 }
 
 interface LocaleInterface {
@@ -39,6 +42,15 @@ export default class LocaleReceiver extends React.Component<LocaleReceiverProps>
     };
   }
 
+  //OMid:NEw
+  getLocaleSharedData() {
+    const defaultData = defaultLocaleData as LocaleInterface;
+    const { antLocale } = this.context;
+
+    if (antLocale && antLocale.Shared) return antLocale.Shared;
+    if (defaultData && defaultData.Shared) return defaultData.Shared;
+  }
+
   getLocaleCode() {
     const { antLocale } = this.context;
     const localeCode = antLocale && antLocale.locale;
@@ -50,6 +62,6 @@ export default class LocaleReceiver extends React.Component<LocaleReceiverProps>
   }
 
   render() {
-    return this.props.children(this.getLocale(), this.getLocaleCode());
+    return this.props.children(this.getLocale(), this.getLocaleCode(), this.getLocaleSharedData());
   }
 }

@@ -1,0 +1,128 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+@import './index_shared';
+@import './mixin';
+@import './mixin_rtl';
+
+@R: e(%('html[direction=%d]', 'rtl'));
+@L: e(%('html:not([direction=%d])', 'rtl'));
+
+// Button styles
+// -----------------------------
+.@{btn-prefix-cls} {
+  @{L} & > i,
+  @{L} & > span {
+    transition: margin-left 0.3s @ease-in-out;
+  }
+  @{R} & > i,
+  @{R} & > span {
+    transition: margin-right 0.3s @ease-in-out;
+  }
+
+  &-primary {
+    @{L} .@{btn-prefix-cls}-group &:first-child {
+      &:not(:last-child) {
+        border-right-color: @btn-group-border;
+        &[disabled] {
+          border-right-color: @btn-default-border;
+        }
+      }
+    }
+    @{R} .@{btn-prefix-cls}-group &:first-child {
+      &:not(:last-child) {
+        border-left-color: @btn-group-border;
+        &[disabled] {
+          border-left-color: @btn-default-border;
+        }
+      }
+    }
+    //_____
+
+    @{L} .@{btn-prefix-cls}-group &:last-child:not(:first-child),
+    @{L} .@{btn-prefix-cls}-group & + & {
+      border-left-color: @btn-group-border;
+      &[disabled] {
+        border-left-color: @btn-default-border;
+      }
+    }
+    @{R} .@{btn-prefix-cls}-group &:last-child:not(:first-child),
+    @{R} .@{btn-prefix-cls}-group & + & {
+      border-right-color: @btn-group-border;
+      &[disabled] {
+        border-right-color: @btn-default-border;
+      }
+    }
+    //_____
+  }
+
+  @{L} .@{iconfont-css-prefix} {
+    transition: margin-left 0.3s @ease-in-out;
+  }
+  @{R} .@{iconfont-css-prefix} {
+    transition: margin-right 0.3s @ease-in-out;
+  }
+  //_____
+
+  @{L} &&-loading:not(&-circle):not(&-circle-outline):not(&-icon-only) {
+    padding-left: 29px;
+    .@{iconfont-css-prefix}:not(:last-child) {
+      margin-left: -14px;
+    }
+  }
+  @{R} &&-loading:not(&-circle):not(&-circle-outline):not(&-icon-only) {
+    padding-right: 29px;
+    .@{iconfont-css-prefix}:not(:last-child) {
+      margin-right: -14px;
+    }
+  }
+  //_____
+
+  @{L} &-sm&-loading:not(&-circle):not(&-circle-outline):not(&-icon-only) {
+    padding-left: 24px;
+    .@{iconfont-css-prefix} {
+      margin-left: -17px;
+    }
+  }
+  @{R} &-sm&-loading:not(&-circle):not(&-circle-outline):not(&-icon-only) {
+    padding-right: 24px;
+    .@{iconfont-css-prefix} {
+      margin-right: -17px;
+    }
+  }
+  //_____
+
+  @{L} &-group {
+    .btn-group(@btn-prefix-cls);
+  }
+  @{R} &-group {
+    .rtl-btn-group(@btn-prefix-cls);
+  }
+  //_____
+
+  @{L} &:not(&-circle):not(&-circle-outline)&-icon-only {
+    padding-right: 8px;
+    padding-left: 8px;
+  }
+  @{R} &:not(&-circle):not(&-circle-outline)&-icon-only {
+    padding-left: 8px;
+    padding-right: 8px;
+  }
+
+  @{L} & > .@{iconfont-css-prefix} + span,
+  @{L} & > span + .@{iconfont-css-prefix} {
+    margin-left: 8px;
+  }
+  @{R} & > .@{iconfont-css-prefix} + span,
+  @{R} & > span + .@{iconfont-css-prefix} {
+    margin-right: 8px;
+  }
+  //_____
+
+  @{L} &-two-chinese-chars > *:not(.@{iconfont-css-prefix}) {
+    margin-right: -0.34em;
+  }
+  @{R} &-two-chinese-chars > *:not(.@{iconfont-css-prefix}) {
+    margin-left: -0.34em;
+  }
+  //_____
+}

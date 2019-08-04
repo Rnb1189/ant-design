@@ -1,0 +1,90 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+
+// @import './index_shared';
+
+@radio-prefix-cls: ~'@{ant-prefix}-radio';
+@radio-group-prefix-cls: ~'@{radio-prefix-cls}-group';
+@radio-inner-prefix-cls: ~'@{radio-prefix-cls}-inner';
+@radio-duration: 0.3s;
+@radio-focused-outline: 3px solid fade(@radio-dot-color, 6%);
+@radio-dot-size: @radio-size - 8px;
+
+@R: e(%('html[direction=%d]', 'rtl'));
+@L: e(%('html:not([direction=%d])', 'rtl'));
+
+@{L} .@{radio-prefix-cls}-wrapper {
+  margin-right: 8px;
+}
+@{R} .@{radio-prefix-cls}-wrapper {
+  margin-left: 8px;
+}
+//_____
+
+@{L} .@{radio-prefix-cls} {
+  &-inner {
+    &::after {
+      left: (@radio-size - @radio-dot-size) / 2 - 1px;
+      border-left: 0;
+    }
+    left: 0;
+  }
+}
+@{R} .@{radio-prefix-cls} {
+  &-inner {
+    &::after {
+      right: (@radio-size - @radio-dot-size) / 2 - 1px;
+      border-right: 0;
+    }
+    right: 0;
+  }
+}
+//_____
+
+@{L} .@{radio-prefix-cls}-button-wrapper {
+  border-left: 0;
+  > .@{radio-prefix-cls}-button {
+    margin-left: 0;
+  }
+  &:not(:first-child) {
+    &::before {
+      left: -1px;
+    }
+  }
+  &:first-child {
+    border-left: @border-width-base @border-style-base @border-color-base;
+    border-radius: @border-radius-base 0 0 @border-radius-base;
+  }
+  &:last-child {
+    border-radius: 0 @border-radius-base @border-radius-base 0;
+  }
+  &-disabled {
+    &:first-child {
+      border-left-color: @border-color-base;
+    }
+  }
+}
+@{R} .@{radio-prefix-cls}-button-wrapper {
+  border-right: 0;
+  > .@{radio-prefix-cls}-button {
+    margin-right: 0;
+  }
+  &:not(:first-child) {
+    &::before {
+      right: -1px;
+    }
+  }
+  &:first-child {
+    border-right: @border-width-base @border-style-base @border-color-base;
+    border-radius: 0 @border-radius-base @border-radius-base 0;
+  }
+  &:last-child {
+    border-radius: @border-radius-base 0 0 @border-radius-base;
+  }
+  &-disabled {
+    &:first-child {
+      border-right-color: @border-color-base;
+    }
+  }
+}
+//_____

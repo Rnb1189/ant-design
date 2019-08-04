@@ -15,6 +15,7 @@ export interface Route {
 }
 
 export interface BreadcrumbProps {
+  isRtl?: boolean;
   prefixCls?: string;
   routes?: Route[];
   params?: any;

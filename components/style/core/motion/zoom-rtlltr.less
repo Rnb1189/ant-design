@@ -1,0 +1,58 @@
+@import './zoom.less';
+
+// For Modal, Select choosen item
+.zoom-motion(zoom-rtl, antZoomRtl);
+// For Popover, Popconfirm, Dropdown
+.zoom-motion(zoom-big-rtl, antZoomBigRtl);
+// For Tooltip
+.zoom-motion(zoom-big-fast-rlt, antZoomBigRtl, @animation-duration-fast);
+
+@keyframes antZoomRtlIn {
+  0% {
+    transform: scale(0.2);
+    opacity: 0;
+    transform-origin: 100% 0%;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    transform-origin: 100% 0%;
+  }
+}
+
+@keyframes antZoomRtlOut {
+  0% {
+    transform: scale(1);
+    transform-origin: 100% 0%;
+  }
+  100% {
+    transform: scale(0.2);
+    opacity: 0;
+    transform-origin: 100% 0%;
+  }
+}
+
+@keyframes antZoomBigRtlIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+    transform-origin: 100% 0%;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    transform-origin: 100% 0%;
+  }
+}
+
+@keyframes antZoomBigRtlOut {
+  0% {
+    transform: scale(1);
+    transform-origin: 100% 0%;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0;
+    transform-origin: 100% 0%;
+  }
+}

@@ -4,6 +4,7 @@ import TimePicker from '../time-picker/locale/en_US';
 import Calendar from '../calendar/locale/en_US';
 
 export default {
+  Shared: { IsRtl: false },
   locale: 'en',
   Pagination,
   DatePicker,

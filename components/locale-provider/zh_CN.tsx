@@ -4,6 +4,7 @@ import TimePicker from '../time-picker/locale/zh_CN';
 import Calendar from '../calendar/locale/zh_CN';
 
 export default {
+  Shared: { IsRtl: false, IsDummy: true },
   locale: 'zh-cn',
   Pagination,
   DatePicker,

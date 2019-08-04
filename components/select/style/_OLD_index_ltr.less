@@ -1,0 +1,134 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+@import '../../input/style/mixin';
+
+@select-prefix-cls: ~'@{ant-prefix}-select';
+
+@R: e(%('html[dir=%d]', 'rtl'));
+@L: e(%('html:not([dir=%d])', 'rtl'));
+
+.selection__clear() {
+  right: @control-padding-horizontal - 1px;
+}
+
+.@{select-prefix-cls} {
+  // arrow
+  @{L} &-arrow {
+    .iconfont-mixin();
+    right: @control-padding-horizontal - 1px;
+  }
+
+  @{L} &-selection {
+    &-selected-value {
+      float: left;
+      padding-right: 20px;
+    }
+
+    &__clear {
+      .selection__clear();
+    }
+  }
+
+  @{L} &-no-arrow &-selection-selected-value {
+    padding-right: 0;
+  }
+
+  @{L} &-disabled &-selection--multiple &-selection__choice {
+    padding-right: 10px;
+  }
+
+  @{L} &-sm {
+    .@{select-prefix-cls}-selection__clear,
+    .@{select-prefix-cls}-arrow {
+      right: @control-padding-horizontal-sm;
+    }
+  }
+
+  @{L} &-selection__placeholder,
+  @{L} &-search__field__placeholder {
+    right: 9px;
+    left: 0;
+    text-align: left;
+  }
+
+  @{L} &-search__field__placeholder {
+    left: @control-padding-horizontal;
+  }
+
+  @{L} &-search__field__mirror {
+    left: 0;
+  }
+
+  @{L} &-search--inline {
+    > i {
+      float: right;
+    }
+  }
+
+  @{L} &-selection--multiple {
+    .@{select-prefix-cls}-search--inline {
+      float: left;
+    }
+
+    .@{select-prefix-cls}-selection__rendered {
+      margin-left: 5px;
+    }
+
+    .@{select-prefix-cls}-selection__placeholder {
+      margin-left: 6px;
+    }
+
+    .@{select-prefix-cls}-selection__choice {
+      float: left;
+      margin-right: 4px;
+      padding: 0 20px 0 10px;
+    }
+
+    .@{select-prefix-cls}-selection__choice__remove {
+      right: 4px;
+    }
+  }
+
+  @{L} &-allow-clear &-selection--single &-selection-selected-value {
+    padding-right: 16px;
+  }
+
+  @{L} &-allow-clear &-selection--multiple &-selection__rendered,
+  @{L} &-show-arrow &-selection--multiple &-selection__rendered {
+    margin-right: 20px; // In case that clear button will overlap content
+  }
+
+  @{L} &-combobox&-allow-clear &-selection:hover &-selection__rendered,
+  @{L} &-combobox&-show-arrow &-selection:hover &-selection__rendered {
+    margin-right: 20px; // In case that clear button will overlap content
+  }
+}
+
+.@{select-prefix-cls}-dropdown {
+  @{L} &-menu {
+    padding-left: 0; // Override default ul/ol
+
+    &-item-group-list {
+      > .@{select-prefix-cls}-dropdown-menu-item {
+        padding-left: 20px;
+      }
+    }
+  }
+
+  @{L} &&--multiple {
+    .@{select-prefix-cls}-dropdown-menu-item {
+      padding-right: @control-padding-horizontal + 20;
+      background-color: red;
+      & .@{select-prefix-cls}-selected-icon {
+        right: @control-padding-horizontal;
+        text-shadow: 0 0.1px 0, 0.1px 0 0, 0 -0.1px 0, -0.1px 0;
+      }
+    }
+  }
+
+  // Patch for popup adjust
+  // https://github.com/ant-design/ant-design/issues/14422
+  @{L} &--empty&--multiple &-menu-item {
+    padding-right: @control-padding-horizontal;
+  }
+}

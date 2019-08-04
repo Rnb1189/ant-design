@@ -1,0 +1,297 @@
+@import '../../style/themes/index';
+@import '../../style/mixins/index';
+
+@import './index-shared';
+
+@L: e('.a-ltr');
+@R: e('.a-rtl');
+
+@menu-prefix-cls: ~'@{ant-prefix}-menu';
+
+//L_________________________________________________
+@{L}.@{menu-prefix-cls} {
+  padding-left: 0;
+  // background-color: red;
+  &-inline,
+  &-vertical,
+  &-vertical-left {
+    border-right: @border-width-base @border-style-base @border-color-split;
+  }
+  &-vertical-right {
+    border-left: @border-width-base @border-style-base @border-color-split;
+  }
+
+  &-vertical.@{menu-prefix-cls}-sub,
+  &-vertical-left.@{menu-prefix-cls}-sub,
+  &-vertical-right.@{menu-prefix-cls}-sub {
+    border-right: 0;
+
+    .@{menu-prefix-cls}-item {
+      left: 0;
+      margin-left: 0;
+      border-right: 0;
+      &::after {
+        border-right: 0;
+      }
+    }
+
+    > .@{menu-prefix-cls}-item,
+    > .@{menu-prefix-cls}-submenu {
+      transform-origin: 0 0;
+    }
+  }
+
+  &-item,
+  &-submenu-title {
+    .@{iconfont-css-prefix} {
+      margin-right: 10px;
+    }
+  }
+
+  &-submenu {
+    &-popup {
+      .submenu-title-wrapper {
+        padding-right: 20px;
+      }
+    }
+
+    &-vertical,
+    &-vertical-left,
+    &-vertical-right,
+    &-inline {
+      > .@{menu-prefix-cls}-submenu-title .@{menu-prefix-cls}-submenu-arrow {
+        right: 16px;
+        &::before {
+          transform: rotate(45deg) translateY(-2px);
+        }
+        &::after {
+          transform: rotate(-45deg) translateY(2px);
+        }
+      }
+    }
+
+    &-inline > .@{menu-prefix-cls}-submenu-title .@{menu-prefix-cls}-submenu-arrow {
+      &::before {
+        transform: rotate(-45deg) translateX(2px);
+      }
+      &::after {
+        transform: rotate(45deg) translateX(-2px);
+      }
+    }
+
+    &-open {
+      &.@{menu-prefix-cls}-submenu-inline
+        > .@{menu-prefix-cls}-submenu-title
+        .@{menu-prefix-cls}-submenu-arrow {
+        transform: translateY(-2px);
+        &::after {
+          transform: rotate(-45deg) translateX(-2px);
+        }
+        &::before {
+          transform: rotate(45deg) translateX(2px);
+        }
+      }
+    }
+  }
+
+  &-vertical,
+  &-vertical-left,
+  &-vertical-right,
+  &-inline {
+    .@{menu-prefix-cls}-item {
+      &::after {
+        right: 0;
+        border-right: @menu-item-active-border-width solid @menu-highlight-color;
+      }
+    }
+  }
+
+  &-inline {
+    .@{menu-prefix-cls}-submenu-title {
+      padding-right: 34px;
+    }
+  }
+
+  &-inline-collapsed {
+    > .@{menu-prefix-cls}-item,
+    > .@{menu-prefix-cls}-item-group
+      > .@{menu-prefix-cls}-item-group-list
+      > .@{menu-prefix-cls}-item,
+    > .@{menu-prefix-cls}-item-group
+      > .@{menu-prefix-cls}-item-group-list
+      > .@{menu-prefix-cls}-submenu
+      > .@{menu-prefix-cls}-submenu-title,
+    > .@{menu-prefix-cls}-submenu > .@{menu-prefix-cls}-submenu-title {
+      left: 0;
+    }
+  }
+
+  &-item-group-list {
+    .@{menu-prefix-cls}-item,
+    .@{menu-prefix-cls}-submenu-title {
+      padding: 0 16px 0 28px;
+    }
+  }
+
+  &-sub.@{menu-prefix-cls}-inline {
+    & .@{menu-prefix-cls}-item-group-title {
+      padding-left: 32px;
+    }
+  }
+}
+
+//R_________________________________________________
+@{R}.@{menu-prefix-cls} {
+  // background-color: blue;
+
+  padding-left: 0;
+  &-inline,
+  &-vertical,
+  &-vertical-left {
+    border-left: @border-width-base @border-style-base @border-color-split;
+  }
+  &-vertical-right {
+    border-right: @border-width-base @border-style-base @border-color-split;
+  }
+
+  &-vertical.@{menu-prefix-cls}-sub,
+  &-vertical-left.@{menu-prefix-cls}-sub,
+  &-vertical-right.@{menu-prefix-cls}-sub {
+    border-left: 0;
+
+    .@{menu-prefix-cls}-item {
+      right: 0;
+      margin-right: 0;
+      border-left: 0;
+      &::after {
+        border-left: 0;
+      }
+    }
+
+    > .@{menu-prefix-cls}-item,
+    > .@{menu-prefix-cls}-submenu {
+      transform-origin: 0 0;
+    }
+  }
+
+  &-item,
+  &-submenu-title {
+    .@{iconfont-css-prefix} {
+      margin-left: 10px;
+    }
+  }
+
+  &-submenu {
+    &-popup {
+      .submenu-title-wrapper {
+        padding-left: 20px;
+      }
+    }
+
+    &-vertical,
+    &-vertical-left,
+    &-vertical-right,
+    &-inline {
+      > .@{menu-prefix-cls}-submenu-title .@{menu-prefix-cls}-submenu-arrow {
+        left: 16px;
+        &::before {
+          transform: rotate(-45deg) translateY(-2px);
+        }
+        &::after {
+          transform: rotate(45deg) translateY(2px);
+        }
+      }
+    }
+
+    &-inline > .@{menu-prefix-cls}-submenu-title .@{menu-prefix-cls}-submenu-arrow {
+      &::before {
+        transform: rotate(-45deg) translateX(2px);
+      }
+      &::after {
+        transform: rotate(45deg) translateX(-2px);
+      }
+    }
+
+    &-open {
+      &.@{menu-prefix-cls}-submenu-inline
+        > .@{menu-prefix-cls}-submenu-title
+        .@{menu-prefix-cls}-submenu-arrow {
+        transform: translateY(-2px);
+        &::after {
+          transform: rotate(-45deg) translateX(-2px);
+        }
+        &::before {
+          transform: rotate(45deg) translateX(2px);
+        }
+      }
+    }
+  }
+
+  &-vertical,
+  &-vertical-left,
+  &-vertical-right,
+  &-inline {
+    .@{menu-prefix-cls}-item {
+      &::after {
+        left: 0;
+        border-left: @menu-item-active-border-width solid @menu-highlight-color;
+      }
+    }
+  }
+
+  &-inline {
+    .@{menu-prefix-cls}-submenu-title {
+      padding-left: 34px;
+    }
+  }
+
+  &-inline-collapsed {
+    > .@{menu-prefix-cls}-item,
+    > .@{menu-prefix-cls}-item-group
+      > .@{menu-prefix-cls}-item-group-list
+      > .@{menu-prefix-cls}-item,
+    > .@{menu-prefix-cls}-item-group
+      > .@{menu-prefix-cls}-item-group-list
+      > .@{menu-prefix-cls}-submenu
+      > .@{menu-prefix-cls}-submenu-title,
+    > .@{menu-prefix-cls}-submenu > .@{menu-prefix-cls}-submenu-title {
+      right: 0;
+    }
+  }
+
+  &-item-group-list {
+    .@{menu-prefix-cls}-item,
+    .@{menu-prefix-cls}-submenu-title {
+      padding: 0 28px 0 16px;
+    }
+  }
+
+  &-sub.@{menu-prefix-cls}-inline {
+    & .@{menu-prefix-cls}-item-group-title {
+      padding-right: 32px;
+    }
+  }
+}
+
+// @{R}.@{menu-prefix-cls} {
+//   ul& > li.@{menu-prefix-cls}-item {
+//     text-align: right;
+//   }
+//   div&-submenu-title {
+//     text-align: right;
+//   }
+//   div&-submenu-title {
+//     text-align: right;
+//   }
+// }
+
+.@{menu-prefix-cls} {
+  @{R}&&-sub {
+    text-align: right;
+  }
+}
+
+//a-rtl ant-menu  ant-menu-sub ant-menu-vertical ant-menu-hidden
+//a-rtl a-rtl ant-menu-item-group
+
+@import './dark-rtlltr';

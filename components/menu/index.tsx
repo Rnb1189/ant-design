@@ -1,5 +1,5 @@
 import * as React from 'react';
-import RcMenu, { Divider, ItemGroup } from 'rc-menu';
+import RcMenu, { Divider, ItemGroup } from 'rnb-rc-menu';
 import classNames from 'classnames';
 import omit from 'omit.js';
 import SubMenu from './SubMenu';
@@ -30,6 +30,8 @@ export interface ClickParam {
 export type MenuMode = 'vertical' | 'vertical-left' | 'vertical-right' | 'horizontal' | 'inline';
 
 export interface MenuProps {
+  //NEw:
+  isRtl?: boolean;
   id?: string;
   theme?: MenuTheme;
   mode?: MenuMode;
@@ -266,7 +268,9 @@ class InternalMenu extends React.Component<InternalMenuProps, MenuState> {
         if (this.state.switchingModeFromInline) {
           menuOpenAnimation = '';
         } else {
+          //NEw:
           menuOpenAnimation = 'zoom-big';
+          menuOpenAnimation = this.props.isRtl ? 'zoom-big-rtl' : 'zoom-big';
         }
       }
     }

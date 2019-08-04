@@ -1,7 +1,7 @@
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import { polyfill } from 'react-lifecycles-compat';
-import Menu, { SubMenu, Item as MenuItem } from 'rc-menu';
+import Menu, { SubMenu, Item as MenuItem } from 'rnb-rc-menu';
 import closest from 'dom-closest';
 import classNames from 'classnames';
 import shallowequal from 'shallowequal';
