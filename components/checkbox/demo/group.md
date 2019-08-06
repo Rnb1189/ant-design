@@ -14,11 +14,7 @@ title:
 Generate a group of checkboxes from an array.
 
 ```jsx
-import { Checkbox } from 'antd';
-
-function onChange(checkedValues) {
-  console.log('checked = ', checkedValues);
-}
+import { Checkbox, Switch } from '../../index';
 
 const plainOptions = ['Apple', 'Pear', 'Orange'];
 const options = [
@@ -32,21 +28,58 @@ const optionsWithDisabled = [
   { label: 'Orange', value: 'Orange', disabled: false },
 ];
 
-ReactDOM.render(
-  <div>
-    <Checkbox.Group options={plainOptions} defaultValue={['Apple']} onChange={onChange} />
-    <br />
-    <br />
-    <Checkbox.Group options={options} defaultValue={['Pear']} onChange={onChange} />
-    <br />
-    <br />
-    <Checkbox.Group
-      options={optionsWithDisabled}
-      disabled
-      defaultValue={['Apple']}
-      onChange={onChange}
-    />
-  </div>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+  onChange = checkedValues => {
+    console.log('checked = ', checkedValues);
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <Checkbox.Group
+            isRtl={isRtl}
+            options={plainOptions}
+            defaultValue={['Apple']}
+            onChange={this.onChange}
+          />
+          <br />
+          <br />
+          <Checkbox.Group
+            isRtl={isRtl}
+            options={options}
+            defaultValue={['Pear']}
+            onChange={this.onChange}
+          />
+          <br />
+          <br />
+          <Checkbox.Group
+            isRtl={isRtl}
+            options={optionsWithDisabled}
+            disabled
+            defaultValue={['Apple']}
+            onChange={this.onChange}
+          />
+        </div>
+        ,
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

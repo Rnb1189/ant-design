@@ -14,7 +14,7 @@ title:
 The `indeterminate` property can help you to achieve a 'check all' effect.
 
 ```jsx
-import { Checkbox } from 'antd';
+import { Checkbox, Switch } from '../../index';
 
 const CheckboxGroup = Checkbox.Group;
 
@@ -26,10 +26,19 @@ class App extends React.Component {
     checkedList: defaultCheckedList,
     indeterminate: true,
     checkAll: false,
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
   };
 
   onChange = checkedList => {
     this.setState({
+      ...this.state,
       checkedList,
       indeterminate: !!checkedList.length && checkedList.length < plainOptions.length,
       checkAll: checkedList.length === plainOptions.length,
@@ -38,6 +47,7 @@ class App extends React.Component {
 
   onCheckAllChange = e => {
     this.setState({
+      ...this.state,
       checkedList: e.target.checked ? plainOptions : [],
       indeterminate: false,
       checkAll: e.target.checked,
@@ -45,23 +55,31 @@ class App extends React.Component {
   };
 
   render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
     return (
       <div>
-        <div style={{ borderBottom: '1px solid #E9E9E9' }}>
-          <Checkbox
-            indeterminate={this.state.indeterminate}
-            onChange={this.onCheckAllChange}
-            checked={this.state.checkAll}
-          >
-            Check all
-          </Checkbox>
-        </div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
         <br />
-        <CheckboxGroup
-          options={plainOptions}
-          value={this.state.checkedList}
-          onChange={this.onChange}
-        />
+        <div>
+          <div style={{ borderBottom: '1px solid #E9E9E9' }}>
+            <Checkbox
+              isRtl={isRtl}
+              indeterminate={this.state.indeterminate}
+              onChange={this.onCheckAllChange}
+              checked={this.state.checkAll}
+            >
+              Check all
+            </Checkbox>
+          </div>
+          <br />
+          <CheckboxGroup
+            isRtl={isRtl}
+            options={plainOptions}
+            value={this.state.checkedList}
+            onChange={this.onChange}
+          />
+        </div>
       </div>
     );
   }

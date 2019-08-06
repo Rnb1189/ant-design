@@ -17,6 +17,8 @@ export interface CheckboxOptionType {
 }
 
 export interface AbstractCheckboxGroupProps {
+  //NEw:
+  isRtl?: boolean;
   prefixCls?: string;
   className?: string;
   options?: Array<CheckboxOptionType | string>;
@@ -161,6 +163,7 @@ class CheckboxGroup extends React.Component<CheckboxGroupProps, CheckboxGroupSta
     if (options && options.length > 0) {
       children = this.getOptions().map(option => (
         <Checkbox
+          isRtl={this.props.isRtl}
           prefixCls={prefixCls}
           key={option.value.toString()}
           disabled={'disabled' in option ? option.disabled : props.disabled}
@@ -174,7 +177,13 @@ class CheckboxGroup extends React.Component<CheckboxGroupProps, CheckboxGroupSta
       ));
     }
 
-    const classString = classNames(groupPrefixCls, className);
+    // const classString = classNames(groupPrefixCls, className);
+    //NEw
+    const classString = classNames(
+      groupPrefixCls,
+      className,
+      !!this.props.isRtl ? 'a-rtl' : 'a-ltr',
+    );
     return (
       <div className={classString} style={style} {...domProps}>
         {children}

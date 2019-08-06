@@ -14,11 +14,38 @@ title:
 Basic usage of checkbox.
 
 ```jsx
-import { Checkbox } from 'antd';
+import { Checkbox, Switch } from '../../index';
 
-function onChange(e) {
-  console.log(`checked = ${e.target.checked}`);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+  onChange = e => {
+    console.log(`radio checked:${e.target.value}`);
+  };
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <Checkbox isRtl={isRtl} onChange={this.onChange}>
+            Checkbox
+          </Checkbox>
+        </div>
+      </div>
+    );
+  }
 }
 
-ReactDOM.render(<Checkbox onChange={onChange}>Checkbox</Checkbox>, mountNode);
+ReactDOM.render(<App />, mountNode);
 ```

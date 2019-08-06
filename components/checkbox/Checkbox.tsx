@@ -140,6 +140,8 @@ class Checkbox extends React.Component<CheckboxProps, {}> {
       [`${prefixCls}-wrapper`]: true,
       [`${prefixCls}-wrapper-checked`]: checkboxProps.checked,
       [`${prefixCls}-wrapper-disabled`]: checkboxProps.disabled,
+      'a-rtl': !!this.props.isRtl,
+      'a-ltr': !this.props.isRtl,
     });
     const checkboxClass = classNames({
       [`${prefixCls}-indeterminate`]: indeterminate,

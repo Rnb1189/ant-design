@@ -14,20 +14,28 @@ title:
 Communicated with other components.
 
 ```jsx
-import { Checkbox, Button } from 'antd';
+import { Checkbox, Switch, Button } from '../../index';
 
 class App extends React.Component {
   state = {
     checked: true,
     disabled: false,
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
   };
 
   toggleChecked = () => {
-    this.setState({ checked: !this.state.checked });
+    this.setState({ ...this.state, checked: !this.state.checked });
   };
 
   toggleDisable = () => {
-    this.setState({ disabled: !this.state.disabled });
+    this.setState({ ...this.state, disabled: !this.state.disabled });
   };
 
   onChange = e => {
@@ -41,30 +49,37 @@ class App extends React.Component {
     const label = `${this.state.checked ? 'Checked' : 'Unchecked'}-${
       this.state.disabled ? 'Disabled' : 'Enabled'
     }`;
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
     return (
       <div>
-        <p style={{ marginBottom: '20px' }}>
-          <Checkbox
-            checked={this.state.checked}
-            disabled={this.state.disabled}
-            onChange={this.onChange}
-          >
-            {label}
-          </Checkbox>
-        </p>
-        <p>
-          <Button type="primary" size="small" onClick={this.toggleChecked}>
-            {!this.state.checked ? 'Check' : 'Uncheck'}
-          </Button>
-          <Button
-            style={{ marginLeft: '10px' }}
-            type="primary"
-            size="small"
-            onClick={this.toggleDisable}
-          >
-            {!this.state.disabled ? 'Disable' : 'Enable'}
-          </Button>
-        </p>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <p style={{ marginBottom: '20px' }}>
+            <Checkbox
+              isRtl={isRtl}
+              checked={this.state.checked}
+              disabled={this.state.disabled}
+              onChange={this.onChange}
+            >
+              {label}
+            </Checkbox>
+          </p>
+          <p>
+            <Button type="primary" size="small" onClick={this.toggleChecked}>
+              {!this.state.checked ? 'Check' : 'Uncheck'}
+            </Button>
+            <Button
+              style={{ marginLeft: '10px' }}
+              type="primary"
+              size="small"
+              onClick={this.toggleDisable}
+            >
+              {!this.state.disabled ? 'Disable' : 'Enable'}
+            </Button>
+          </p>
+        </div>
       </div>
     );
   }
