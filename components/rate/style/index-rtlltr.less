@@ -1,0 +1,34 @@
+@import './index-shared.less';
+
+@{L}.@{rate-prefix-cls} {
+  &-star {
+    &:not(:last-child) {
+      margin-right: 8px;
+    }
+
+    &-first {
+      left: 0;
+    }
+  }
+
+  &-text {
+    margin-left: 8px;
+  }
+}
+
+@{R}.@{rate-prefix-cls} {
+  direction: rtl;
+  &-star {
+    &:not(:last-child) {
+      margin-left: 8px;
+    }
+
+    &-first {
+      right: 0;
+    }
+  }
+
+  &-text {
+    margin-right: 8px;
+  }
+}

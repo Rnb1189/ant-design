@@ -1,12 +1,15 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import RcRate from 'rnb-rc-rate';
+import classNames from 'classnames';
+
 import omit from 'omit.js';
 import Icon from '../icon';
 import Tooltip from '../tooltip';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 
 export interface RateProps {
+  isRtl?: boolean;
   prefixCls?: string;
   count?: number;
   value?: number;
@@ -54,7 +57,11 @@ export default class Rate extends React.Component<RateProps, any> {
     const { tooltips } = this.props;
     if (!tooltips) return node;
 
-    return <Tooltip title={tooltips[index]}>{node}</Tooltip>;
+    return (
+      <Tooltip isRtl={this.props.isRtl} title={tooltips[index]}>
+        {node}
+      </Tooltip>
+    );
   };
 
   renderRate = ({ getPrefixCls }: ConfigConsumerProps) => {
@@ -62,11 +69,17 @@ export default class Rate extends React.Component<RateProps, any> {
 
     const rateProps = omit(restProps, ['tooltips']);
 
+    //NEw
+    const className = classNames(this.props.className, this.props.isRtl ? 'a-rtl' : 'a-ltr');
+
     return (
       <RcRate
+        isRtl={this.props.isRtl}
         ref={this.saveRate}
         characterRender={this.characterRender}
         {...rateProps}
+        //NEw
+        // className={className}
         prefixCls={getPrefixCls('rate', prefixCls)}
       />
     );

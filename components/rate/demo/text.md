@@ -14,29 +14,44 @@ title:
 Add copywriting in rate components.
 
 ```jsx
-import { Rate } from 'antd';
+import { Rate, Switch } from '../../index';
 
-const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
-
-class Rater extends React.Component {
+class App extends React.Component {
   state = {
+    isRtl: false,
     value: 3,
   };
 
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
   handleChange = value => {
-    this.setState({ value });
+    this.setState({ ...this.state, value });
   };
 
   render() {
+    const desc = ['terrible', 'bad', 'normal', 'good', 'wonderful'];
     const { value } = this.state;
+
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+
     return (
-      <span>
-        <Rate tooltips={desc} onChange={this.handleChange} value={value} />
-        {value ? <span className="ant-rate-text">{desc[value - 1]}</span> : ''}
-      </span>
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <span>
+          <Rate isRtl={isRtl} tooltips={desc} onChange={this.handleChange} value={value} />
+          {value ? <span className="ant-rate-text">{desc[value - 1]}</span> : ''}
+        </span>
+      </div>
     );
   }
 }
 
-ReactDOM.render(<Rater />, mountNode);
+ReactDOM.render(<App />, mountNode);
 ```

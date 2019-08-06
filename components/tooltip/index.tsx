@@ -37,6 +37,7 @@ export interface TooltipAlignConfig {
 }
 
 export interface AbstractTooltipProps {
+  isRtl?: boolean;
   prefixCls?: string;
   overlayClassName?: string;
   style?: React.CSSProperties;

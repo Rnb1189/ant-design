@@ -14,16 +14,38 @@ title:
 Replace the default star to other character like alphabet, digit, iconfont or even Chinese word.
 
 ```jsx
-import { Rate, Icon } from 'antd';
+import { Rate, Icon, Switch } from '../../index';
 
-ReactDOM.render(
-  <div>
-    <Rate character={<Icon type="heart" />} allowHalf />
-    <br />
-    <Rate character="A" allowHalf style={{ fontSize: 36 }} />
-    <br />
-    <Rate character="好" allowHalf />
-  </div>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <Rate isRtl={isRtl} character={<Icon type="heart" />} allowHalf />
+          <br />
+          <Rate isRtl={isRtl} character="A" allowHalf style={{ fontSize: 36 }} />
+          <br />
+          <Rate isRtl={isRtl} character="好" allowHalf />
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

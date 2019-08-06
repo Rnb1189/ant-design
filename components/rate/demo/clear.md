@@ -14,16 +14,38 @@ title:
 Support set allow to clear star when click again.
 
 ```jsx
-import { Rate } from 'antd';
+import { Rate, Switch } from '../../index';
 
-ReactDOM.render(
-  <div>
-    <Rate defaultValue={3} />
-    <span className="ant-rate-text">allowClear: true</span>
-    <br />
-    <Rate allowClear={false} defaultValue={3} />
-    <span className="ant-rate-text">allowClear: false</span>
-  </div>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <Rate isRtl={isRtl} defaultValue={3} />
+          <span className="ant-rate-text">allowClear: true</span>
+          <br />
+          <Rate isRtl={isRtl} allowClear={false} defaultValue={3} />
+          <span className="ant-rate-text">allowClear: false</span>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```
