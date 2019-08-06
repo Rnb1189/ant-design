@@ -5,6 +5,7 @@ import { AbstractCheckboxProps } from '../checkbox/Checkbox';
 export type RadioGroupButtonStyle = 'outline' | 'solid';
 
 export interface RadioGroupProps extends AbstractCheckboxGroupProps {
+  isRtl?: boolean;
   defaultValue?: any;
   value?: any;
   onChange?: (e: RadioChangeEvent) => void;

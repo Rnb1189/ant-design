@@ -29,13 +29,14 @@ class App extends React.Component {
   };
 
   render() {
-    const dirStyle = { direction: `${this.state.isRtl ? 'rtl' : 'ltr'}` };
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
     return (
       <div>
         <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
         <br />
         <div style={dirStyle}>
-          <Radio>Radio</Radio>
+          <Radio isRtl={isRtl}>Radio</Radio>
         </div>
       </div>
     );

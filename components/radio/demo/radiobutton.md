@@ -14,41 +14,61 @@ title:
 The combination of radio button style.
 
 ```jsx
-import { Radio } from 'antd';
+import { Radio, Button, Icon, Switch } from '../../index';
 
-function onChange(e) {
-  console.log(`radio checked:${e.target.value}`);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+  onChange = e => {
+    console.log(`radio checked:${e.target.value}`);
+  };
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div style={dirStyle}>
+          <div>
+            <Radio.Group isRtl={isRtl} onChange={this.onChange} defaultValue="a">
+              <Radio.Button value="a">HH</Radio.Button>
+              <Radio.Button value="b">SS</Radio.Button>
+              <Radio.Button value="c">BB</Radio.Button>
+              <Radio.Button value="d">CC</Radio.Button>
+            </Radio.Group>
+          </div>
+          <div style={{ marginTop: 16 }}>
+            <Radio.Group isRtl={false} onChange={this.onChange} defaultValue="a">
+              <Radio.Button value="a">H</Radio.Button>
+              <Radio.Button value="b" disabled>
+                S
+              </Radio.Button>
+              <Radio.Button value="c">B</Radio.Button>
+              <Radio.Button value="d">C</Radio.Button>
+            </Radio.Group>
+          </div>
+          <div style={{ marginTop: 16 }}>
+            <Radio.Group disabled onChange={this.onChange} defaultValue="a">
+              <Radio.Button value="a">H</Radio.Button>
+              <Radio.Button value="b">S</Radio.Button>
+              <Radio.Button value="c">B</Radio.Button>
+              <Radio.Button value="d">C</Radio.Button>
+            </Radio.Group>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
-ReactDOM.render(
-  <div>
-    <div>
-      <Radio.Group onChange={onChange} defaultValue="a">
-        <Radio.Button value="a">Hangzhou</Radio.Button>
-        <Radio.Button value="b">Shanghai</Radio.Button>
-        <Radio.Button value="c">Beijing</Radio.Button>
-        <Radio.Button value="d">Chengdu</Radio.Button>
-      </Radio.Group>
-    </div>
-    <div style={{ marginTop: 16 }}>
-      <Radio.Group onChange={onChange} defaultValue="a">
-        <Radio.Button value="a">Hangzhou</Radio.Button>
-        <Radio.Button value="b" disabled>
-          Shanghai
-        </Radio.Button>
-        <Radio.Button value="c">Beijing</Radio.Button>
-        <Radio.Button value="d">Chengdu</Radio.Button>
-      </Radio.Group>
-    </div>
-    <div style={{ marginTop: 16 }}>
-      <Radio.Group disabled onChange={onChange} defaultValue="a">
-        <Radio.Button value="a">Hangzhou</Radio.Button>
-        <Radio.Button value="b">Shanghai</Radio.Button>
-        <Radio.Button value="c">Beijing</Radio.Button>
-        <Radio.Button value="d">Chengdu</Radio.Button>
-      </Radio.Group>
-    </div>
-  </div>,
-  mountNode,
-);
+ReactDOM.render(<App />, mountNode);
 ```

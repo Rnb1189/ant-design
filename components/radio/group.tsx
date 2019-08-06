@@ -107,10 +107,25 @@ class RadioGroup extends React.Component<RadioGroupProps, RadioGroupState> {
         [`${groupPrefixCls}-${props.size}`]: props.size,
       },
       className,
+      //NEw
+      {
+        'a-rtl': !!this.props.isRtl,
+        'a-ltr': !this.props.isRtl,
+      },
     );
 
     let children: React.ReactChildren[] | React.ReactElement<any>[] | React.ReactNode =
       props.children;
+
+    //NEw:
+    // set the rtl of children acording to button group
+    children = React.Children.map(children, (child: any) => {
+      let result = child;
+      if (child.props && child.props.isRtl === undefined) {
+        result = React.cloneElement(child, { isRtl: props.isRtl });
+      }
+      return result;
+    });
 
     // 如果存在 options, 优先使用
     if (options && options.length > 0) {
@@ -119,6 +134,8 @@ class RadioGroup extends React.Component<RadioGroupProps, RadioGroupState> {
           // 此处类型自动推导为 string
           return (
             <Radio
+              //NEw
+              isRtl={this.props.isRtl}
               key={index}
               prefixCls={prefixCls}
               disabled={this.props.disabled}
@@ -132,6 +149,8 @@ class RadioGroup extends React.Component<RadioGroupProps, RadioGroupState> {
           // 此处类型自动推导为 { label: string value: string }
           return (
             <Radio
+              //NEw
+              isRtl={this.props.isRtl}
               key={index}
               prefixCls={prefixCls}
               disabled={option.disabled || this.props.disabled}

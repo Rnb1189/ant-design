@@ -14,35 +14,81 @@ title:
 There are three sizes available: large, medium, and small. It can coordinate with input box.
 
 ```jsx
-import { Radio } from 'antd';
+import { Radio, Button, Icon, Switch } from '../../index';
 
-ReactDOM.render(
-  <div>
-    <div>
-      <Radio.Group defaultValue="a" size="large">
-        <Radio.Button value="a">Hangzhou</Radio.Button>
-        <Radio.Button value="b">Shanghai</Radio.Button>
-        <Radio.Button value="c">Beijing</Radio.Button>
-        <Radio.Button value="d">Chengdu</Radio.Button>
-      </Radio.Group>
-    </div>
-    <div style={{ marginTop: 16 }}>
-      <Radio.Group defaultValue="a">
-        <Radio.Button value="a">Hangzhou</Radio.Button>
-        <Radio.Button value="b">Shanghai</Radio.Button>
-        <Radio.Button value="c">Beijing</Radio.Button>
-        <Radio.Button value="d">Chengdu</Radio.Button>
-      </Radio.Group>
-    </div>
-    <div style={{ marginTop: 16 }}>
-      <Radio.Group defaultValue="a" size="small">
-        <Radio.Button value="a">Hangzhou</Radio.Button>
-        <Radio.Button value="b">Shanghai</Radio.Button>
-        <Radio.Button value="c">Beijing</Radio.Button>
-        <Radio.Button value="d">Chengdu</Radio.Button>
-      </Radio.Group>
-    </div>
-  </div>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div style={dirStyle}>
+          <div>
+            <Radio.Group isRtl={isRtl} defaultValue="a" size="large">
+              <Radio.Button isRtl={isRtl} value="a">
+                H
+              </Radio.Button>
+              <Radio.Button isRtl={isRtl} value="b">
+                S
+              </Radio.Button>
+              <Radio.Button isRtl={isRtl} value="c">
+                B
+              </Radio.Button>
+              <Radio.Button isRtl={isRtl} value="d">
+                C
+              </Radio.Button>
+            </Radio.Group>
+          </div>
+          <div style={{ direction: 'ltr', marginTop: 16 }}>
+            <Radio.Group isRtl={false} defaultValue="a">
+              <Radio.Button isRtl={false} value="a">
+                H
+              </Radio.Button>
+              <Radio.Button isRtl={false} value="b">
+                S
+              </Radio.Button>
+              <Radio.Button isRtl={false} value="c">
+                B
+              </Radio.Button>
+              <Radio.Button isRtl={false} value="d">
+                C
+              </Radio.Button>
+            </Radio.Group>
+          </div>
+          <div style={{ marginTop: 16 }}>
+            <Radio.Group isRtl={isRtl} defaultValue="a" size="small">
+              <Radio.Button isRtl={isRtl} value="a">
+                H
+              </Radio.Button>
+              <Radio.Button isRtl={isRtl} value="b">
+                S
+              </Radio.Button>
+              <Radio.Button isRtl={isRtl} value="c">
+                B
+              </Radio.Button>
+              <Radio.Button isRtl={isRtl} value="d">
+                C
+              </Radio.Button>
+            </Radio.Group>
+          </div>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

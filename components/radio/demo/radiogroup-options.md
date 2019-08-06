@@ -14,7 +14,7 @@ title:
 Render radios by configuring `options`.
 
 ```jsx
-import { Radio } from 'antd';
+import { Radio, Switch } from 'antd';
 
 const plainOptions = ['Apple', 'Pear', 'Orange'];
 const options = [
@@ -33,11 +33,20 @@ class App extends React.Component {
     value1: 'Apple',
     value2: 'Apple',
     value3: 'Apple',
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
   };
 
   onChange1 = e => {
     console.log('radio1 checked', e.target.value);
     this.setState({
+      ...this.state,
       value1: e.target.value,
     });
   };
@@ -45,6 +54,7 @@ class App extends React.Component {
   onChange2 = e => {
     console.log('radio2 checked', e.target.value);
     this.setState({
+      ...this.state,
       value2: e.target.value,
     });
   };
@@ -52,20 +62,27 @@ class App extends React.Component {
   onChange3 = e => {
     console.log('radio3 checked', e.target.value);
     this.setState({
+      ...this.state,
       value3: e.target.value,
     });
   };
 
   render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
     return (
       <div>
-        <Radio.Group options={plainOptions} onChange={this.onChange1} value={this.state.value1} />
-        <Radio.Group options={options} onChange={this.onChange2} value={this.state.value2} />
-        <Radio.Group
-          options={optionsWithDisabled}
-          onChange={this.onChange3}
-          value={this.state.value3}
-        />
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div style={dirStyle}>
+          <Radio.Group options={plainOptions} onChange={this.onChange1} value={this.state.value1} />
+          <Radio.Group options={options} onChange={this.onChange2} value={this.state.value2} />
+          <Radio.Group
+            options={optionsWithDisabled}
+            onChange={this.onChange3}
+            value={this.state.value3}
+          />
+        </div>
       </div>
     );
   }

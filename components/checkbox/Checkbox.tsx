@@ -8,6 +8,8 @@ import CheckboxGroup, { CheckboxGroupContext } from './Group';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 
 export interface AbstractCheckboxProps<T> {
+  //NEw:
+  isRtl?: boolean;
   prefixCls?: string;
   className?: string;
   defaultChecked?: boolean;
@@ -46,6 +48,8 @@ export interface CheckboxChangeEvent {
 class Checkbox extends React.Component<CheckboxProps, {}> {
   static Group: typeof CheckboxGroup;
   static defaultProps = {
+    //NEw:
+    isRtl: false,
     indeterminate: false,
   };
 
