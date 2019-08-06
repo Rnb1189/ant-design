@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
-import RcRate from 'rc-rate';
+import RcRate from 'rnb-rc-rate';
 import omit from 'omit.js';
 import Icon from '../icon';
 import Tooltip from '../tooltip';

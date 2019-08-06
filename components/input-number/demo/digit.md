@@ -22,3 +22,41 @@ function onChange(value) {
 
 ReactDOM.render(<InputNumber min={0} max={10} step={0.1} onChange={onChange} />, mountNode);
 ```
+
+```jsx
+import { InputNumber, Switch } from '../../index';
+
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  onChange = value => {
+    console.log('changed', value);
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div style={{}}>
+          <InputNumber min={0} max={10} step={0.1} onChange={this.onChange} />
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
+```

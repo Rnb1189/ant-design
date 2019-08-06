@@ -10,6 +10,7 @@ export type OmitAttrs = 'defaultValue' | 'onChange' | 'size';
 
 export interface InputNumberProps
   extends Omit<React.InputHTMLAttributes<HTMLInputElement>, OmitAttrs> {
+  isRtl?: boolean;
   prefixCls?: string;
   min?: number;
   max?: number;
@@ -59,12 +60,14 @@ export default class InputNumber extends React.Component<InputNumberProps, any> 
         [`${prefixCls}-sm`]: size === 'small',
       },
       className,
+      !!this.props.isRtl ? 'a-rtl' : 'a-ltr',
     );
     const upIcon = <Icon type="up" className={`${prefixCls}-handler-up-inner`} />;
     const downIcon = <Icon type="down" className={`${prefixCls}-handler-down-inner`} />;
 
     return (
       <RcInputNumber
+        isRtl={this.props.isRtl}
         ref={this.saveInputNumber}
         className={inputNumberClass}
         upHandler={upIcon}

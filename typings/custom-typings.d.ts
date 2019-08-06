@@ -111,3 +111,4 @@ declare module 'rnb-rc-tabs*';
 declare module 'rnb-rc-menu';
 declare module 'rnb-rc-calendar';
 declare module 'rnb-rc-calendar*';
+declare module 'rnb-rc-rate';
