@@ -14,19 +14,45 @@ title:
 The icon should be placed in front of the text.
 
 ```jsx
-import { Breadcrumb, Icon } from 'antd';
+import { Breadcrumb, Switch, Icon } from '../../index';
 
-ReactDOM.render(
-  <Breadcrumb>
-    <Breadcrumb.Item href="">
-      <Icon type="home" />
-    </Breadcrumb.Item>
-    <Breadcrumb.Item href="">
-      <Icon type="user" />
-      <span>Application List</span>
-    </Breadcrumb.Item>
-    <Breadcrumb.Item>Application</Breadcrumb.Item>
-  </Breadcrumb>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+  onChange = e => {
+    console.log(`radio checked:${e.target.value}`);
+  };
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <Breadcrumb isRtl={isRtl}>
+            <Breadcrumb.Item href="">
+              <Icon type="home" />
+            </Breadcrumb.Item>
+            <Breadcrumb.Item href="">
+              <Icon type="user" />
+              <span>Application List</span>
+            </Breadcrumb.Item>
+            <Breadcrumb.Item>Application</Breadcrumb.Item>
+          </Breadcrumb>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

@@ -1,0 +1,84 @@
+@import './index-shared';
+// @import '../../style/index-rtlltr-base.less';
+
+//L______
+@{L}.@{dropdown-prefix-cls} {
+  .LTR();
+  left: -9999px;
+  &::before {
+    right: 0;
+    left: -7px;
+  }
+
+  &-menu {
+    text-align: left;
+
+    &-item,
+    &-submenu-title {
+      > .anticon:first-child {
+        margin-right: 8px;
+      }
+
+      .@{dropdown-prefix-cls}-menu-submenu-arrow {
+        right: @padding-xs;
+      }
+    }
+
+    &-submenu-title {
+      padding-right: 26px;
+    }
+
+    &-submenu-vertical > .@{dropdown-prefix-cls}-menu {
+      left: 100%;
+      margin-left: 4px;
+    }
+  }
+}
+
+//R_____
+@{R}.@{dropdown-prefix-cls} {
+  .RTL();
+  left: -9999px;
+
+  &::before {
+    left: 0;
+    right: -7px;
+  }
+
+  &-menu {
+    .RTL();
+    text-align: right;
+
+    &-item,
+    &-submenu-title {
+      > .anticon:first-child {
+        margin-left: 8px;
+      }
+
+      .@{dropdown-prefix-cls}-menu-submenu-arrow {
+        right: @padding-xs;
+      }
+    }
+
+    &-submenu-title {
+      padding-left: 26px;
+    }
+
+    &-submenu-vertical > .@{dropdown-prefix-cls}-menu {
+      right: 100%;
+      margin-right: 4px;
+    }
+  }
+}
+
+@{L}.@{dropdown-prefix-cls}-trigger,
+@{L}.@{dropdown-prefix-cls}-link,
+@{L}.@{dropdown-prefix-cls}-button {
+  .LTR();
+}
+
+@{R}.@{dropdown-prefix-cls}-trigger,
+@{R}.@{dropdown-prefix-cls}-link,
+@{R}.@{dropdown-prefix-cls}-button {
+  .RTL();
+}

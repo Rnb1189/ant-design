@@ -1,0 +1,40 @@
+@import 'index-shared.less';
+@import '../../style/index-rtlltr-base.less';
+
+@breadcrumb-prefix-cls: ~'@{ant-prefix}-breadcrumb';
+
+@{L}.@{breadcrumb-prefix-cls} {
+  .LTR();
+  &-link {
+    > .@{iconfont-css-prefix} + span {
+      margin-left: 4px;
+    }
+  }
+
+  &-overlay-link {
+    > .@{iconfont-css-prefix} {
+      margin-left: 4px;
+    }
+  }
+}
+
+@{R}.@{breadcrumb-prefix-cls} {
+  .RTL();
+
+  & {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  &-link {
+    > .@{iconfont-css-prefix} + span {
+      margin-right: 4px;
+    }
+  }
+
+  &-overlay-link {
+    > .@{iconfont-css-prefix} {
+      margin-left: 4px;
+    }
+  }
+}

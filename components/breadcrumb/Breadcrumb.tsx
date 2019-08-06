@@ -150,11 +150,15 @@ export default class Breadcrumb extends React.Component<BreadcrumbProps, any> {
         return cloneElement(element, {
           separator,
           key: index,
+          isRtl: this.props.isRtl,
         });
       });
     }
     return (
-      <div className={classNames(className, prefixCls)} style={style}>
+      <div
+        className={classNames(className, prefixCls, !!this.props.isRtl ? 'a-rtl' : 'a-ltr')}
+        style={style}
+      >
         {crumbs}
       </div>
     );

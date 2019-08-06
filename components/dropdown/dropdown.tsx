@@ -33,6 +33,8 @@ type Align = {
 };
 
 export interface DropDownProps {
+  //NEw
+  isRtl?: boolean;
   trigger?: ('click' | 'hover' | 'contextMenu')[];
   overlay: React.ReactNode | OverlayFunc;
   onVisibleChange?: (visible: boolean) => void;
@@ -132,7 +134,13 @@ export default class Dropdown extends React.Component<DropDownProps, any> {
     const child = React.Children.only(children) as React.ReactElement<any>;
 
     const dropdownTrigger = React.cloneElement(child, {
-      className: classNames(child.props.className, `${prefixCls}-trigger`),
+      // className: classNames(child.props.className, `${prefixCls}-trigger`),
+      //NEw
+      className: classNames(
+        child.props.className,
+        `${prefixCls}-trigger`,
+        !!this.props.isRtl ? 'a-rtl' : 'a-ltr',
+      ),
       disabled,
     });
 
@@ -142,10 +150,23 @@ export default class Dropdown extends React.Component<DropDownProps, any> {
       alignPoint = true;
     }
 
+    //NEw:
+    var placement = this.props.placement;
+    if (this.props.isRtl === true && placement) {
+      placement = placement
+        .toString()
+        .replace('Left', 'dummy')
+        .replace('Right', 'Left')
+        .replace('dummy', 'Right') as Placement;
+    }
     return (
       <RcDropdown
+        //NEw:
+        isRtl={this.props.isRtl}
         alignPoint={alignPoint}
         {...this.props}
+        //NEw
+        placement={placement}
         prefixCls={prefixCls}
         getPopupContainer={getPopupContainer || getContextPopupContainer}
         transitionName={this.getTransitionName()}

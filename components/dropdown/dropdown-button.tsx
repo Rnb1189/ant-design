@@ -12,6 +12,8 @@ const ButtonGroup = Button.Group;
 type DropdownButtonType = 'primary' | 'ghost' | 'dashed';
 
 export interface DropdownButtonProps extends ButtonGroupProps, DropDownProps {
+  //NEw:
+  isRtl?: boolean;
   type?: DropdownButtonType;
   htmlType?: ButtonHTMLType;
   disabled?: boolean;
@@ -69,12 +71,24 @@ export default class DropdownButton extends React.Component<DropdownButtonProps,
     }
 
     return (
-      <ButtonGroup {...restProps} className={classNames(prefixCls, className)}>
-        <Button type={type} disabled={disabled} onClick={onClick} htmlType={htmlType} href={href}>
+      <ButtonGroup
+        {...restProps}
+        className={classNames(prefixCls, className, !!this.props.isRtl ? 'a-rtl' : 'a-lrt')}
+      >
+        <Button
+          isRtl={this.props.isRtl}
+          type={type}
+          disabled={disabled}
+          onClick={onClick}
+          htmlType={htmlType}
+          href={href}
+        >
           {children}
         </Button>
-        <Dropdown {...dropdownProps}>
-          <Button type={type}>{icon}</Button>
+        <Dropdown isRtl={this.props.isRtl} {...dropdownProps}>
+          <Button isRtl={this.props.isRtl} type={type}>
+            {icon}
+          </Button>
         </Dropdown>
       </ButtonGroup>
     );
