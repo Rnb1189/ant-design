@@ -14,18 +14,43 @@ title:
 Add prefix or suffix icons inside input.
 
 ```jsx
-import { Input, Tooltip, Icon } from 'antd';
+import { Input, Tooltip, Icon, Switch } from '../../index';
 
-ReactDOM.render(
-  <Input
-    placeholder="Enter your username"
-    prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-    suffix={
-      <Tooltip title="Extra information">
-        <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
-      </Tooltip>
-    }
-  />,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div style={dirStyle}>
+          <Input
+            isRtl={isRtl}
+            placeholder="Enter your username"
+            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            suffix={
+              <Tooltip title="Extra information">
+                <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
+              </Tooltip>
+            }
+          />
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

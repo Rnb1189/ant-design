@@ -66,6 +66,8 @@ export default class Password extends React.Component<PasswordProps, PasswordSta
     const suffixIcon = visibilityToggle && this.getIcon();
     const inputClassName = classNames(prefixCls, className, {
       [`${prefixCls}-${size}`]: !!size,
+      'a-rtl': !!this.props.isRtl,
+      'a-ltr': !this.props.isRtl,
     });
     return (
       <Input

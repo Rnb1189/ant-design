@@ -14,7 +14,34 @@ title:
 Input type of password and added in 3.12.0.
 
 ```jsx
-import { Input } from 'antd';
+import { Input, Switch } from '../../index';
 
-ReactDOM.render(<Input.Password placeholder="input password" />, mountNode);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div style={{}}>
+          <Input.Password isRtl={isRtl} placeholder="input password" />
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

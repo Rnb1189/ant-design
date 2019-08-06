@@ -29,6 +29,7 @@ export interface AutoSizeType {
 export type HTMLTextareaProps = React.TextareaHTMLAttributes<HTMLTextAreaElement>;
 
 export interface TextAreaProps extends HTMLTextareaProps {
+  isRtl?: boolean;
   prefixCls?: string;
   autosize?: boolean | AutoSizeType;
   onPressEnter?: React.KeyboardEventHandler<HTMLTextAreaElement>;
@@ -114,6 +115,8 @@ class TextArea extends React.Component<TextAreaProps, TextAreaState> {
     const prefixCls = getPrefixCls('input', customizePrefixCls);
     const cls = classNames(prefixCls, className, {
       [`${prefixCls}-disabled`]: disabled,
+      'a-rtl': !!this.props.isRtl,
+      'a-ltr': !this.props.isRtl,
     });
 
     const style = {

@@ -1,10 +1,8 @@
-@import '../../style/themes/index';
-@import '../../style/mixins/index';
-@import './mixin_shared';
+@import './mixin-shared';
 
-@input-affix-width: 19px;
-@R: e(%('html[direction=%d]', 'rtl'));
-@L: e(%('html:not([direction=%d])', 'rtl'));
+// @input-affix-width: 19px;
+// @R: e(%('html[direction=%d]', 'rtl'));
+// @L: e(%('html:not([direction=%d])', 'rtl'));
 
 .ltr-active(@color: @outline-color) {
   .active(@color);
@@ -75,14 +73,14 @@
 //_____
 
 .ltr-input-group(@inputClass) {
-  @{L} & > [class*='col-'] {
+  @{L}& > [class*='col-'] {
     padding-right: 8px;
     &:last-child {
       padding-right: 0;
     }
   }
 
-  @{L} & .@{inputClass} {
+  @{L}& .@{inputClass} {
     float: left;
     &:focus {
       border-right-width: 1px;
@@ -92,8 +90,8 @@
     }
   }
 
-  @{L} & > .@{inputClass}:first-child,
-  @{L} &-addon:first-child {
+  @{L}& > .@{inputClass}:first-child,
+  @{L}& &-addon:first-child {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     .@{ant-prefix}-select .@{ant-prefix}-select-selection {
@@ -102,7 +100,7 @@
     }
   }
 
-  @{L} & > .@{inputClass}-affix-wrapper {
+  @{L}& > .@{inputClass}-affix-wrapper {
     &:not(:first-child) .@{inputClass} {
       border-top-left-radius: 0;
       border-bottom-left-radius: 0;
@@ -113,15 +111,15 @@
     }
   }
 
-  @{L} &-addon:first-child {
+  @{L}& &-addon:first-child {
     border-right: 0;
   }
-  @{L} &-addon:last-child {
+  @{L}& &-addon:last-child {
     border-left: 0;
   }
 
-  @{L} & > .@{inputClass}:last-child,
-  @{L} &-addon:last-child {
+  @{L}& > .@{inputClass}:last-child,
+  @{L}& &-addon:last-child {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     .@{ant-prefix}-select .@{ant-prefix}-select-selection {
@@ -134,7 +132,7 @@
     float: left;
   }
 
-  @{L} &&-compact {
+  @{L}&&-compact {
     &-addon,
     &-wrap,
     > .@{inputClass} {
@@ -196,14 +194,18 @@
   }
 }
 .rtl-input-group(@inputClass) {
-  @{R} & > [class*='col-'] {
+  @{R}& {
+    direction: rtl;
+  }
+
+  @{R}& > [class*='col-'] {
     padding-left: 8px;
     &:last-child {
       padding-left: 0;
     }
   }
 
-  @{R} & .@{inputClass} {
+  @{R}& .@{inputClass} {
     float: right;
     &:focus {
       border-left-width: 1px;
@@ -213,8 +215,8 @@
     }
   }
 
-  @{R} & > .@{inputClass}:first-child,
-  @{R} &-addon:first-child {
+  @{R}& > .@{inputClass}:first-child,
+  @{R}& &-addon:first-child {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
     .@{ant-prefix}-select .@{ant-prefix}-select-selection {
@@ -223,7 +225,7 @@
     }
   }
 
-  @{R} & > .@{inputClass}-affix-wrapper {
+  @{R}& > .@{inputClass}-affix-wrapper {
     &:not(:first-child) .@{inputClass} {
       border-top-right-radius: 0;
       border-bottom-right-radius: 0;
@@ -234,15 +236,15 @@
     }
   }
 
-  @{R} &-addon:first-child {
+  @{R}& &-addon:first-child {
     border-left: 0;
   }
-  @{R} &-addon:last-child {
+  @{R}& &-addon:last-child {
     border-right: 0;
   }
 
-  @{R} & > .@{inputClass}:last-child,
-  @{R} &-addon:last-child {
+  @{R}& > .@{inputClass}:last-child,
+  @{R}& &-addon:last-child {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     .@{ant-prefix}-select .@{ant-prefix}-select-selection {
@@ -255,7 +257,7 @@
     float: right;
   }
 
-  @{R} &&-compact {
+  @{R}&&-compact {
     &-addon,
     &-wrap,
     > .@{inputClass} {
@@ -320,7 +322,7 @@
 //_____
 
 .rtlltr-input-affix-wrapper(@inputClass) {
-  @{L} & {
+  @{L}& {
     text-align: start;
     &:hover .@{inputClass}:not(.@{inputClass}-disabled) {
       .ltr-hover();
@@ -339,7 +341,7 @@
     }
   }
 
-  @{R} & {
+  @{R}& {
     text-align: start;
     &:hover .@{inputClass}:not(.@{inputClass}-disabled) {
       .rtl-hover();

@@ -14,7 +14,34 @@ title:
 Basic usage example.
 
 ```jsx
-import { Input } from 'antd';
+import { Input, Switch } from '../../index';
 
-ReactDOM.render(<Input placeholder="Basic usage" />, mountNode);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div style={{}}>
+          <Input isRtl={isRtl} placeholder="Basic usage" />
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

@@ -35,6 +35,8 @@ export interface InputProps
   prefix?: React.ReactNode;
   suffix?: React.ReactNode;
   allowClear?: boolean;
+  //NEw
+  isRtl?: boolean;
 }
 
 class Input extends React.Component<InputProps, any> {
@@ -48,6 +50,7 @@ class Input extends React.Component<InputProps, any> {
   };
 
   static propTypes = {
+    isRtl: PropTypes.bool,
     type: PropTypes.string,
     id: PropTypes.string,
     size: PropTypes.oneOf(InputSizes),
@@ -222,11 +225,15 @@ class Input extends React.Component<InputProps, any> {
 
     const mergedWrapperClassName = classNames(`${prefixCls}-wrapper`, {
       [wrapperClassName]: addonBefore || addonAfter,
+      'a-rtl': !!this.props.isRtl,
+      'a-ltr': !this.props.isRtl,
     });
 
     const mergedGroupClassName = classNames(className, `${prefixCls}-group-wrapper`, {
       [`${prefixCls}-group-wrapper-sm`]: size === 'small',
       [`${prefixCls}-group-wrapper-lg`]: size === 'large',
+      'a-rtl': !!this.props.isRtl,
+      'a-ltr': !this.props.isRtl,
     });
 
     // Need another wrapper for changing display:table to display:inline-block
@@ -257,6 +264,8 @@ class Input extends React.Component<InputProps, any> {
     const affixWrapperCls = classNames(props.className, `${prefixCls}-affix-wrapper`, {
       [`${prefixCls}-affix-wrapper-sm`]: props.size === 'small',
       [`${prefixCls}-affix-wrapper-lg`]: props.size === 'large',
+      'a-rtl': !!this.props.isRtl,
+      'a-ltr': !this.props.isRtl,
     });
     return (
       <span className={affixWrapperCls} style={props.style}>

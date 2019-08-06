@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 
 export interface GroupProps {
+  isRtl?: boolean;
   className?: string;
   size?: 'large' | 'small' | 'default';
   children?: React.ReactNode;
@@ -26,6 +27,8 @@ const Group: React.StatelessComponent<GroupProps> = props => (
           [`${prefixCls}-lg`]: props.size === 'large',
           [`${prefixCls}-sm`]: props.size === 'small',
           [`${prefixCls}-compact`]: props.compact,
+          'a-rtl': !!props.isRtl,
+          'a-ltr': !props.isRtl,
         },
         className,
       );

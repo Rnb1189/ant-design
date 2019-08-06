@@ -14,14 +14,35 @@ title:
 Input box with the remove icon, click the icon to delete everything.
 
 ```jsx
-import { Input } from 'antd';
+import { Input, Switch } from '../../index';
 
-const onChange = e => {
-  console.log(e);
-};
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
 
-ReactDOM.render(
-  <Input placeholder="input with clear icon" allowClear onChange={onChange} />,
-  mountNode,
-);
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div style={{}}>
+          <Input isRtl={isRtl} placeholder="input with clear icon" allowClear />
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

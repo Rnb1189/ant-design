@@ -1,18 +1,18 @@
-@import '../../style/themes/index';
-@import '../../style/mixins/index';
-@import './index_shared';
-@import './mixin_rtlltr';
+// @import '../../style/themes/index';
+// @import '../../style/mixins/index';
+@import './index-shared';
+@import './mixin-rtlltr';
 
-@R: e(%('html[direction=%d]', 'rtl'));
-@L: e(%('html:not([direction=%d])', 'rtl'));
+// @R: e(%('html[direction=%d]', 'rtl'));
+// @L: e(%('html:not([direction=%d])', 'rtl'));
 
 .@{ant-prefix}-input {
   .reset-component;
   .input();
-  @{L} & {
+  @{L}& {
     .ltr-input();
   }
-  @{R} & {
+  @{R}& {
     .rtl-input();
   }
 }
@@ -23,6 +23,10 @@
   .input-group(~'@{ant-prefix}-input');
   .ltr-input-group(~'@{ant-prefix}-input');
   .rtl-input-group(~'@{ant-prefix}-input');
+  @{R}&-wrapper {
+    text-align: start;
+    direction: rtl;
+  }
 }
 
 // Input with affix: prefix or suffix
@@ -33,5 +37,5 @@
 }
 
 // @import './search-input';
-@import './search-input_shared';
-@import './search-input_rtlltr';
+// @import './search-input_shared';
+@import './search-input-rtlltr';
