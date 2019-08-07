@@ -11,34 +11,60 @@ title:
 
 ## en-US
 
-Basic Usage.
+Basic Usage .
 
 ```jsx
-import { Select } from 'antd';
-
+import { Select, Switch } from '../../index';
 const { Option } = Select;
 
-function handleChange(value) {
-  console.log(`selected ${value}`);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  handleChange = value => {
+    console.log(`selected ${value}`);
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <Select
+            isRtl={isRtl}
+            defaultValue="lucy"
+            style={{ width: 120 }}
+            onChange={this.handleChange}
+          >
+            <Option value="jack">Jack</Option>
+            <Option value="lucy">Lucy</Option>
+            <Option value="disabled" disabled>
+              Disabled
+            </Option>
+            <Option value="Yiminghe">yiminghe</Option>
+          </Select>
+          <Select isRtl={isRtl} defaultValue="lucy" style={{ width: 120 }} disabled>
+            <Option value="lucy">Lucy</Option>
+          </Select>
+          <Select isRtl={isRtl} defaultValue="lucy" style={{ width: 120 }} loading>
+            <Option value="lucy">Lucy</Option>
+          </Select>
+        </div>
+      </div>
+    );
+  }
 }
 
-ReactDOM.render(
-  <div>
-    <Select defaultValue="lucy" style={{ width: 120 }} onChange={handleChange}>
-      <Option value="jack">Jack</Option>
-      <Option value="lucy">Lucy</Option>
-      <Option value="disabled" disabled>
-        Disabled
-      </Option>
-      <Option value="Yiminghe">yiminghe</Option>
-    </Select>
-    <Select defaultValue="lucy" style={{ width: 120 }} disabled>
-      <Option value="lucy">Lucy</Option>
-    </Select>
-    <Select defaultValue="lucy" style={{ width: 120 }} loading>
-      <Option value="lucy">Lucy</Option>
-    </Select>
-  </div>,
-  mountNode,
-);
+ReactDOM.render(<App />, mountNode);
 ```

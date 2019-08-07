@@ -14,7 +14,7 @@ title:
 The height of the input field for the select defaults to 32px. If size is set to large, the height will be 40px, and if set to small, 24px.
 
 ```jsx
-import { Select, Radio } from 'antd';
+import { Select, Radio, Switch } from 'antd';
 
 const { Option } = Select;
 
@@ -30,6 +30,14 @@ function handleChange(value) {
 class SelectSizesDemo extends React.Component {
   state = {
     size: 'default',
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
   };
 
   handleSizeChange = e => {
@@ -38,40 +46,54 @@ class SelectSizesDemo extends React.Component {
 
   render() {
     const { size } = this.state;
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
     return (
       <div>
-        <Radio.Group value={size} onChange={this.handleSizeChange}>
-          <Radio.Button value="large">Large</Radio.Button>
-          <Radio.Button value="default">Default</Radio.Button>
-          <Radio.Button value="small">Small</Radio.Button>
-        </Radio.Group>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
         <br />
-        <br />
-        <Select size={size} defaultValue="a1" onChange={handleChange} style={{ width: 200 }}>
-          {children}
-        </Select>
-        <br />
-        <Select
-          mode="multiple"
-          size={size}
-          placeholder="Please select"
-          defaultValue={['a10', 'c12']}
-          onChange={handleChange}
-          style={{ width: '100%' }}
-        >
-          {children}
-        </Select>
-        <br />
-        <Select
-          mode="tags"
-          size={size}
-          placeholder="Please select"
-          defaultValue={['a10', 'c12']}
-          onChange={handleChange}
-          style={{ width: '100%' }}
-        >
-          {children}
-        </Select>
+        <div>
+          <Radio.Group value={size} onChange={this.handleSizeChange}>
+            <Radio.Button value="large">Large</Radio.Button>
+            <Radio.Button value="default">Default</Radio.Button>
+            <Radio.Button value="small">Small</Radio.Button>
+          </Radio.Group>
+          <br />
+          <br />
+          <Select
+            isRtl={isRtl}
+            size={size}
+            defaultValue="a1"
+            onChange={handleChange}
+            style={{ width: 200 }}
+          >
+            {children}
+          </Select>
+          <br />
+          <Select
+            isRtl={isRtl}
+            mode="multiple"
+            size={size}
+            placeholder="Please select"
+            defaultValue={['a10', 'c12']}
+            onChange={handleChange}
+            style={{ width: '100%' }}
+          >
+            {children}
+          </Select>
+          <br />
+          <Select
+            isRtl={isRtl}
+            mode="tags"
+            size={size}
+            placeholder="Please select"
+            defaultValue={['a10', 'c12']}
+            onChange={handleChange}
+            style={{ width: '100%' }}
+          >
+            {children}
+          </Select>
+        </div>
       </div>
     );
   }

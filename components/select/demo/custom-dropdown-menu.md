@@ -14,27 +14,49 @@ title:
 Customize the dropdown menu via `dropdownRender`.
 
 ```jsx
-import { Select, Icon, Divider } from 'antd';
-
+import { Select, Icon, Divider, Switch } from '../../index';
 const { Option } = Select;
 
-ReactDOM.render(
-  <Select
-    defaultValue="lucy"
-    style={{ width: 120 }}
-    dropdownRender={menu => (
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
       <div>
-        {menu}
-        <Divider style={{ margin: '4px 0' }} />
-        <div style={{ padding: '8px', cursor: 'pointer' }}>
-          <Icon type="plus" /> Add item
-        </div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <Select
+          isRtl={isRtl}
+          defaultValue="lucy"
+          style={{ width: 120 }}
+          dropdownRender={menu => (
+            <div>
+              {menu}
+              <Divider style={{ margin: '4px 0' }} />
+              <div style={{ direction: 'rtl', padding: '8px', cursor: 'pointer' }}>
+                <Icon type="plus" /> Add item
+              </div>
+            </div>
+          )}
+        >
+          <Option value="jack">Jack</Option>
+          <Option value="lucy">Lucy</Option>
+        </Select>
       </div>
-    )}
-  >
-    <Option value="jack">Jack</Option>
-    <Option value="lucy">Lucy</Option>
-  </Select>,
-  mountNode,
-);
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

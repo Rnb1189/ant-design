@@ -1,12 +1,8 @@
-@import '../../style/themes/index';
-@import '../../style/mixins/index';
 @import '../../input/style/mixin-rtlltr';
-@import './index_shared.less';
+@import './index-shared.less';
 
-@select-prefix-cls: ~'@{ant-prefix}-select';
-
-@R: e(%('html[direction=%d]', 'rtl'));
-@L: e(%('html:not([direction=%d])', 'rtl'));
+// @R: e(%('html[direction=%d]', 'rtl'));
+// @L: e(%('html:not([direction=%d])', 'rtl'));
 
 .ltr-selection__clear() {
   .selection__clear();
@@ -20,6 +16,13 @@
 }
 
 .@{select-prefix-cls} {
+  @{L}& {
+    direction: ltr;
+  }
+  @{R}& {
+    direction: rtl;
+  }
+
   // arrow
   @{L} &-arrow {
     .iconfont-mixin();
@@ -207,6 +210,7 @@
     }
   }
   @{R} &-menu {
+    direction: rtl;
     padding-right: 0; // Override default ul/ol
     &-item-group-list {
       > .@{select-prefix-cls}-dropdown-menu-item {
@@ -216,7 +220,7 @@
   }
   //_____
 
-  @{L} &&--multiple {
+  @{L}&&--multiple {
     .@{select-prefix-cls}-dropdown-menu-item {
       padding-right: @control-padding-horizontal + 20;
       & .@{select-prefix-cls}-selected-icon {
@@ -225,7 +229,7 @@
       }
     }
   }
-  @{R} &&--multiple {
+  @{R}&&--multiple {
     .@{select-prefix-cls}-dropdown-menu-item {
       padding-left: @control-padding-horizontal + 20;
       & .@{select-prefix-cls}-selected-icon {

@@ -11,6 +11,7 @@ import { tuple } from '../_util/type';
 const SelectSizes = tuple('default', 'large', 'small');
 
 export interface AbstractSelectProps {
+  isRtl?: boolean;
   prefixCls?: string;
   className?: string;
   showAction?: string | string[];
@@ -57,10 +58,7 @@ export interface SelectProps<T = SelectValue> extends AbstractSelectProps {
   mode?: 'default' | 'multiple' | 'tags' | 'combobox' | string;
   optionLabelProp?: string;
   firstActiveValue?: string | string[];
-  onChange?: (
-    value: T,
-    option: React.ReactElement<any> | React.ReactElement<any>[],
-  ) => void;
+  onChange?: (value: T, option: React.ReactElement<any> | React.ReactElement<any>[]) => void;
   onSelect?: (value: T extends (infer I)[] ? I : T, option: React.ReactElement<any>) => void;
   onDeselect?: (value: T extends (infer I)[] ? I : T) => void;
   onBlur?: (value: T) => void;
@@ -215,6 +213,8 @@ export default class Select<T = SelectValue> extends React.Component<SelectProps
     } = this.props;
     const rest = omit(restProps, ['inputIcon']);
 
+    const rtlClass = !!this.props.isRtl ? 'a-rtl' : 'a-ltr';
+
     const prefixCls = getPrefixCls('select', customizePrefixCls);
     const cls = classNames(
       {
@@ -222,6 +222,8 @@ export default class Select<T = SelectValue> extends React.Component<SelectProps
         [`${prefixCls}-sm`]: size === 'small',
         [`${prefixCls}-show-arrow`]: showArrow,
       },
+      //NEw
+      rtlClass,
       className,
     );
 
@@ -265,6 +267,10 @@ export default class Select<T = SelectValue> extends React.Component<SelectProps
 
     return (
       <RcSelect
+        //NEw
+        isRtl={!!this.props.isRtl}
+        //NEw
+        dropdownClassName={classNames(rtlClass, this.props.dropdownClassName)}
         inputIcon={this.renderSuffixIcon(prefixCls)}
         removeIcon={finalRemoveIcon}
         clearIcon={finalClearIcon}

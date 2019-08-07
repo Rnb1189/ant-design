@@ -47,7 +47,7 @@ class App extends React.Component {
             </Radio.Group>
           </div>
           <div style={{ marginTop: 16 }}>
-            <Radio.Group isRtl={false} onChange={this.onChange} defaultValue="a">
+            <Radio.Group isRtl={isRtl} onChange={this.onChange} defaultValue="a">
               <Radio.Button value="a">H</Radio.Button>
               <Radio.Button value="b" disabled>
                 S
@@ -57,7 +57,7 @@ class App extends React.Component {
             </Radio.Group>
           </div>
           <div style={{ marginTop: 16 }}>
-            <Radio.Group disabled onChange={this.onChange} defaultValue="a">
+            <Radio.Group isRtl={isRtl} disabled onChange={this.onChange} defaultValue="a">
               <Radio.Button value="a">H</Radio.Button>
               <Radio.Button value="b">S</Radio.Button>
               <Radio.Button value="c">B</Radio.Button>
