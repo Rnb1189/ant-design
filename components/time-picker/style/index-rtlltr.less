@@ -1,0 +1,116 @@
+@import './index-shared';
+@import '../../style/index-rtlltr-base.less';
+
+//LR_____
+.@{timepicker-prefix-cls}-panel {
+  @{L}& &-inner {
+    left: -2px;
+  }
+
+  @{L}& &-input {
+    &-wrap {
+      padding: 7px 2px 7px @control-padding-horizontal;
+    }
+  }
+
+  @{R}& &-inner {
+    right: -2px;
+  }
+
+  @{R}& &-input {
+    &-wrap {
+      padding: 7px @control-padding-horizontal 7px 2px;
+    }
+  }
+}
+
+.@{timepicker-prefix-cls} {
+  @{L}& &-icon,
+  @{L}& &-clear {
+    right: @control-padding-horizontal - 1px;
+  }
+  @{R}& &-icon,
+  @{R}& &-clear {
+    left: @control-padding-horizontal - 1px;
+  }
+
+  @{L}& &-small &-icon,
+  @{L}& &-small &-clear {
+    right: @control-padding-horizontal-sm - 1px;
+  }
+  @{R}& &-small &-icon,
+  @{R}& &-small &-clear {
+    left: @control-padding-horizontal-sm - 1px;
+  }
+}
+
+//no difference between right and left
+.@{timepicker-prefix-cls}-panel {
+  &-select {
+    float: left;
+    border-left: @border-width-base @border-style-base @border-color-split;
+
+    &:first-child {
+      margin-left: 0;
+      border-left: 0;
+    }
+
+    &:last-child {
+      border-right: 0;
+    }
+
+    ul {
+      // padding: 0 0 @timepicker-item-height * 5;
+      padding: 0 0 @timepicker-item-height * 1;
+    }
+
+    li {
+      padding: 0 0 0 @control-padding-horizontal;
+      text-align: left;
+    }
+  }
+}
+
+.@{timepicker-prefix-cls}-panel {
+  &-select {
+    &::-webkit-scrollbar {
+      width: 5px;
+      height: 5px;
+    }
+    &::-webkit-scrollbar-button {
+      width: 0px;
+      height: 0px;
+    }
+    &::-webkit-scrollbar-thumb {
+      background: #d9d9d9;
+      border: none;
+      border-radius: 50px;
+    }
+    &::-webkit-scrollbar-thumb:hover {
+      background: #bfbfbf;
+    }
+    &::-webkit-scrollbar-thumb:active {
+      background: #8c8c8c;
+    }
+    &::-webkit-scrollbar-track {
+      background: #fafafa; // @gray-1;
+      border: none;
+      border-radius: 50px;
+    }
+    &::-webkit-scrollbar-track:hover {
+      background: #f5f5f5;
+    }
+    &::-webkit-scrollbar-track:active {
+      background: #e8e8e8;
+    }
+    &::-webkit-scrollbar-corner {
+      background: transparent;
+    }
+  }
+}
+
+.@{timepicker-prefix-cls}-panel {
+  &-combobox {
+    .clearfix;
+  }
+}

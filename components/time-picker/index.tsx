@@ -21,6 +21,7 @@ export function generateShowHourMinuteSecond(format: string) {
 }
 
 export interface TimePickerProps {
+  isRtl?: boolean;
   className?: string;
   size?: 'large' | 'default' | 'small';
   value?: moment.Moment;
@@ -200,9 +201,19 @@ class TimePicker extends React.Component<TimePickerProps, any> {
 
         const format = this.getDefaultFormat();
         const prefixCls = getPrefixCls('time-picker', customizePrefixCls);
-        const pickerClassName = classNames(className, {
-          [`${prefixCls}-${size}`]: !!size,
-        });
+        const dirClass = this.props.isRtl ? 'a-rtl' : 'a-ltr';
+        const pickerClassName = classNames(
+          className,
+          {
+            [`${prefixCls}-${size}`]: !!size,
+          },
+          // NEw
+          dirClass,
+        );
+
+        //NEw
+        const popupClassName = classNames(this.props.popupClassName, dirClass);
+        const placementSetting = this.props.isRtl ? { placement: 'bottomRight' } : null;
 
         const pickerAddon = (panel: React.ReactElement<any>) =>
           addon ? <div className={`${prefixCls}-panel-addon`}>{addon(panel)}</div> : null;
@@ -211,6 +222,10 @@ class TimePicker extends React.Component<TimePickerProps, any> {
           <RcTimePicker
             {...generateShowHourMinuteSecond(format)}
             {...pickerProps}
+            //NEw
+            popupClassName={popupClassName}
+            //NEw
+            {...placementSetting}
             allowEmpty={this.getAllowClear()}
             prefixCls={prefixCls}
             getPopupContainer={getPopupContainer || getContextPopupContainer}

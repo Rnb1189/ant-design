@@ -14,15 +14,43 @@ title:
 Click `TimePicker`, and then we could select or input a time in panel.
 
 ```jsx
-import { TimePicker } from 'antd';
+import { TimePicker, Switch } from '../../index';
 import moment from 'moment';
 
-function onChange(time, timeString) {
-  console.log(time, timeString);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  onChange = (time, timeString) => {
+    console.log(time, timeString);
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div style={dirStyle}>
+          <TimePicker
+            isRtl={isRtl}
+            onChange={this.onChange}
+            defaultOpenValue={moment('00:00:00', 'HH:mm:ss')}
+          />
+        </div>
+      </div>
+    );
+  }
 }
 
-ReactDOM.render(
-  <TimePicker onChange={onChange} defaultOpenValue={moment('00:00:00', 'HH:mm:ss')} />,
-  mountNode,
-);
+ReactDOM.render(<App />, mountNode);
 ```
