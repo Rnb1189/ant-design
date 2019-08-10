@@ -14,13 +14,22 @@ title:
 Generating a set of Tags by array, you can add and remove dynamically.
 
 ```jsx
-import { Tag, Input, Tooltip, Icon } from 'antd';
+import { Tag, Input, Tooltip, Icon, Switch } from '../../index';
 
 class EditableTagGroup extends React.Component {
   state = {
+    isRtl: false,
+
     tags: ['Unremovable', 'Tag 2', 'Tag 3'],
     inputVisible: false,
     inputValue: '',
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
   };
 
   handleClose = removedTag => {
@@ -30,11 +39,11 @@ class EditableTagGroup extends React.Component {
   };
 
   showInput = () => {
-    this.setState({ inputVisible: true }, () => this.input.focus());
+    this.setState({ ...this.state, inputVisible: true }, () => this.input.focus());
   };
 
   handleInputChange = e => {
-    this.setState({ inputValue: e.target.value });
+    this.setState({ ...this.state, inputValue: e.target.value });
   };
 
   handleInputConfirm = () => {
@@ -45,6 +54,7 @@ class EditableTagGroup extends React.Component {
     }
     console.log(tags);
     this.setState({
+      ...this.state,
       tags,
       inputVisible: false,
       inputValue: '',
@@ -55,40 +65,51 @@ class EditableTagGroup extends React.Component {
 
   render() {
     const { tags, inputVisible, inputValue } = this.state;
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
     return (
       <div>
-        {tags.map((tag, index) => {
-          const isLongTag = tag.length > 20;
-          const tagElem = (
-            <Tag key={tag} closable={index !== 0} onClose={() => this.handleClose(tag)}>
-              {isLongTag ? `${tag.slice(0, 20)}...` : tag}
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div style={dirStyle}>
+          {tags.map((tag, index) => {
+            const isLongTag = tag.length > 20;
+            const tagElem = (
+              <Tag
+                isRtl={isRtl}
+                key={tag}
+                closable={index !== 0}
+                onClose={() => this.handleClose(tag)}
+              >
+                {isLongTag ? `${tag.slice(0, 20)}...` : tag}
+              </Tag>
+            );
+            return isLongTag ? (
+              <Tooltip title={tag} key={tag}>
+                {tagElem}
+              </Tooltip>
+            ) : (
+              tagElem
+            );
+          })}
+          {inputVisible && (
+            <Input
+              ref={this.saveInputRef}
+              type="text"
+              size="small"
+              style={{ width: 78 }}
+              value={inputValue}
+              onChange={this.handleInputChange}
+              onBlur={this.handleInputConfirm}
+              onPressEnter={this.handleInputConfirm}
+            />
+          )}
+          {!inputVisible && (
+            <Tag onClick={this.showInput} style={{ background: '#fff', borderStyle: 'dashed' }}>
+              <Icon type="plus" /> New Tag
             </Tag>
-          );
-          return isLongTag ? (
-            <Tooltip title={tag} key={tag}>
-              {tagElem}
-            </Tooltip>
-          ) : (
-            tagElem
-          );
-        })}
-        {inputVisible && (
-          <Input
-            ref={this.saveInputRef}
-            type="text"
-            size="small"
-            style={{ width: 78 }}
-            value={inputValue}
-            onChange={this.handleInputChange}
-            onBlur={this.handleInputConfirm}
-            onPressEnter={this.handleInputConfirm}
-          />
-        )}
-        {!inputVisible && (
-          <Tag onClick={this.showInput} style={{ background: '#fff', borderStyle: 'dashed' }}>
-            <Icon type="plus" /> New Tag
-          </Tag>
-        )}
+          )}
+        </div>
       </div>
     );
   }
