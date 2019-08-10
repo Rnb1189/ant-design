@@ -1,0 +1,91 @@
+@import './index-shared.less';
+
+//L________
+.@{pagination-prefix-cls} {
+  @{L}& {
+    direction: ltr;
+  }
+  @{L}& &-total-text {
+    margin-right: 8px;
+  }
+
+  @{L}& &-item {
+    margin-right: 8px;
+  }
+
+  @{L}& &-prev,
+  @{L}& &-jump-prev,
+  @{L}& &-jump-next {
+    margin-right: 8px;
+  }
+
+  @{L}& &-slash {
+    margin: 0 10px 0 5px;
+  }
+
+  @{L}& &-options {
+    margin-left: 16px;
+
+    &-size-changer.@{ant-prefix}-select {
+      margin-right: 8px;
+    }
+  }
+
+  @{L}& &-simple &-simple-pager {
+    margin-right: 8px;
+
+    input {
+      margin-right: 8px;
+    }
+  }
+
+  @{L}& &.mini &-jump-prev,
+  @{L}& &.mini &-jump-next {
+    margin-right: 0;
+  }
+}
+
+//R________
+.@{pagination-prefix-cls} {
+  @{R}& {
+    direction: rtl;
+  }
+  @{R}& &-total-text {
+    margin-left: 8px;
+  }
+
+  @{R}& &-item {
+    margin-left: 8px;
+  }
+
+  @{R}& &-prev,
+  @{R}& &-jump-prev,
+  @{R}& &-jump-next {
+    margin-left: 8px;
+  }
+
+  @{R}& &-slash {
+    margin: 0 5px 0 10px;
+  }
+
+  @{R}& &-options {
+    margin-right: 16px;
+
+    &-size-changer.@{ant-prefix}-select {
+      margin-left: 8px;
+    }
+  }
+
+  @{R}& &-simple &-simple-pager {
+    margin-left: 8px;
+
+    input {
+      margin-left: 8px;
+    }
+  }
+
+  @{R}& &.mini &-jump-prev,
+  @{R}& &.mini &-jump-next {
+    margin-left: 0;
+  }
+}

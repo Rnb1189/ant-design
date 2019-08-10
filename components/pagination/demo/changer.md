@@ -14,29 +14,53 @@ title:
 Change `pageSize`.
 
 ```jsx
-import { Pagination } from 'antd';
+import { Pagination, Switch } from '../../index';
 
-function onShowSizeChange(current, pageSize) {
-  console.log(current, pageSize);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  onShowSizeChange = (current, pageSize) => {
+    console.log(current, pageSize);
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <Pagination
+            isRtl={isRtl}
+            showSizeChanger
+            onShowSizeChange={this.onShowSizeChange}
+            defaultCurrent={3}
+            total={500}
+          />
+          <br />
+          <Pagination
+            isRtl={isRtl}
+            showSizeChanger
+            onShowSizeChange={this.onShowSizeChange}
+            defaultCurrent={3}
+            total={500}
+            disabled
+          />
+        </div>
+      </div>
+    );
+  }
 }
 
-ReactDOM.render(
-  <div>
-    <Pagination
-      showSizeChanger
-      onShowSizeChange={onShowSizeChange}
-      defaultCurrent={3}
-      total={500}
-    />
-    <br />
-    <Pagination
-      showSizeChanger
-      onShowSizeChange={onShowSizeChange}
-      defaultCurrent={3}
-      total={500}
-      disabled
-    />
-  </div>,
-  mountNode,
-);
+ReactDOM.render(<App />, mountNode);
 ```

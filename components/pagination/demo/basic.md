@@ -14,7 +14,34 @@ title:
 Basic pagination.
 
 ```jsx
-import { Pagination } from 'antd';
+import { Pagination, Switch } from '../../index';
 
-ReactDOM.render(<Pagination defaultCurrent={1} total={50} />, mountNode);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div style={{}}>
+          <Pagination isRtl={isRtl} defaultCurrent={1} total={50} />
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

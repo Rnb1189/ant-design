@@ -7,8 +7,10 @@ import Icon from '../icon';
 import Select from '../select';
 import LocaleReceiver from '../locale-provider/LocaleReceiver';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
+import direction from '../_util/direction';
 
 export interface PaginationProps {
+  isRtl?: boolean;
   total?: number;
   defaultCurrent?: number;
   disabled?: boolean;
@@ -46,14 +48,18 @@ export type PaginationLocale = any;
 
 export default class Pagination extends React.Component<PaginationProps, {}> {
   getIconsProps = (prefixCls: string) => {
+    //NEw
+    const iconLeft = this.props.isRtl ? 'right' : 'left';
+    const iconRight = this.props.isRtl ? 'left' : 'right';
+
     const prevIcon = (
       <a className={`${prefixCls}-item-link`}>
-        <Icon type="left" />
+        <Icon type={iconLeft} />
       </a>
     );
     const nextIcon = (
       <a className={`${prefixCls}-item-link`}>
-        <Icon type="right" />
+        <Icon type={iconRight} />
       </a>
     );
     const jumpPrevIcon = (
@@ -101,11 +107,15 @@ export default class Pagination extends React.Component<PaginationProps, {}> {
 
           return (
             <RcPagination
+              //NEw
+              isRtl={this.props.isRtl}
               {...restProps}
               prefixCls={prefixCls}
               selectPrefixCls={selectPrefixCls}
               {...this.getIconsProps(prefixCls)}
-              className={classNames(className, { mini: isSmall })}
+              // className={classNames(className, { mini: isSmall })}
+              //NEw:
+              className={classNames(className, { mini: isSmall }, direction.getClass(this.props))}
               selectComponentClass={isSmall ? MiniSelect : Select}
               locale={locale}
             />
