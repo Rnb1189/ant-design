@@ -95,7 +95,7 @@
     "rnb-rc-calendar": "^9.15.11",
     "rnb-rc-menu": "^7.4.30",
     "rnb-rc-rate": "^2.5.4",
-    "rnb-rc-tabs": "^9.6.7",
+    "rnb-rc-tabs": "^9.6.8",
     "shallowequal": "^1.1.0",
     "warning": "~4.0.3"
   },

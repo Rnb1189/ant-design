@@ -1,0 +1,93 @@
+@import './card-style-shared.less';
+
+//L__________________
+.@{tab-prefix-cls} {
+  @{L}&&-card &-card-bar @{L}&-tab {
+    margin-right: @tabs-card-gutter;
+    border-radius: @border-radius-base @border-radius-base 0 0;
+  }
+  @{L}&&-card &-card-bar @{L}&-tab &-close-x {
+    margin-right: -5px;
+    margin-left: 3px;
+  }
+
+  @{L}&-vertical&-card&-left &-card-bar&-left-bar {
+    .@{tab-prefix-cls}-nav-wrap {
+      margin-right: 0;
+    }
+    @{L}.@{tab-prefix-cls}-tab {
+      margin-right: 1px;
+      border-right: 0;
+      border-radius: @border-radius-base 0 0 @border-radius-base;
+      &-active {
+        margin-right: -1px;
+        padding-right: 18px;
+      }
+    }
+  }
+
+  @{L}&-vertical&-card&-right &-card-bar&-right-bar {
+    .@{tab-prefix-cls}-nav-wrap {
+      margin-left: 0;
+    }
+    @{L}.@{tab-prefix-cls}-tab {
+      margin-left: 1px;
+      border-left: 0;
+      border-radius: 0 @border-radius-base @border-radius-base 0;
+      &-active {
+        margin-left: -1px;
+        padding-left: 18px;
+      }
+    }
+  }
+
+  @{L}& &-card-bar&-bottom-bar @{L}&-tab {
+    border-radius: 0 0 @border-radius-base @border-radius-base;
+  }
+}
+
+//R__________________
+.@{tab-prefix-cls} {
+  @{R}&&-card &-card-bar @{R}&-tab {
+    margin-left: @tabs-card-gutter;
+    border-radius: @border-radius-base @border-radius-base 0 0;
+  }
+  @{R}&&-card &-card-bar @{R}&-tab &-close-x {
+    margin-left: -5px;
+    margin-right: 3px;
+  }
+
+  @{R}&-vertical&-card&-left &-card-bar&-left-bar {
+    .@{tab-prefix-cls}-nav-wrap {
+      margin-left: 0;
+    }
+    @{R}.@{tab-prefix-cls}-tab {
+      margin-left: 1px;
+      border-left: 0;
+      border-radius: 0 @border-radius-base @border-radius-base 0;
+      &-active {
+        margin-left: -1px;
+        padding-left: 18px;
+      }
+    }
+  }
+
+  @{R}&-vertical&-card&-right &-card-bar&-right-bar {
+    .@{tab-prefix-cls}-nav-wrap {
+      margin-right: 0;
+    }
+    @{R}.@{tab-prefix-cls}-tab {
+      margin-right: 1px;
+      border-right: 0;
+      border-radius: @border-radius-base 0 0 @border-radius-base;
+      &-active {
+        margin-right: -1px;
+        padding-right: 18px;
+      }
+    }
+  }
+
+  @{R}& &-card-bar&-bottom-bar @{R}&-tab {
+    border-radius: 0 0 @border-radius-base @border-radius-base;
+  }
+}

@@ -13,6 +13,7 @@ export type TabsType = 'line' | 'card' | 'editable-card';
 export type TabsPosition = 'top' | 'right' | 'bottom' | 'left';
 
 export interface TabsProps {
+  isRtl?: boolean;
   activeKey?: string;
   defaultActiveKey?: string;
   hideAdd?: boolean;

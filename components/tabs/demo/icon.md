@@ -14,35 +14,58 @@ title:
 The Tab with Icon.
 
 ```jsx
-import { Tabs, Icon } from 'antd';
-
+import { Tabs, Icon, Switch } from '../../index';
 const { TabPane } = Tabs;
 
-ReactDOM.render(
-  <Tabs defaultActiveKey="2">
-    <TabPane
-      tab={
-        <span>
-          <Icon type="apple" />
-          Tab 1
-        </span>
-      }
-      key="1"
-    >
-      Tab 1
-    </TabPane>
-    <TabPane
-      tab={
-        <span>
-          <Icon type="android" />
-          Tab 2
-        </span>
-      }
-      key="2"
-    >
-      Tab 2
-    </TabPane>
-  </Tabs>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div style={{}}>
+          <Tabs isRtl={isRtl} defaultActiveKey="2">
+            <TabPane
+              tab={
+                <span>
+                  <Icon type="apple" />
+                  Tab 1
+                </span>
+              }
+              key="1"
+            >
+              Tab 1
+            </TabPane>
+            <TabPane
+              tab={
+                <span>
+                  <Icon type="android" />
+                  Tab 2
+                </span>
+              }
+              key="2"
+            >
+              Tab 2
+            </TabPane>
+          </Tabs>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

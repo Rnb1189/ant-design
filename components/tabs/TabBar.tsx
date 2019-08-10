@@ -25,8 +25,11 @@ export default class TabBar extends React.Component<TabsProps> {
     const inkBarAnimated = typeof animated === 'object' ? animated.inkBar : animated;
 
     const isVertical = tabPosition === 'left' || tabPosition === 'right';
-    const prevIconType = isVertical ? 'up' : 'left';
-    const nextIconType = isVertical ? 'down' : 'right';
+    // const prevIconType = isVertical ? 'up' : 'left';
+    // const nextIconType = isVertical ? 'down' : 'right';
+    //NEw
+    const prevIconType = isVertical ? 'up' : this.props.isRtl ? 'right' : 'left';
+    const nextIconType = isVertical ? 'down' : this.props.isRtl ? 'left' : 'right';
     const prevIcon = (
       <span className={`${prefixCls}-tab-prev-icon`}>
         <Icon type={prevIconType} className={`${prefixCls}-tab-prev-icon-target`} />

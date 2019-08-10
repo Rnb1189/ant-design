@@ -14,7 +14,7 @@ title:
 Hide default plus icon, and bind event for customized trigger.
 
 ```jsx
-import { Tabs, Button } from 'antd';
+import { Tabs, Button, Switch } from '../../index';
 
 const { TabPane } = Tabs;
 
@@ -29,11 +29,19 @@ class Demo extends React.Component {
     this.state = {
       activeKey: panes[0].key,
       panes,
+      isRtl: false,
     };
   }
 
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
   onChange = activeKey => {
-    this.setState({ activeKey });
+    this.setState({ ...this.state, activeKey });
   };
 
   onEdit = (targetKey, action) => {
@@ -44,7 +52,7 @@ class Demo extends React.Component {
     const { panes } = this.state;
     const activeKey = `newTab${this.newTabIndex++}`;
     panes.push({ title: 'New Tab', content: 'New Tab Pane', key: activeKey });
-    this.setState({ panes, activeKey });
+    this.setState({ ...this.state, panes, activeKey });
   };
 
   remove = targetKey => {
@@ -63,28 +71,35 @@ class Demo extends React.Component {
         activeKey = panes[0].key;
       }
     }
-    this.setState({ panes, activeKey });
+    this.setState({ ...this.state, panes, activeKey });
   };
 
   render() {
+    const isRtl = this.state.isRtl;
+
     return (
       <div>
-        <div style={{ marginBottom: 16 }}>
-          <Button onClick={this.add}>ADD</Button>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div style={{}}>
+          <div style={{ marginBottom: 16 }}>
+            <Button onClick={this.add}>ADD</Button>
+          </div>
+          <Tabs
+            isRtl={isRtl}
+            hideAdd
+            onChange={this.onChange}
+            activeKey={this.state.activeKey}
+            type="editable-card"
+            onEdit={this.onEdit}
+          >
+            {this.state.panes.map(pane => (
+              <TabPane tab={pane.title} key={pane.key}>
+                {pane.content}
+              </TabPane>
+            ))}
+          </Tabs>
         </div>
-        <Tabs
-          hideAdd
-          onChange={this.onChange}
-          activeKey={this.state.activeKey}
-          type="editable-card"
-          onEdit={this.onEdit}
-        >
-          {this.state.panes.map(pane => (
-            <TabPane tab={pane.title} key={pane.key}>
-              {pane.content}
-            </TabPane>
-          ))}
-        </Tabs>
       </div>
     );
   }
