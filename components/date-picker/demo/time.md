@@ -14,31 +14,58 @@ title:
 This property provide an additional time selection. When `showTime` is an Object, its properties will be passed on to built-in `TimePicker`.
 
 ```jsx
-import { DatePicker } from 'antd';
+import { DatePicker, Radio, Switch } from '../../index';
+const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
 
-const { RangePicker } = DatePicker;
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
 
-function onChange(value, dateString) {
-  console.log('Selected Time: ', value);
-  console.log('Formatted Selected Time: ', dateString);
+  onChange = (value, dateString) => {
+    console.log('Selected Time: ', value);
+    console.log('Formatted Selected Time: ', dateString);
+  };
+
+  onOk = value => {
+    console.log('onOk: ', value);
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <DatePicker
+            isRtl={isRtl}
+            showTime
+            placeholder="Select Time"
+            onChange={this.onChange}
+            onOk={this.onOk}
+          />
+          <br />
+          <RangePicker
+            showTime={{ format: 'HH:mm' }}
+            format="YYYY-MM-DD HH:mm"
+            placeholder={['Start Time', 'End Time']}
+            onChange={this.onChange}
+            onOk={this.onOk}
+          />
+        </div>
+      </div>
+    );
+  }
 }
 
-function onOk(value) {
-  console.log('onOk: ', value);
-}
-
-ReactDOM.render(
-  <div>
-    <DatePicker showTime placeholder="Select Time" onChange={onChange} onOk={onOk} />
-    <br />
-    <RangePicker
-      showTime={{ format: 'HH:mm' }}
-      format="YYYY-MM-DD HH:mm"
-      placeholder={['Start Time', 'End Time']}
-      onChange={onChange}
-      onOk={onOk}
-    />
-  </div>,
-  mountNode,
-);
+ReactDOM.render(<App />, mountNode);
 ```

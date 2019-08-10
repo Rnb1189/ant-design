@@ -14,36 +14,60 @@ title:
 We can set presetted ranges to RangePicker to improve user experience.
 
 ```jsx
-import { DatePicker } from 'antd';
+import { DatePicker, Switch } from '../../index';
 import moment from 'moment';
 
-const { RangePicker } = DatePicker;
+const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
 
-function onChange(dates, dateStrings) {
-  console.log('From: ', dates[0], ', to: ', dates[1]);
-  console.log('From: ', dateStrings[0], ', to: ', dateStrings[1]);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  onChange = (dates, dateStrings) => {
+    console.log('From: ', dates[0], ', to: ', dates[1]);
+    console.log('From: ', dateStrings[0], ', to: ', dateStrings[1]);
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <RangePicker
+            isRtl={isRtl}
+            ranges={{
+              Today: [moment(), moment()],
+              'This Month': [moment().startOf('month'), moment().endOf('month')],
+            }}
+            onChange={this.onChange}
+          />
+          <br />
+          <RangePicker
+            isRtl={isRtl}
+            ranges={{
+              Today: [moment(), moment()],
+              'This Month': [moment().startOf('month'), moment().endOf('month')],
+            }}
+            showTime
+            format="YYYY/MM/DD HH:mm:ss"
+            onChange={this.onChange}
+          />
+        </div>
+      </div>
+    );
+  }
 }
 
-ReactDOM.render(
-  <div>
-    <RangePicker
-      ranges={{
-        Today: [moment(), moment()],
-        'This Month': [moment().startOf('month'), moment().endOf('month')],
-      }}
-      onChange={onChange}
-    />
-    <br />
-    <RangePicker
-      ranges={{
-        Today: [moment(), moment()],
-        'This Month': [moment().startOf('month'), moment().endOf('month')],
-      }}
-      showTime
-      format="YYYY/MM/DD HH:mm:ss"
-      onChange={onChange}
-    />
-  </div>,
-  mountNode,
-);
+ReactDOM.render(<App />, mountNode);
 ```

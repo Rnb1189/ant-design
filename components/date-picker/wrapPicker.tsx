@@ -154,6 +154,8 @@ export default function wrapPicker(Picker: React.ComponentClass<any>, pickerType
         locale[LOCALE_FORMAT_MAPPING[mergedPickerType]] ||
         DEFAULT_FORMAT[mergedPickerType];
 
+      const placementSetting = this.props.isRtl ? { placement: 'bottomRight' } : null;
+
       return (
         <ConfigConsumer>
           {({ getPrefixCls, getPopupContainer: getContextPopupContainer }: ConfigConsumerProps) => {
@@ -164,6 +166,10 @@ export default function wrapPicker(Picker: React.ComponentClass<any>, pickerType
               size,
               disabled,
             } = this.props;
+
+            //NEw
+            const dirClass = this.props.isRtl ? 'a-rtl' : 'a-ltr';
+
             const getPopupContainer = getCalendarContainer || getContextPopupContainer;
             const prefixCls = getPrefixCls('calendar', customizePrefixCls);
             const inputPrefixCls = getPrefixCls('input', customizeInputPrefixCls);
@@ -181,11 +187,16 @@ export default function wrapPicker(Picker: React.ComponentClass<any>, pickerType
               ...generateShowHourMinuteSecond(timeFormat),
               format: timeFormat,
               use12Hours: showTime && showTime.use12Hours,
+              //NEw
+              isRtl: this.props.isRtl,
+              className: 'ZZZZZZZZZZZZ',
             };
             const columns = getColumns(rcTimePickerProps);
-            const timePickerCls = `${prefixCls}-time-picker-column-${columns}`;
+            const timePickerCls = `${prefixCls}-time-picker-column-${columns} ${dirClass}`;
             const timePicker = showTime ? (
               <TimePickerPanel
+                //NEW
+                isRtl={this.props.isRtl}
                 {...rcTimePickerProps}
                 {...showTime}
                 prefixCls={`${prefixCls}-time-picker`}
@@ -197,6 +208,9 @@ export default function wrapPicker(Picker: React.ComponentClass<any>, pickerType
 
             return (
               <Picker
+                //NEW
+                isRtl={this.props.isRtl}
+                {...placementSetting}
                 {...this.props}
                 getCalendarContainer={getPopupContainer}
                 format={mergedFormat}

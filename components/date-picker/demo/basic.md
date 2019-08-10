@@ -27,27 +27,40 @@ class App extends React.Component {
       ...this.state,
       isRtl: !this.state.isRtl,
     });
-    console.log(moment.Moment);
   };
 
   onChange = (date, dateString) => {
     console.log(date, dateString);
   };
 
-  render() {
-    const dirStyle = { direction: `${this.state.isRtl ? 'rtl' : 'ltr'}` };
+  render2() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
     return (
       <div>
         <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
         <br />
-        <div style={dirStyle}>
-          <DatePicker onChange={this.onChange} />
+        <div style={{}}>
+          <RangePicker isRtl={isRtl} onChange={this.onChange} />
+        </div>
+      </div>
+    );
+  }
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div style={{ paddingLeft: 200 }}>
+          <DatePicker isRtl={isRtl} onChange={this.onChange} />
           <br />
-          <MonthPicker onChange={this.onChange} placeholder="Select month" />
+          <MonthPicker isRtl={isRtl} onChange={this.onChange} placeholder="Select month" />
           <br />
-          <RangePicker onChange={this.onChange} />
+          <RangePicker isRtl={isRtl} onChange={this.onChange} />
           <br />
-          <WeekPicker onChange={this.onChange} placeholder="Select week" />
+          <WeekPicker isRtl={isRtl} onChange={this.onChange} placeholder="Select week" />
         </div>
       </div>
     );

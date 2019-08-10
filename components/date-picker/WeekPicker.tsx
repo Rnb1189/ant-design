@@ -8,6 +8,7 @@ import Icon from '../icon';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 import interopDefault from '../_util/interopDefault';
 import InputIcon from './InputIcon';
+import { direction } from '../_util/direction';
 
 function formatValue(value: moment.Moment | null, format: string): string {
   return (value && value.format(format)) || '';
@@ -158,8 +159,13 @@ class WeekPicker extends React.Component<any, WeekPickerState> {
     const placeholder =
       'placeholder' in this.props ? this.props.placeholder : locale.lang.placeholder;
 
+    //NEw
+    const dirClass = this.props.isRtl ? direction.RTL : direction.LTR;
+
     const calendar = (
       <Calendar
+        //NEw
+        isRtl={this.props.isRtl}
         showWeekNumber
         dateRender={this.weekDateRender}
         prefixCls={prefixCls}
@@ -183,6 +189,9 @@ class WeekPicker extends React.Component<any, WeekPickerState> {
 
     const inputIcon = <InputIcon suffixIcon={suffixIcon} prefixCls={prefixCls} />;
 
+    //NEw
+    const inputClass = classNames(pickerInputClass, dirClass);
+
     const input = ({ value }: { value: moment.Moment | undefined }) => (
       <span style={{ display: 'inline-block', width: '100%' }}>
         <input
@@ -191,7 +200,9 @@ class WeekPicker extends React.Component<any, WeekPickerState> {
           readOnly
           value={(value && value.format(format)) || ''}
           placeholder={placeholder}
-          className={pickerInputClass}
+          // className={pickerInputClass}
+          //NEw
+          className={inputClass}
           onFocus={onFocus}
           onBlur={onBlur}
         />
@@ -200,7 +211,8 @@ class WeekPicker extends React.Component<any, WeekPickerState> {
       </span>
     );
     return (
-      <span className={classNames(className, pickerClass)} style={style} id={id}>
+      // <span className={classNames(className, pickerClass)} style={style} id={id}>
+      <span className={classNames(className, pickerClass, dirClass)} style={style} id={id}>
         <RcDatePicker
           {...this.props}
           calendar={calendar}

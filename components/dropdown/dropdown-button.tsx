@@ -73,7 +73,7 @@ export default class DropdownButton extends React.Component<DropdownButtonProps,
     return (
       <ButtonGroup
         {...restProps}
-        className={classNames(prefixCls, className, !!this.props.isRtl ? 'a-rtl' : 'a-lrt')}
+        className={classNames(prefixCls, className, !!this.props.isRtl ? 'a-rtl' : 'a-ltr')}
       >
         <Button
           isRtl={this.props.isRtl}

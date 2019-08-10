@@ -92,7 +92,7 @@
     "react-lifecycles-compat": "^3.0.4",
     "react-slick": "~0.24.0",
     "resize-observer-polyfill": "^1.5.1",
-    "rnb-rc-calendar": "^9.15.10",
+    "rnb-rc-calendar": "^9.15.11",
     "rnb-rc-menu": "^7.4.30",
     "rnb-rc-rate": "^2.5.4",
     "rnb-rc-tabs": "~9.6.6",

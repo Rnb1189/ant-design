@@ -14,41 +14,54 @@ title:
 The input box comes in three sizes. `default` will be used if `size` is omitted.
 
 ```jsx
-import { DatePicker, Radio } from 'antd';
-
+import { DatePicker, Radio, Switch } from '../../index';
 const { MonthPicker, RangePicker, WeekPicker } = DatePicker;
 
-class PickerSizesDemo extends React.Component {
+class App extends React.Component {
   state = {
     size: 'default',
+    isRtl: false,
   };
 
   handleSizeChange = e => {
     this.setState({ size: e.target.value });
   };
 
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
   render() {
     const { size } = this.state;
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
     return (
       <div>
-        <Radio.Group value={size} onChange={this.handleSizeChange}>
-          <Radio.Button value="large">Large</Radio.Button>
-          <Radio.Button value="default">Default</Radio.Button>
-          <Radio.Button value="small">Small</Radio.Button>
-        </Radio.Group>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
         <br />
-        <br />
-        <DatePicker size={size} />
-        <br />
-        <MonthPicker size={size} placeholder="Select Month" />
-        <br />
-        <RangePicker size={size} />
-        <br />
-        <WeekPicker size={size} placeholder="Select Week" />
+        <div style={dirStyle}>
+          <Radio.Group isRtl={isRtl} value={size} onChange={this.handleSizeChange}>
+            <Radio.Button value="large">Large</Radio.Button>
+            <Radio.Button value="default">Default</Radio.Button>
+            <Radio.Button value="small">Small</Radio.Button>
+          </Radio.Group>
+          <br />
+          <br />
+          <DatePicker isRtl={isRtl} size={size} />
+          <br />
+          <MonthPicker isRtl={isRtl} size={size} placeholder="Select Month" />
+          <br />
+          <RangePicker isRtl={isRtl} size={size} />
+          <br />
+          <WeekPicker isRtl={isRtl} size={size} placeholder="Select Week" />
+        </div>
       </div>
     );
   }
 }
 
-ReactDOM.render(<PickerSizesDemo />, mountNode);
+ReactDOM.render(<App />, mountNode);
 ```

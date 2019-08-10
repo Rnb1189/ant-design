@@ -1,104 +1,106 @@
+@import 'Calendar-my-mixins-rtlltr';
 @import 'Calendar-shared';
-@L: e('.a-ltr');
-@R: e('.a-rtl');
 
-.calendarLeftArrow() {
-  height: 100%;
-
-  E &::before,
-  &::after {
-    border-width: 1.5px 0 0 1.5px;
-    transform: rotate(-45deg) scale(0.8);
-  }
-}
-
-.calendarLeftDoubleArrow() {
-  .calendarLeftArrow;
-
-  &::after {
-    left: -3px;
-  }
-}
-
-.calendarRightArrow() {
-  .calendarLeftArrow;
-
-  &::before,
-  &::after {
-    transform: rotate(135deg) scale(0.8);
-  }
-}
-
-.calendarRightDoubleArrow() {
-  .calendarRightArrow;
-
-  &::before {
-    left: 3px;
-  }
-}
-
-.calendarPanelHeader(@calendar-prefix-cls) {
-  .@{calendar-prefix-cls}-prev-century-btn,
-  .@{calendar-prefix-cls}-prev-decade-btn,
-  .@{calendar-prefix-cls}-prev-year-btn {
-    left: 7px;
-    .calendarLeftDoubleArrow;
-  }
-
-  .@{calendar-prefix-cls}-next-century-btn,
-  .@{calendar-prefix-cls}-next-decade-btn,
-  .@{calendar-prefix-cls}-next-year-btn {
-    right: 7px;
-    .calendarRightDoubleArrow;
-  }
-
-  .@{calendar-prefix-cls}-prev-month-btn {
-    left: 29px;
-    .calendarLeftArrow;
-  }
-
-  .@{calendar-prefix-cls}-next-month-btn {
-    right: 29px;
-    .calendarRightArrow;
-  }
-}
-
+//L_______________________________
 .@{calendar-prefix-cls} {
-  text-align: left;
+  @{L}& {
+    .LTR;
+  }
 
-  &-disabled-cell&-selected-day &-date::before {
+  @{L}& {
+    text-align: left;
+  }
+
+  @{L}& &-header {
+    .ltr-calendarPanelHeader(@calendar-prefix-cls);
+  }
+
+  @{L}& &-disabled-cell&-selected-day &-date::before {
     left: 5px;
     height: 24px;
   }
 
-  &-disabled-cell&-today &-date {
+  @{L}& &-disabled-cell&-today &-date {
     &::before {
       left: 5px;
     }
   }
 
-  &-disabled-cell-first-of-row &-date {
+  @{L}& &-disabled-cell-first-of-row &-date {
     border-top-left-radius: 4px;
     border-bottom-left-radius: 4px;
   }
 
-  &-disabled-cell-last-of-row &-date {
+  @{L}& &-disabled-cell-last-of-row &-date {
     border-top-right-radius: 4px;
     border-bottom-right-radius: 4px;
   }
 
-  &-footer {
+  @{L}& &-footer {
     &-extra {
       text-align: left;
     }
   }
 
-  .@{calendar-prefix-cls}-today-btn,
-  .@{calendar-prefix-cls}-clear-btn {
+  @{L}& .@{calendar-prefix-cls}-today-btn,
+  @{L}& .@{calendar-prefix-cls}-clear-btn {
     margin: 0 0 0 8px;
   }
 
-  .@{calendar-prefix-cls}-clear-btn {
+  @{L}& .@{calendar-prefix-cls}-clear-btn {
     right: 5px;
+    text-indent: -76px;
+  }
+}
+
+//R_______________________________
+.@{calendar-prefix-cls} {
+  @{R}& {
+    .RTL;
+  }
+
+  @{R}& {
+    text-align: right;
+  }
+
+  @{R}& &-header {
+    .rtl-calendarPanelHeader(@calendar-prefix-cls);
+  }
+
+  @{R}& &-disabled-cell&-selected-day &-date::before {
+    right: 5px;
+    height: 24px;
+  }
+
+  @{R}& &-disabled-cell&-today &-date {
+    &::before {
+      right: 5px;
+    }
+  }
+
+  @{R}& &-disabled-cell-first-of-row &-date {
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+
+  @{R}& &-disabled-cell-last-of-row &-date {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+  }
+
+  @{R}& &-footer {
+    &-extra {
+      text-align: right;
+    }
+  }
+
+  @{R}& .@{calendar-prefix-cls}-today-btn,
+  @{R}& .@{calendar-prefix-cls}-clear-btn {
+    margin: 0 8px 0 0;
+  }
+
+  @{R}& .@{calendar-prefix-cls}-clear-btn {
+    left: 5px;
+    text-indent: -76px;
   }
 }

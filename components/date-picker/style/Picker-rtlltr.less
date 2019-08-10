@@ -1,14 +1,32 @@
-@import '../../button/style/mixin';
 @import 'Picker-shared';
+// @import '../../style/index-rtlltr-base';
 
 .@{calendar-prefix-cls}-picker {
-  &-clear,
-  &-icon {
-    // right: @control-padding-horizontal;
+  @{L}& {
+    .LTR();
+  }
+  @{L}& &-clear,
+  @{L}& &-icon {
+    right: @control-padding-horizontal;
   }
 
-  &-small &-clear,
-  &-small &-icon {
-    // right: @control-padding-horizontal-sm;
+  @{L}& &-small &-clear,
+  @{L}& &-small &-icon {
+    right: @control-padding-horizontal-sm;
+  }
+}
+
+.@{calendar-prefix-cls}-picker {
+  @{R}& {
+    .RTL();
+  }
+  @{R}& &-clear,
+  @{R}& &-icon {
+    left: @control-padding-horizontal;
+  }
+
+  @{R}& &-small &-clear,
+  @{R}& &-small &-icon {
+    left: @control-padding-horizontal-sm;
   }
 }

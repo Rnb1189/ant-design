@@ -145,10 +145,16 @@ export default function createPicker(TheCalendar: React.ComponentClass): any {
 
       const disabledTime = props.showTime ? props.disabledTime : null;
 
-      const calendarClassName = classNames({
-        [`${prefixCls}-time`]: props.showTime,
-        [`${prefixCls}-month`]: MonthCalendar === TheCalendar,
-      });
+      //NEw
+      const dirClass = this.props.isRtl ? 'a-rtl' : 'a-ltr';
+      const calendarClassName = classNames(
+        {
+          [`${prefixCls}-time`]: props.showTime,
+          [`${prefixCls}-month`]: MonthCalendar === TheCalendar,
+        },
+        //NEw
+        dirClass,
+      );
 
       if (value && localeCode) {
         value.locale(localeCode);
@@ -179,6 +185,7 @@ export default function createPicker(TheCalendar: React.ComponentClass): any {
       );
       const calendar = (
         <TheCalendar
+          isRtl={this.props.isRtl}
           {...calendarProps}
           disabledDate={props.disabledDate}
           disabledTime={disabledTime}
@@ -222,6 +229,8 @@ export default function createPicker(TheCalendar: React.ComponentClass): any {
           <span className={`${prefixCls}-picker-icon`}>{suffixIcon}</span>
         ))) || <Icon type="calendar" className={`${prefixCls}-picker-icon`} />;
 
+      //NEw
+      const inputClass = classNames(props.pickerInputClass, dirClass);
       const dataOrAriaProps = getDataOrAriaProps(props);
       const input = ({ value: inputValue }: { value: moment.Moment | null }) => (
         <div>
@@ -231,7 +240,9 @@ export default function createPicker(TheCalendar: React.ComponentClass): any {
             readOnly
             value={formatDate(inputValue, props.format)}
             placeholder={placeholder}
-            className={props.pickerInputClass}
+            // className={props.pickerInputClass}
+            //NEw
+            className={inputClass}
             tabIndex={props.tabIndex}
             name={props.name}
             {...dataOrAriaProps}
@@ -244,7 +255,9 @@ export default function createPicker(TheCalendar: React.ComponentClass): any {
       return (
         <span
           id={props.id}
-          className={classNames(props.className, props.pickerClass)}
+          // className={classNames(props.className, props.pickerClass)}
+          //NEw
+          className={classNames(props.className, props.pickerClass, dirClass)}
           style={{ ...pickerStyle, ...props.style }}
           onFocus={props.onFocus}
           onBlur={props.onBlur}

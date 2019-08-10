@@ -14,6 +14,7 @@ import interopDefault from '../_util/interopDefault';
 import { RangePickerValue, RangePickerPresetRange } from './interface';
 import { formatDate } from './utils';
 import InputIcon from './InputIcon';
+import { direction } from '../_util/direction';
 
 export interface RangePickerState {
   value?: RangePickerValue;
@@ -304,10 +305,16 @@ class RangePicker extends React.Component<any, RangePickerState> {
       'It should be `RangePicker[onOk]`, instead of `onOK`!',
     );
 
-    const calendarClassName = classNames({
-      [`${prefixCls}-time`]: showTime,
-      [`${prefixCls}-range-with-ranges`]: ranges,
-    });
+    //NEw
+    const dirClass = this.props.isRtl ? direction.RTL : direction.LTR;
+    const calendarClassName = classNames(
+      {
+        [`${prefixCls}-time`]: showTime,
+        [`${prefixCls}-range-with-ranges`]: ranges,
+      },
+      //NEw
+      dirClass,
+    );
 
     // 需要选择时间时，点击 ok 时才触发 onChange
     const pickerChangeHandler = {
@@ -332,6 +339,7 @@ class RangePicker extends React.Component<any, RangePickerState> {
 
     const calendar = (
       <RangeCalendar
+        isRtl={this.props.isRtl}
         {...calendarProps}
         seperator={separator}
         onChange={onCalendarChange}
@@ -374,16 +382,21 @@ class RangePicker extends React.Component<any, RangePickerState> {
 
     const inputIcon = <InputIcon suffixIcon={suffixIcon} prefixCls={prefixCls} />;
 
+    //NEw
+    const myPickerInputClass = classNames(props.pickerInputClass, dirClass);
+
     const input = ({ value: inputValue }: { value: any }) => {
       const [start, end] = inputValue;
       return (
-        <span className={props.pickerInputClass}>
+        // <span className={props.pickerInputClass}>
+        <span className={myPickerInputClass}>
           <input
             disabled={props.disabled}
             readOnly
             value={formatDate(start, props.format)}
             placeholder={startPlaceholder}
-            className={`${prefixCls}-range-picker-input`}
+            // className={`${prefixCls}-range-picker-input`}
+            className={`${prefixCls}-range-picker-input ${dirClass}`}
             tabIndex={-1}
           />
           <span className={`${prefixCls}-range-picker-separator`}> {separator} </span>
@@ -392,7 +405,8 @@ class RangePicker extends React.Component<any, RangePickerState> {
             readOnly
             value={formatDate(end, props.format)}
             placeholder={endPlaceholder}
-            className={`${prefixCls}-range-picker-input`}
+            // className={`${prefixCls}-range-picker-input`}
+            className={`${prefixCls}-range-picker-input ${dirClass}`}
             tabIndex={-1}
           />
           {clearIcon}
@@ -405,7 +419,9 @@ class RangePicker extends React.Component<any, RangePickerState> {
       <span
         ref={this.savePicker}
         id={props.id}
-        className={classNames(props.className, props.pickerClass)}
+        //NEw
+        // className={classNames(props.className, props.pickerClass)}
+        className={classNames(props.className, props.pickerClass, dirClass)}
         style={{ ...style, ...pickerStyle }}
         tabIndex={props.disabled ? -1 : 0}
         onFocus={props.onFocus}
