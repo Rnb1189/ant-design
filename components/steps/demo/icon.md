@@ -14,17 +14,40 @@ title:
 You can use your own custom icons by setting the property `icon` for `Steps.Step`.
 
 ```jsx
-import { Steps, Icon } from 'antd';
-
+import { Steps, Icon, Switch } from '../../index';
 const { Step } = Steps;
 
-ReactDOM.render(
-  <Steps>
-    <Step status="finish" title="Login" icon={<Icon type="user" />} />
-    <Step status="finish" title="Verification" icon={<Icon type="solution" />} />
-    <Step status="process" title="Pay" icon={<Icon type="loading" />} />
-    <Step status="wait" title="Done" icon={<Icon type="smile-o" />} />
-  </Steps>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <Steps isRtl={isRtl}>
+            <Step status="finish" title="Login" icon={<Icon type="user" />} />
+            <Step status="finish" title="Verification" icon={<Icon type="solution" />} />
+            <Step status="process" title="Pay" icon={<Icon type="loading" />} />
+            <Step status="wait" title="Done" icon={<Icon type="smile-o" />} />
+          </Steps>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

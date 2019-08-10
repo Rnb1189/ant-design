@@ -1,0 +1,73 @@
+@import './index-shared.less';
+
+//L___________
+@{L}.@{steps-prefix-cls} {
+  direction: ltr;
+}
+@{L}.@{steps-prefix-cls} .@{steps-prefix-cls}-item {
+  &-icon {
+    margin-right: 8px;
+  }
+  &-tail {
+    left: 0;
+  }
+  &-title {
+    padding-right: 16px;
+    &::after {
+      left: 100%;
+      width: 9999px;
+    }
+  }
+}
+
+@{L}.@{steps-prefix-cls}-horizontal:not(.@{steps-prefix-cls}-label-vertical) {
+  .@{steps-prefix-cls}-item {
+    margin-right: 16px;
+    &:last-child {
+      margin-right: 0;
+    }
+    &:last-child .@{steps-prefix-cls}-item-title {
+      padding-right: 0;
+    }
+  }
+}
+
+//R_________
+@{R}.@{steps-prefix-cls} {
+  direction: rtl;
+}
+
+@{R}.@{steps-prefix-cls} .@{steps-prefix-cls}-item {
+  &-icon {
+    margin-left: 8px;
+  }
+  &-tail {
+    right: 0;
+  }
+  &-title {
+    padding-left: 16px;
+    &::after {
+      right: 100%;
+      width: 9999px;
+    }
+  }
+}
+
+@{R}.@{steps-prefix-cls}-horizontal:not(.@{steps-prefix-cls}-label-vertical) {
+  .@{steps-prefix-cls}-item {
+    margin-left: 16px;
+    &:last-child {
+      margin-left: 0;
+    }
+    &:last-child .@{steps-prefix-cls}-item-title {
+      padding-left: 0;
+    }
+  }
+}
+
+@import 'custom-icon-rtlltr';
+@import 'small-rtlltr';
+@import 'vertical-rtlltr';
+@import 'label-placement-rtlltr';
+@import 'progress-dot-rtlltr';
+@import 'compatibility-rtlltr';

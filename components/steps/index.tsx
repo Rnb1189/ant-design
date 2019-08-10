@@ -3,8 +3,11 @@ import * as PropTypes from 'prop-types';
 import RcSteps from 'rc-steps';
 import Icon from '../icon';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
+import classNames from 'classnames';
+import Direction from '../_util/direction';
 
 export interface StepsProps {
+  isRtl?: boolean;
   className?: string;
   current?: number;
   direction?: 'horizontal' | 'vertical';
@@ -20,6 +23,7 @@ export interface StepsProps {
 }
 
 export interface StepProps {
+  isRtl?: boolean;
   className?: string;
   description?: React.ReactNode;
   icon?: React.ReactNode;
@@ -49,7 +53,17 @@ export default class Steps extends React.Component<StepsProps, any> {
       finish: <Icon type="check" className={`${prefixCls}-finish-icon`} />,
       error: <Icon type="close" className={`${prefixCls}-error-icon`} />,
     };
-    return <RcSteps icons={icons} {...this.props} prefixCls={prefixCls} iconPrefix={iconPrefix} />;
+    //NEw
+    const dirClass = classNames(this.props.className, Direction.classFromProps(this.props));
+    return (
+      <RcSteps
+        icons={icons}
+        {...this.props}
+        className={dirClass}
+        prefixCls={prefixCls}
+        iconPrefix={iconPrefix}
+      />
+    );
   };
 
   render() {

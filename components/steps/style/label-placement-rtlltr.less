@@ -1,0 +1,45 @@
+@import './label-placement-shared.less';
+
+// L___________________
+@{L}.@{steps-prefix-cls}-label-vertical {
+  .@{steps-prefix-cls}-item {
+    &-tail {
+      margin-left: 51px;
+    }
+    &-icon {
+      margin-left: 36px;
+    }
+    &-title {
+      padding-right: 0;
+    }
+  }
+  &.@{steps-prefix-cls}-small:not(.@{steps-prefix-cls}-dot) {
+    .@{steps-prefix-cls}-item {
+      &-icon {
+        margin-left: 40px;
+      }
+    }
+  }
+}
+
+//R___________________
+@{R}.@{steps-prefix-cls}-label-vertical {
+  .@{steps-prefix-cls}-item {
+    &-tail {
+      margin-right: 51px;
+    }
+    &-icon {
+      margin-right: 36px;
+    }
+    &-title {
+      padding-left: 0;
+    }
+  }
+  &.@{steps-prefix-cls}-small:not(.@{steps-prefix-cls}-dot) {
+    .@{steps-prefix-cls}-item {
+      &-icon {
+        margin-right: 40px;
+      }
+    }
+  }
+}

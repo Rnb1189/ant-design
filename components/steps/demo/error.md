@@ -14,16 +14,39 @@ title:
 By using `status` of `Steps`, you can specify the state for current step.
 
 ```jsx
-import { Steps } from 'antd';
-
+import { Steps, Switch } from '../../index';
 const { Step } = Steps;
 
-ReactDOM.render(
-  <Steps current={1} status="error">
-    <Step title="Finished" description="This is a description" />
-    <Step title="In Process" description="This is a description" />
-    <Step title="Waiting" description="This is a description" />
-  </Steps>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <Steps isRtl={isRtl} current={1} status="error">
+            <Step title="Finished" description="This is a description" />
+            <Step title="In Process" description="This is a description" />
+            <Step title="Waiting" description="This is a description" />
+          </Steps>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

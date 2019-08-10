@@ -14,13 +14,20 @@ title:
 Setting `onChange` makes Steps clickable.
 
 ```jsx
-import { Steps, Divider } from 'antd';
-
+import { Steps, Divider, Switch } from '../../index';
 const { Step } = Steps;
 
-class Demo extends React.Component {
+class App extends React.Component {
   state = {
+    isRtl: false,
     current: 0,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
   };
 
   onChange = current => {
@@ -29,27 +36,30 @@ class Demo extends React.Component {
   };
 
   render() {
-    const { current } = this.state;
-
+    const { current, isRtl } = this.state;
     return (
       <div>
-        <Steps current={current} onChange={this.onChange}>
-          <Step title="Step 1" description="This is a description." />
-          <Step title="Step 2" description="This is a description." />
-          <Step title="Step 3" description="This is a description." />
-        </Steps>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <Steps isRtl={isRtl} current={current} onChange={this.onChange}>
+            <Step title="Step 1" description="This is a description." />
+            <Step title="Step 2" description="This is a description." />
+            <Step title="Step 3" description="This is a description." />
+          </Steps>
 
-        <Divider />
+          <Divider />
 
-        <Steps current={current} onChange={this.onChange} direction="vertical">
-          <Step title="Step 1" description="This is a description." />
-          <Step title="Step 2" description="This is a description." />
-          <Step title="Step 3" description="This is a description." />
-        </Steps>
+          <Steps isRtl={isRtl} current={current} onChange={this.onChange} direction="vertical">
+            <Step title="Step 1" description="This is a description." />
+            <Step title="Step 2" description="This is a description." />
+            <Step title="Step 3" description="This is a description." />
+          </Steps>
+        </div>
       </div>
     );
   }
 }
 
-ReactDOM.render(<Demo />, mountNode);
+ReactDOM.render(<App />, mountNode);
 ```

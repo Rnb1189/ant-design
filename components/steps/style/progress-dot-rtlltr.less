@@ -1,0 +1,81 @@
+@import './progress-dot-shared.less';
+
+//L__________
+@{L}.@{steps-prefix-cls}-dot {
+  .@{steps-prefix-cls}-item {
+    &-tail {
+      margin: 0 0 0 @steps-desciption-max-width / 2;
+      &::after {
+        margin-left: 12px;
+      }
+    }
+    &:first-child .@{steps-prefix-cls}-icon-dot {
+      left: 2px;
+    }
+    &-icon {
+      margin-left: 67px;
+      padding-right: 0;
+      .@{steps-prefix-cls}-icon-dot {
+        float: left;
+        &::after {
+          left: -26px;
+        }
+      }
+    }
+  }
+}
+
+@{L}.@{steps-prefix-cls}-vertical.@{steps-prefix-cls}-dot {
+  .@{steps-prefix-cls}-item-icon {
+    margin-left: 0;
+  }
+  .@{steps-prefix-cls}-item-tail {
+    left: -9px;
+  }
+  .@{steps-prefix-cls}-item:first-child .@{steps-prefix-cls}-icon-dot {
+    left: 0;
+  }
+  .@{steps-prefix-cls}-item-process .@{steps-prefix-cls}-icon-dot {
+    left: -2px;
+  }
+}
+
+//R__________
+@{R}.@{steps-prefix-cls}-dot {
+  .@{steps-prefix-cls}-item {
+    &-tail {
+      margin: 0 @steps-desciption-max-width / 2 0 0;
+      &::after {
+        margin-right: 12px;
+      }
+    }
+    &:first-child .@{steps-prefix-cls}-icon-dot {
+      right: 2px;
+    }
+    &-icon {
+      margin-right: 67px;
+      padding-left: 0;
+      .@{steps-prefix-cls}-icon-dot {
+        float: right;
+        &::after {
+          right: -26px;
+        }
+      }
+    }
+  }
+}
+
+@{R}.@{steps-prefix-cls}-vertical.@{steps-prefix-cls}-dot {
+  .@{steps-prefix-cls}-item-icon {
+    margin-right: 0;
+  }
+  .@{steps-prefix-cls}-item-tail {
+    right: -9px;
+  }
+  .@{steps-prefix-cls}-item:first-child .@{steps-prefix-cls}-icon-dot {
+    right: 0;
+  }
+  .@{steps-prefix-cls}-item-process .@{steps-prefix-cls}-icon-dot {
+    right: -2px;
+  }
+}

@@ -14,7 +14,7 @@ title:
 Cooperate with the content and buttons, to represent the progress of a process.
 
 ```jsx
-import { Steps, Button, message } from 'antd';
+import { Steps, Button, message, Switch } from '../../index';
 
 const { Step } = Steps;
 
@@ -38,8 +38,16 @@ class App extends React.Component {
     super(props);
     this.state = {
       current: 0,
+      isRtl: false,
     };
   }
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
 
   next() {
     const current = this.state.current + 1;
@@ -52,31 +60,34 @@ class App extends React.Component {
   }
 
   render() {
-    const { current } = this.state;
+    const { current, isRtl } = this.state;
     return (
       <div>
-        <Steps current={current}>
-          {steps.map(item => (
-            <Step key={item.title} title={item.title} />
-          ))}
-        </Steps>
-        <div className="steps-content">{steps[current].content}</div>
-        <div className="steps-action">
-          {current < steps.length - 1 && (
-            <Button type="primary" onClick={() => this.next()}>
-              Next
-            </Button>
-          )}
-          {current === steps.length - 1 && (
-            <Button type="primary" onClick={() => message.success('Processing complete!')}>
-              Done
-            </Button>
-          )}
-          {current > 0 && (
-            <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
-              Previous
-            </Button>
-          )}
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br /> <div>
+          <Steps isRtl={isRtl} current={current}>
+            {steps.map(item => (
+              <Step key={item.title} title={item.title} />
+            ))}
+          </Steps>
+          <div className="steps-content">{steps[current].content}</div>
+          <div className="steps-action">
+            {current < steps.length - 1 && (
+              <Button type="primary" onClick={() => this.next()}>
+                Next
+              </Button>
+            )}
+            {current === steps.length - 1 && (
+              <Button type="primary" onClick={() => message.success('Processing complete!')}>
+                Done
+              </Button>
+            )}
+            {current > 0 && (
+              <Button style={{ marginLeft: 8 }} onClick={() => this.prev()}>
+                Previous
+              </Button>
+            )}
+          </div>
         </div>
       </div>
     );

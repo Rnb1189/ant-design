@@ -1,0 +1,63 @@
+@import './vertical-shared.less';
+
+//L______________
+.ltr-steps-vertical() {
+  .steps-vertical();
+  .@{steps-prefix-cls}-item {
+    &-icon {
+      float: left;
+      margin-right: 16px;
+    }
+  }
+
+  > .@{steps-prefix-cls}-item > .@{steps-prefix-cls}-item-tail {
+    left: 16px;
+  }
+
+  &.@{steps-prefix-cls}-small {
+    .@{steps-prefix-cls}-item-tail {
+      left: 12px;
+    }
+  }
+}
+
+@{L}.@{steps-prefix-cls}-vertical {
+  .ltr-steps-vertical();
+}
+
+@media (max-width: @screen-xs) {
+  @{L}.@{steps-prefix-cls}-horizontal.@{steps-prefix-cls}-label-horizontal {
+    .ltr-steps-vertical();
+  }
+}
+
+//R______________
+.rtl-steps-vertical() {
+  .steps-vertical();
+  .@{steps-prefix-cls}-item {
+    &-icon {
+      float: right;
+      margin-left: 16px;
+    }
+  }
+
+  > .@{steps-prefix-cls}-item > .@{steps-prefix-cls}-item-tail {
+    right: 16px;
+  }
+
+  &.@{steps-prefix-cls}-small {
+    .@{steps-prefix-cls}-item-tail {
+      right: 12px;
+    }
+  }
+}
+
+@{R}.@{steps-prefix-cls}-vertical {
+  .rtl-steps-vertical();
+}
+
+@media (max-width: @screen-xs) {
+  @{R}.@{steps-prefix-cls}-horizontal.@{steps-prefix-cls}-label-horizontal {
+    .rtl-steps-vertical();
+  }
+}
