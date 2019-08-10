@@ -14,12 +14,42 @@ title:
 Standard header, suitable for use in scenarios that require a brief description.
 
 ```jsx
-import { PageHeader } from 'antd';
+import { PageHeader, Switch } from '../../index';
 
-ReactDOM.render(
-  <PageHeader onBack={() => null} title="Title" subTitle="This is a subtitle" />,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div style={{}}>
+          <PageHeader
+            isRtl={isRtl}
+            onBack={() => null}
+            title="Title"
+            subTitle="This is a subtitle"
+          />
+          <PageHeader isRtl={isRtl} backIcon={null} title="Title" subTitle="This is a subtitle" />
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```
 
 <style>

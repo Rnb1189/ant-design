@@ -8,8 +8,10 @@ import Tag from '../tag';
 import Breadcrumb, { BreadcrumbProps } from '../breadcrumb';
 import TransButton from '../_util/transButton';
 import LocaleReceiver from '../locale-provider/LocaleReceiver';
+import Direction from './../_util/direction';
 
 export interface PageHeaderProps {
+  isRtl?: boolean;
   backIcon?: React.ReactNode;
   prefixCls?: string;
   title: React.ReactNode;
@@ -53,20 +55,33 @@ const renderBack = (
   );
 };
 
-const renderBreadcrumb = (breadcrumb: BreadcrumbProps) => {
-  return <Breadcrumb {...breadcrumb} />;
+const renderBreadcrumb = (breadcrumb: BreadcrumbProps, isRtl?: boolean) => {
+  // return <Breadcrumb {...breadcrumb} />;
+  //NEw:
+  return <Breadcrumb {...breadcrumb} isRtl={isRtl} />;
 };
 
 const renderHeader = (prefixCls: string, props: PageHeaderProps) => {
-  const { breadcrumb, backIcon, onBack } = props;
+  let { breadcrumb, backIcon, onBack } = props;
   if (breadcrumb && breadcrumb.routes) {
-    return renderBreadcrumb(breadcrumb);
+    // return renderBreadcrumb(breadcrumb);
+    return renderBreadcrumb(breadcrumb, props.isRtl);
   }
+
+  //NEw:
+  if (backIcon === undefined) {
+    const iconName = props.isRtl ? 'arrow-right' : 'arrow-left';
+    backIcon = <Icon type={iconName} />;
+  }
+
   return renderBack(prefixCls, backIcon, onBack);
 };
 
 const renderTitle = (prefixCls: string, props: PageHeaderProps) => {
   const { title, subTitle, tags, extra } = props;
+  //NEw
+  const dirClass = Direction.classFromProps(props);
+
   const headingPrefixCls = `${prefixCls}-heading`;
   if (title || subTitle || tags || extra) {
     return (
@@ -106,6 +121,8 @@ const PageHeader: React.SFC<PageHeaderProps> = props => (
           [`${prefixCls}-has-footer`]: footer,
         },
         customizeClassName,
+        //NEw
+        Direction.classFromProps(props),
       );
 
       return (
@@ -121,7 +138,8 @@ const PageHeader: React.SFC<PageHeaderProps> = props => (
 );
 
 PageHeader.defaultProps = {
-  backIcon: <Icon type="arrow-left" />,
+  //NEw:
+  // backIcon: <Icon type="arrow-left" />,
 };
 
 export default PageHeader;

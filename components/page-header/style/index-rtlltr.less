@@ -1,0 +1,51 @@
+@import './index-shared.less';
+
+.@{pageheader-prefix-cls} {
+  @{L}& {
+    direction: ltr;
+  }
+  @{L}& &-heading {
+    &-title {
+      padding-right: 12px;
+    }
+
+    &-sub-title {
+      padding-right: 12px;
+    }
+
+    &-extra {
+      right: @page-header-padding-horizontal;
+      > * {
+        margin-left: 8px;
+      }
+      > *:first-child {
+        margin-left: 0;
+      }
+    }
+  }
+}
+.@{pageheader-prefix-cls} {
+  @{R}& {
+    direction: rtl;
+  }
+
+  @{R}& &-heading {
+    &-title {
+      padding-left: 12px;
+    }
+
+    &-sub-title {
+      padding-left: 12px;
+    }
+
+    &-extra {
+      left: @page-header-padding-horizontal;
+      > * {
+        margin-right: 8px;
+      }
+      > *:first-child {
+        margin-right: 0;
+      }
+    }
+  }
+}

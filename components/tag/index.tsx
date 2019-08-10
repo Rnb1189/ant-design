@@ -8,7 +8,7 @@ import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 import { PresetColorTypes } from '../_util/colors';
 import warning from '../_util/warning';
 import Wave from '../_util/wave';
-import { direction } from './../_util/direction';
+import Direction from './../_util/direction';
 
 export { CheckableTagProps } from './CheckableTag';
 
@@ -109,7 +109,7 @@ class Tag extends React.Component<TagProps, TagState> {
       },
       className,
       //NEw
-      this.props.isRtl ? direction.RTL : direction.LTR,
+      Direction.classFromProps(this.props),
     );
   }
 

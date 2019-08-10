@@ -14,8 +14,7 @@ title:
 Use the operating area and customize the sub-nodes, suitable for use in the need to display some complex information to help users quickly understand the information and operations of this page.
 
 ```jsx
-import { PageHeader, Tag, Tabs, Button, Statistic, Row, Col } from 'antd';
-
+import { PageHeader, Tag, Tabs, Button, Statistic, Row, Col, Switch } from '../../index';
 const { TabPane } = Tabs;
 
 const Description = ({ term, children, span = 12 }) => (
@@ -52,33 +51,58 @@ const extraContent = (
   </Row>
 );
 
-ReactDOM.render(
-  <PageHeader
-    onBack={() => window.history.back()}
-    title="Title"
-    subTitle="This is a subtitle"
-    tags={<Tag color="red">Warning</Tag>}
-    extra={[
-      <Button key="3">Operation</Button>,
-      <Button key="2">Operation</Button>,
-      <Button key="1" type="primary">
-        Primary
-      </Button>,
-    ]}
-    footer={
-      <Tabs defaultActiveKey="1">
-        <TabPane tab="Details" key="1" />
-        <TabPane tab="Rule" key="2" />
-      </Tabs>
-    }
-  >
-    <div className="wrap">
-      <div className="content padding">{content}</div>
-      <div className="extraContent">{extraContent}</div>
-    </div>
-  </PageHeader>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div style={{}}>
+          <PageHeader
+            isRtl={isRtl}
+            onBack={() => window.history.back()}
+            title="Title"
+            subTitle="This is a subtitle"
+            tags={<Tag color="red">Warning</Tag>}
+            extra={[
+              <Button key="3">Operation</Button>,
+              <Button key="2">Operation</Button>,
+              <Button key="1" type="primary">
+                Primary
+              </Button>,
+            ]}
+            footer={
+              <Tabs isRtl={isRtl} defaultActiveKey="1">
+                <TabPane tab="Details" key="1" />
+                <TabPane tab="Rule" key="2" />
+              </Tabs>
+            }
+          >
+            <div className="wrap">
+              <div className="content padding">{content}</div>
+              <div className="extraContent">{extraContent}</div>
+            </div>
+          </PageHeader>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```
 
 <style>

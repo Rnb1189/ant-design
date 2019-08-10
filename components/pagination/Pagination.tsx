@@ -7,7 +7,7 @@ import Icon from '../icon';
 import Select from '../select';
 import LocaleReceiver from '../locale-provider/LocaleReceiver';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
-import direction from '../_util/direction';
+import Direction from '../_util/direction';
 
 export interface PaginationProps {
   isRtl?: boolean;
@@ -115,7 +115,11 @@ export default class Pagination extends React.Component<PaginationProps, {}> {
               {...this.getIconsProps(prefixCls)}
               // className={classNames(className, { mini: isSmall })}
               //NEw:
-              className={classNames(className, { mini: isSmall }, direction.getClass(this.props))}
+              className={classNames(
+                className,
+                { mini: isSmall },
+                Direction.classFromProps(this.props),
+              )}
               selectComponentClass={isSmall ? MiniSelect : Select}
               locale={locale}
             />
