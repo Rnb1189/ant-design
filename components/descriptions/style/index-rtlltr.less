@@ -1,0 +1,47 @@
+@import './index-shared.less';
+
+//L_____________
+.@{descriptions-prefix-cls} {
+  @{L}& {
+    direction: ltr;
+  }
+  @{L}& &-item-label {
+    &::after {
+      margin: 0 8px 0 2px;
+    }
+  }
+
+  @{L}& &-bordered {
+    .@{descriptions-prefix-cls}-item-label,
+    .@{descriptions-prefix-cls}-item-content {
+      border-right: 1px solid @border-color-split;
+
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+}
+
+//R_____________
+.@{descriptions-prefix-cls} {
+  @{R}& {
+    direction: rtl;
+  }
+  @{R}& &-item-label {
+    &::after {
+      margin: 0 2px 0 8px;
+    }
+  }
+
+  @{R}& &-bordered {
+    .@{descriptions-prefix-cls}-item-label,
+    .@{descriptions-prefix-cls}-item-content {
+      border-left: 1px solid @border-color-split;
+
+      &:last-child {
+        border-left: none;
+      }
+    }
+  }
+}

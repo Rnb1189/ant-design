@@ -7,6 +7,7 @@ import ResponsiveObserve, {
   responsiveArray,
 } from '../_util/responsiveObserve';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
+import Direction from './../_util/direction';
 
 export interface DescriptionsItemProps {
   prefixCls?: string;
@@ -20,6 +21,7 @@ const DescriptionsItem: React.SFC<DescriptionsItemProps> = ({ children }) =>
   children as JSX.Element;
 
 export interface DescriptionsProps {
+  isRtl?: boolean;
   prefixCls?: string;
   className?: string;
   style?: React.CSSProperties;
@@ -303,10 +305,15 @@ class Descriptions extends React.Component<
           > = generateChildrenRows(cloneChildren, column);
           return (
             <div
-              className={classNames(prefixCls, className, {
-                [`${prefixCls}-${size}`]: size !== 'default',
-                [`${prefixCls}-bordered`]: !!bordered,
-              })}
+              className={classNames(
+                prefixCls,
+                className,
+                {
+                  [`${prefixCls}-${size}`]: size !== 'default',
+                  [`${prefixCls}-bordered`]: !!bordered,
+                },
+                Direction.classFromProps(this.props),
+              )}
               style={style}
             >
               {title && <div className={`${prefixCls}-title`}>{title}</div>}
