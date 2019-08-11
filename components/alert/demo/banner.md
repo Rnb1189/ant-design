@@ -19,17 +19,34 @@ import { Alert } from 'antd';
 
 ReactDOM.render(
   <div>
-    <Alert message="Warning text" banner />
-    <br />
-    <Alert
-      message="Very long warning text warning text text text text text text text"
-      banner
-      closable
-    />
-    <br />
-    <Alert showIcon={false} message="Warning text without icon" banner />
-    <br />
-    <Alert type="error" message="Error text" banner />
+    <div>
+      <Alert message="Warning text" banner />
+      <br />
+      <Alert
+        message="Very long warning text warning text text text text text text text"
+        banner
+        closable
+      />
+      <br />
+      <Alert showIcon={false} message="Warning text without icon" banner />
+      <br />
+      <Alert type="error" message="Error text" banner />
+    </div>
+    <br /> RTL
+    <div>
+      <Alert isRtl={true} message="Warning text" banner />
+      <br />
+      <Alert
+        isRtl={true}
+        message="Very long warning text warning text text text text text text text"
+        banner
+        closable
+      />
+      <br />
+      <Alert isRtl={true} showIcon={false} message="Warning text without icon" banner />
+      <br />
+      <Alert isRtl={true} type="error" message="Error text" banner />
+    </div>
   </div>,
   mountNode,
 );

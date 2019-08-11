@@ -22,6 +22,11 @@ ReactDOM.render(
     <Alert message="Info Text" type="info" />
     <Alert message="Warning Text" type="warning" />
     <Alert message="Error Text" type="error" />
+    RTL
+    <Alert isRtl={true} message="Success Text" type="success" />
+    <Alert isRtl={true} message="Info Text" type="info" />
+    <Alert isRtl={true} message="Warning Text" type="warning" />
+    <Alert isRtl={true} message="Error Text" type="error" />
   </div>,
   mountNode,
 );

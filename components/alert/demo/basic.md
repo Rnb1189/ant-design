@@ -16,7 +16,18 @@ The simplest usage for short messages.
 ```jsx
 import { Alert } from 'antd';
 
-ReactDOM.render(<Alert message="Success Text" type="success" />, mountNode);
+ReactDOM.render(
+  <div>
+    <div>
+      <Alert message="Success Text" type="success" />
+    </div>
+    <br />
+    <div>
+      <Alert isRtl={true} message="Success Text" type="success" />
+    </div>
+  </div>,
+  mountNode,
+);
 ```
 
 <style>

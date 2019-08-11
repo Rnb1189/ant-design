@@ -1,0 +1,81 @@
+@import './index-shared.less';
+
+.@{alert-prefix-cls} {
+  @{L}& {
+    direction: ltr;
+    padding: 8px 15px 8px 37px;
+  }
+
+  //repeated
+  &&-no-icon {
+    padding: 8px 15px;
+  }
+
+  @{L}&&-closable {
+    padding-right: 30px;
+  }
+
+  @{L}& &-icon {
+    left: 16px;
+  }
+
+  @{L}& &-close-icon {
+    right: 16px;
+  }
+
+  @{L}& &-close-text {
+    right: 16px;
+  }
+
+  @{L}&-with-description {
+    padding: 15px 15px 15px 64px;
+  }
+
+  @{L}&-with-description &-icon {
+    left: 24px;
+  }
+
+  @{L}&-with-description &-close-icon {
+    right: 16px;
+  }
+}
+
+//R_______________
+.@{alert-prefix-cls} {
+  @{R}& {
+    direction: rtl;
+    padding: 8px 37px 8px 15px;
+  }
+
+  &&-no-icon {
+    padding: 8px 15px;
+  }
+
+  @{R}&&-closable {
+    padding-left: 30px;
+  }
+
+  @{R}& &-icon {
+    right: 16px;
+  }
+
+  @{R}& &-close-icon {
+    left: 16px;
+  }
+
+  @{R}& &-close-text {
+    left: 16px;
+  }
+
+  @{R}&-with-description {
+    padding: 15px 64px 15px 15px;
+  }
+
+  @{R}&-with-description &-icon {
+    right: 24px;
+  }
+
+  @{R}&-with-description &-close-icon {
+    left: 16px;
+  }
+}

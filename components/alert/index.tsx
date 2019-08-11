@@ -5,10 +5,12 @@ import Icon, { ThemeType } from '../icon';
 import classNames from 'classnames';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 import getDataOrAriaProps from '../_util/getDataOrAriaProps';
+import Direction from '../_util/direction';
 
 function noop() {}
 
 export interface AlertProps {
+  isRtl?: boolean;
   /**
    * Type of Alert styles, options:`success`, `info`, `warning`, `error`
    */
@@ -131,6 +133,8 @@ export default class Alert extends React.Component<AlertProps, AlertState> {
         [`${prefixCls}-closable`]: closable,
       },
       className,
+      //NEw
+      Direction.classFromProps(this.props),
     );
 
     const closeIcon = closable ? (
