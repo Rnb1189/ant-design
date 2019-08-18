@@ -14,25 +14,47 @@ title:
 To change the element sort by Flex layout order.
 
 ```jsx
-import { Row, Col } from 'antd';
+import { Row, Col, Switch } from '../../index';
 
-ReactDOM.render(
-  <div>
-    <Row type="flex">
-      <Col span={6} order={4}>
-        1 col-order-4
-      </Col>
-      <Col span={6} order={3}>
-        2 col-order-3
-      </Col>
-      <Col span={6} order={2}>
-        3 col-order-2
-      </Col>
-      <Col span={6} order={1}>
-        4 col-order-1
-      </Col>
-    </Row>
-  </div>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <Row isRtl={isRtl} type="flex">
+            <Col span={6} order={4}>
+              1 col-order-4
+            </Col>
+            <Col span={6} order={3}>
+              2 col-order-3
+            </Col>
+            <Col span={6} order={2}>
+              3 col-order-2
+            </Col>
+            <Col span={6} order={1}>
+              4 col-order-1
+            </Col>
+          </Row>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

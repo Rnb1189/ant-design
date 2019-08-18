@@ -5,13 +5,13 @@
 
 @{L}.@{breadcrumb-prefix-cls} {
   .LTR();
-  &-link {
+  & .@{breadcrumb-prefix-cls}-link {
     > .@{iconfont-css-prefix} + span {
       margin-left: 4px;
     }
   }
 
-  &-overlay-link {
+  & .@{breadcrumb-prefix-cls}-overlay-link {
     > .@{iconfont-css-prefix} {
       margin-left: 4px;
     }
@@ -26,15 +26,15 @@
     flex-wrap: wrap;
   }
 
-  &-link {
+  & .@{breadcrumb-prefix-cls}-link {
     > .@{iconfont-css-prefix} + span {
       margin-right: 4px;
     }
   }
 
-  &-overlay-link {
+  & .@{breadcrumb-prefix-cls}-overlay-link {
     > .@{iconfont-css-prefix} {
-      margin-left: 4px;
+      margin-right: 4px;
     }
   }
 }

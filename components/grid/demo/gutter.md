@@ -18,27 +18,49 @@ You can use the `gutter` property of `Row` as grid spacing, we recommend set it 
 You can set it to a object like `{ xs: 8, sm: 16, md: 24, lg: 32 }` for responsive design.
 
 ```jsx
-import { Row, Col } from 'antd';
+import { Row, Col, Switch } from '../../index';
 
-ReactDOM.render(
-  <div className="gutter-example">
-    <Row gutter={16}>
-      <Col className="gutter-row" span={6}>
-        <div className="gutter-box">col-6</div>
-      </Col>
-      <Col className="gutter-row" span={6}>
-        <div className="gutter-box">col-6</div>
-      </Col>
-      <Col className="gutter-row" span={6}>
-        <div className="gutter-box">col-6</div>
-      </Col>
-      <Col className="gutter-row" span={6}>
-        <div className="gutter-box">col-6</div>
-      </Col>
-    </Row>
-  </div>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div className="gutter-example">
+          <Row isRtl={isRtl} gutter={16}>
+            <Col className="gutter-row" span={6}>
+              <div className="gutter-box">1col-6</div>
+            </Col>
+            <Col className="gutter-row" span={6}>
+              <div className="gutter-box">2col-6</div>
+            </Col>
+            <Col className="gutter-row" span={6}>
+              <div className="gutter-box">3col-6</div>
+            </Col>
+            <Col className="gutter-row" span={6}>
+              <div className="gutter-box">4col-6</div>
+            </Col>
+          </Row>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```
 
 ```css

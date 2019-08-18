@@ -16,50 +16,72 @@ Flex 布局基础。
 Use `row-flex` define `flex` layout, its child elements depending on the value of the `start`,`center`, `end`,`space-between`, `space-around`, which are defined in its parent node layout mode.
 
 ```jsx
-import { Row, Col } from 'antd';
+import { Row, Col, Switch } from '../../index';
 
-ReactDOM.render(
-  <div>
-    <p>sub-element align left</p>
-    <Row type="flex" justify="start">
-      <Col span={4}>col-4</Col>
-      <Col span={4}>col-4</Col>
-      <Col span={4}>col-4</Col>
-      <Col span={4}>col-4</Col>
-    </Row>
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
 
-    <p>sub-element align center</p>
-    <Row type="flex" justify="center">
-      <Col span={4}>col-4</Col>
-      <Col span={4}>col-4</Col>
-      <Col span={4}>col-4</Col>
-      <Col span={4}>col-4</Col>
-    </Row>
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
 
-    <p>sub-element align right</p>
-    <Row type="flex" justify="end">
-      <Col span={4}>col-4</Col>
-      <Col span={4}>col-4</Col>
-      <Col span={4}>col-4</Col>
-      <Col span={4}>col-4</Col>
-    </Row>
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <p>sub-element align left</p>
+          <Row isRtl={isRtl} type="flex" justify="start">
+            <Col span={4}>1col-4</Col>
+            <Col span={4}>2col-4</Col>
+            <Col span={4}>3col-4</Col>
+            <Col span={4}>4col-4</Col>
+          </Row>
 
-    <p>sub-element monospaced arrangement</p>
-    <Row type="flex" justify="space-between">
-      <Col span={4}>col-4</Col>
-      <Col span={4}>col-4</Col>
-      <Col span={4}>col-4</Col>
-      <Col span={4}>col-4</Col>
-    </Row>
+          <p>sub-element align center</p>
+          <Row isRtl={isRtl} type="flex" justify="center">
+            <Col span={4}>1col-4</Col>
+            <Col span={4}>2col-4</Col>
+            <Col span={4}>3col-4</Col>
+            <Col span={4}>4col-4</Col>
+          </Row>
 
-    <p>sub-element align full</p>
-    <Row type="flex" justify="space-around">
-      <Col span={4}>col-4</Col>
-      <Col span={4}>col-4</Col>
-      <Col span={4}>col-4</Col>
-      <Col span={4}>col-4</Col>
-    </Row>
-  </div>,
-  mountNode,
-);
+          <p>sub-element align right</p>
+          <Row isRtl={isRtl} type="flex" justify="end">
+            <Col span={4}>1col-4</Col>
+            <Col span={4}>2col-4</Col>
+            <Col span={4}>3col-4</Col>
+            <Col span={4}>4col-4</Col>
+          </Row>
+
+          <p>sub-element monospaced arrangement</p>
+          <Row isRtl={isRtl} type="flex" justify="space-between">
+            <Col span={4}>1col-4</Col>
+            <Col span={4}>2col-4</Col>
+            <Col span={4}>3col-4</Col>
+            <Col span={4}>4col-4</Col>
+          </Row>
+
+          <p>sub-element align full</p>
+          <Row isRtl={isRtl} type="flex" justify="space-around">
+            <Col span={4}>1col-4</Col>
+            <Col span={4}>2col-4</Col>
+            <Col span={4}>3col-4</Col>
+            <Col span={4}>4col-4</Col>
+          </Row>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

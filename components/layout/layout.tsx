@@ -3,6 +3,7 @@ import classNames from 'classnames';
 import createContext from '@ant-design/create-react-context';
 import { SiderProps } from './Sider';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
+import Direction from './../_util/direction';
 
 export interface GeneratorProps {
   suffixCls: string;
@@ -55,7 +56,12 @@ function generator({ suffixCls, tagName }: GeneratorProps) {
 class Basic extends React.Component<BasicPropsWithTagName, any> {
   render() {
     const { prefixCls, className, children, tagName, ...others } = this.props;
-    const classString = classNames(className, prefixCls);
+    const classString = classNames(
+      className,
+      prefixCls,
+      //NEw
+      Direction.classFromProps(this.props),
+    );
     return React.createElement(tagName, { className: classString, ...others }, children);
   }
 }
@@ -84,10 +90,16 @@ class BasicLayout extends React.Component<BasicPropsWithTagName, BasicLayoutStat
 
   render() {
     const { prefixCls, className, children, hasSider, tagName: Tag, ...others } = this.props;
-    const classString = classNames(className, prefixCls, {
-      [`${prefixCls}-has-sider`]:
-        typeof hasSider === 'boolean' ? hasSider : this.state.siders.length > 0,
-    });
+    const classString = classNames(
+      className,
+      prefixCls,
+      //NEw
+      Direction.classFromProps(this.props),
+      {
+        [`${prefixCls}-has-sider`]:
+          typeof hasSider === 'boolean' ? hasSider : this.state.siders.length > 0,
+      },
+    );
 
     return (
       <LayoutContext.Provider value={{ siderHook: this.getSiderHook() }}>

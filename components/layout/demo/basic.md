@@ -14,47 +14,70 @@ title:
 Classic page layouts.
 
 ```jsx
-import { Layout } from 'antd';
-
+import { Layout, Switch } from '../../index';
 const { Header, Footer, Sider, Content } = Layout;
 
-ReactDOM.render(
-  <div>
-    <Layout>
-      <Header>Header</Header>
-      <Content>Content</Content>
-      <Footer>Footer</Footer>
-    </Layout>
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
 
-    <Layout>
-      <Header>Header</Header>
-      <Layout>
-        <Sider>Sider</Sider>
-        <Content>Content</Content>
-      </Layout>
-      <Footer>Footer</Footer>
-    </Layout>
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
 
-    <Layout>
-      <Header>Header</Header>
-      <Layout>
-        <Content>Content</Content>
-        <Sider>Sider</Sider>
-      </Layout>
-      <Footer>Footer</Footer>
-    </Layout>
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <Layout isRtl={isRtl}>
+            <Header>Header</Header>
+            <Content>Content</Content>
+            <Footer>Footer</Footer>
+          </Layout>
+          <br />
+          <Layout isRtl={isRtl}>
+            <Header>Header</Header>
+            <Layout isRtl={isRtl}>
+              <Sider>Sider</Sider>
+              <Content>Content</Content>
+            </Layout>
+            <Footer>Footer</Footer>
+          </Layout>
+          <br />
 
-    <Layout>
-      <Sider>Sider</Sider>
-      <Layout>
-        <Header>Header</Header>
-        <Content>Content</Content>
-        <Footer>Footer</Footer>
-      </Layout>
-    </Layout>
-  </div>,
-  mountNode,
-);
+          <Layout isRtl={isRtl}>
+            <Header>Header</Header>
+            <Layout isRtl={isRtl}>
+              <Content>Content</Content>
+              <Sider>Sider</Sider>
+            </Layout>
+            <Footer>Footer</Footer>
+          </Layout>
+          <br />
+
+          <Layout isRtl={isRtl}>
+            <Sider>Sider</Sider>
+            <Layout isRtl={isRtl}>
+              <Header>Header</Header>
+              <Content>Content</Content>
+              <Footer>Footer</Footer>
+            </Layout>
+          </Layout>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```
 
 <style>

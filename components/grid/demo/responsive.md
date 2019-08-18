@@ -14,20 +14,42 @@ title:
 Referring to the Bootstrap [responsive design](http://getbootstrap.com/css/#grid-media-queries), here preset six dimensions: `xs` `sm` `md` `lg` `xl`.
 
 ```jsx
-import { Row, Col } from 'antd';
+import { Row, Col, Switch } from '../../index';
 
-ReactDOM.render(
-  <Row>
-    <Col xs={2} sm={4} md={6} lg={8} xl={10}>
-      Col
-    </Col>
-    <Col xs={20} sm={16} md={12} lg={8} xl={4}>
-      Col
-    </Col>
-    <Col xs={2} sm={4} md={6} lg={8} xl={10}>
-      Col
-    </Col>
-  </Row>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <Row isRtl={isRtl}>
+          <Col xs={2} sm={4} md={6} lg={8} xl={10}>
+            1Col
+          </Col>
+          <Col xs={20} sm={16} md={12} lg={8} xl={4}>
+            2Col
+          </Col>
+          <Col xs={2} sm={4} md={6} lg={8} xl={10}>
+            3Col
+          </Col>
+        </Row>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

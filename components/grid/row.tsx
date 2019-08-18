@@ -9,10 +9,12 @@ import ResponsiveObserve, {
   BreakpointMap,
   responsiveArray,
 } from '../_util/responsiveObserve';
+import Direction from '../_util/direction';
 
 const RowAligns = tuple('top', 'middle', 'bottom');
 const RowJustify = tuple('start', 'end', 'center', 'space-around', 'space-between');
 export interface RowProps extends React.HTMLAttributes<HTMLDivElement> {
+  isRtl?: boolean;
   gutter?: number | Partial<Record<Breakpoint, number>>;
   type?: 'flex';
   align?: (typeof RowAligns)[number];
@@ -86,6 +88,8 @@ export default class Row extends React.Component<RowProps, RowState> {
         [`${prefixCls}-${type}-${align}`]: type && align,
       },
       className,
+      //NEw
+      Direction.classFromProps(this.props),
     );
     const rowStyle =
       gutter! > 0

@@ -15,37 +15,59 @@ title:
 Fixed Header is generally used to fix the top navigation to facilitate page switching.
 
 ```jsx
-import { Layout, Menu, Breadcrumb } from 'antd';
+import { Layout, Menu, Breadcrumb, Switch } from '../../index';
+const { Header, Footer, Sider, Content } = Layout;
 
-const { Header, Content, Footer } = Layout;
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
 
-ReactDOM.render(
-  <Layout>
-    <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
-      <div className="logo" />
-      <Menu
-        theme="dark"
-        mode="horizontal"
-        defaultSelectedKeys={['2']}
-        style={{ lineHeight: '64px' }}
-      >
-        <Menu.Item key="1">nav 1</Menu.Item>
-        <Menu.Item key="2">nav 2</Menu.Item>
-        <Menu.Item key="3">nav 3</Menu.Item>
-      </Menu>
-    </Header>
-    <Content style={{ padding: '0 50px', marginTop: 64 }}>
-      <Breadcrumb style={{ margin: '16px 0' }}>
-        <Breadcrumb.Item>Home</Breadcrumb.Item>
-        <Breadcrumb.Item>List</Breadcrumb.Item>
-        <Breadcrumb.Item>App</Breadcrumb.Item>
-      </Breadcrumb>
-      <div style={{ background: '#fff', padding: 24, minHeight: 380 }}>Content</div>
-    </Content>
-    <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
-  </Layout>,
-  mountNode,
-);
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirClass = isRtl ? 'a-rtl' : 'a-ltr';
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <Layout isRtl={isRtl}>
+          <Header style={{ position: 'fixed', zIndex: 1, width: '100%' }}>
+            <div className={'logo ' + dirClass} />
+            <Menu
+              isRtl={isRtl}
+              theme="dark"
+              mode="horizontal"
+              defaultSelectedKeys={['2']}
+              style={{ lineHeight: '64px' }}
+            >
+              <Menu.Item key="1">nav 1</Menu.Item>
+              <Menu.Item key="2">nav 2</Menu.Item>
+              <Menu.Item key="3">nav 3</Menu.Item>
+            </Menu>
+          </Header>
+          <Content style={{ padding: '0 50px', marginTop: 64 }}>
+            <Breadcrumb isRtl={isRtl} style={{ margin: '16px 0' }}>
+              <Breadcrumb.Item>Home</Breadcrumb.Item>
+              <Breadcrumb.Item>List</Breadcrumb.Item>
+              <Breadcrumb.Item>App</Breadcrumb.Item>
+            </Breadcrumb>
+            <div style={{ background: '#fff', padding: 24, minHeight: 380 }}>Content</div>
+          </Content>
+          <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
+        </Layout>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```
 
 ```css

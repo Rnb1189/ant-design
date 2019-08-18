@@ -16,30 +16,53 @@ title:
 `Offset` can set the column to the right side. For example, using `offset = {4}` can set the element shifted to the right four columns width.
 
 ```jsx
-import { Row, Col } from 'antd';
+import { Row, Col, Switch } from '../../index';
 
-ReactDOM.render(
-  <div>
-    <Row>
-      <Col span={8}>col-8</Col>
-      <Col span={8} offset={8}>
-        col-8
-      </Col>
-    </Row>
-    <Row>
-      <Col span={6} offset={6}>
-        col-6 col-offset-6
-      </Col>
-      <Col span={6} offset={6}>
-        col-6 col-offset-6
-      </Col>
-    </Row>
-    <Row>
-      <Col span={12} offset={6}>
-        col-12 col-offset-6
-      </Col>
-    </Row>
-  </div>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <Row isRtl={isRtl}>
+            <Col span={8}>1col-8</Col>
+            <Col span={8} offset={8}>
+              2col-8
+            </Col>
+          </Row>
+
+          <Row isRtl={isRtl}>
+            <Col span={6} offset={6}>
+              1col-6 col-offset-6
+            </Col>
+            <Col span={6} offset={6}>
+              1col-6 col-offset-6
+            </Col>
+          </Row>
+          <Row isRtl={isRtl}>
+            <Col span={12} offset={6}>
+              1col-12 col-offset-6
+            </Col>
+          </Row>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

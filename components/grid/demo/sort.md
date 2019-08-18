@@ -16,19 +16,41 @@ title:
 By using `push` and`pull` class you can easily change column order.
 
 ```jsx
-import { Row, Col } from 'antd';
+import { Row, Col, Switch } from '../../index';
 
-ReactDOM.render(
-  <div>
-    <Row>
-      <Col span={18} push={6}>
-        col-18 col-push-6
-      </Col>
-      <Col span={6} pull={18}>
-        col-6 col-pull-18
-      </Col>
-    </Row>
-  </div>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <Row isRtl={isRtl}>
+            <Col span={18} push={6}>
+              1col-18 col-push-6
+            </Col>
+            <Col span={6} pull={18}>
+              2col-6 col-pull-18
+            </Col>
+          </Row>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

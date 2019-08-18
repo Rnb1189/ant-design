@@ -1,0 +1,41 @@
+@import './index-shared.less';
+
+.@{layout-prefix-cls} {
+  @{L}& {
+    direction: ltr;
+  }
+  @{L}&&-has-sider {
+    flex-direction: row;
+  }
+  @{L}& &-sider {
+    &-zero-width {
+      &-trigger {
+        right: -@layout-zero-trigger-width;
+        &-right {
+          left: -@layout-zero-trigger-width;
+        }
+      }
+    }
+  }
+}
+
+.@{layout-prefix-cls} {
+  @{R}& {
+    direction: rtl;
+  }
+
+  @{R}&&-has-sider {
+    // flex-direction: row-reverse;
+    flex-direction: row;
+  }
+  @{L}& &-sider {
+    &-zero-width {
+      &-trigger {
+        left: -@layout-zero-trigger-width;
+        &-right {
+          right: -@layout-zero-trigger-width;
+        }
+      }
+    }
+  }
+}
