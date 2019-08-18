@@ -2,6 +2,7 @@ import * as React from 'react';
 import RcCollapse from 'rc-collapse';
 import classNames from 'classnames';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
+import Direction from './../_util/direction';
 
 export interface CollapsePanelProps {
   key: string | number;
@@ -25,6 +26,8 @@ export default class CollapsePanel extends React.Component<CollapsePanelProps, {
         [`${prefixCls}-no-arrow`]: !showArrow,
       },
       className,
+      //NEw
+      Direction.classFromProps(this.props),
     );
     return (
       <RcCollapse.Panel {...this.props} prefixCls={prefixCls} className={collapsePanelClassName} />

@@ -9,6 +9,7 @@ import Button from '../button';
 import { ButtonType, NativeButtonProps } from '../button/button';
 import LocaleReceiver from '../locale-provider/LocaleReceiver';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
+import Direction from './../_util/direction';
 
 let mousePosition: { x: number; y: number } | null;
 export const destroyFns: Array<() => void> = [];
@@ -31,6 +32,7 @@ if (typeof window !== 'undefined' && window.document && window.document.document
 }
 
 export interface ModalProps {
+  isRtl?: boolean;
   /** 对话框是否可见*/
   visible?: boolean;
   /** 确定按钮 loading*/
@@ -81,6 +83,7 @@ export interface ModalProps {
 type getContainerFunc = () => HTMLElement;
 
 export interface ModalFuncProps {
+  isRtl?: boolean;
   prefixCls?: string;
   className?: string;
   visible?: boolean;
@@ -225,12 +228,18 @@ export default class Modal extends React.Component<ModalProps, {}> {
         {...restProps}
         getContainer={getContainer === undefined ? getContextPopupContainer : getContainer}
         prefixCls={prefixCls}
-        wrapClassName={classNames({ [`${prefixCls}-centered`]: !!centered }, wrapClassName)}
+        wrapClassName={classNames(
+          { [`${prefixCls}-centered`]: !!centered },
+          wrapClassName,
+          //NEw
+          //Direction.classFromProps(this.props),
+        )}
         footer={footer === undefined ? defaultFooter : footer}
         visible={visible}
         mousePosition={mousePosition}
         onClose={this.handleCancel}
         closeIcon={closeIcon}
+        className={classNames(this.props.className, Direction.classFromProps(this.props))}
       />
     );
   };

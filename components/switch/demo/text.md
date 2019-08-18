@@ -14,20 +14,42 @@ title:
 With text and icon.
 
 ```jsx
-import { Switch, Icon } from 'antd';
+import { Switch, Icon } from '../../index';
 
-ReactDOM.render(
-  <div>
-    <Switch checkedChildren="开" unCheckedChildren="关" defaultChecked />
-    <br />
-    <Switch checkedChildren="1" unCheckedChildren="0" />
-    <br />
-    <Switch
-      checkedChildren={<Icon type="check" />}
-      unCheckedChildren={<Icon type="close" />}
-      defaultChecked
-    />
-  </div>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <Switch isRtl={isRtl} checkedChildren="开" unCheckedChildren="关" defaultChecked />
+          <br />
+          <Switch isRtl={isRtl} checkedChildren="1" unCheckedChildren="0" />
+          <br />
+          <Switch
+            isRtl={isRtl}
+            checkedChildren={<Icon type="check" />}
+            unCheckedChildren={<Icon type="close" />}
+            defaultChecked
+          />
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

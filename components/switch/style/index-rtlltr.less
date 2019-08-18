@@ -1,0 +1,140 @@
+@import './index-shared.less';
+
+//L_____________
+@{L}.@{switch-prefix-cls} {
+  .@{switch-prefix-cls}-inner {
+    margin-right: 6px;
+    margin-left: 24px;
+  }
+
+  .@{switch-prefix-cls}-loading-icon,
+  &::after {
+    left: 1px;
+  }
+
+  &::after {
+    box-shadow: 0 2px 4px 0 @switch-shadow-color;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px fade(@switch-color, 20%);
+  }
+
+  &-small {
+    .@{switch-prefix-cls}-inner {
+      margin-right: 3px;
+      margin-left: 18px;
+    }
+  }
+
+  &-small.@{switch-prefix-cls}-checked {
+    .@{switch-prefix-cls}-inner {
+      margin-right: 18px;
+      margin-left: 3px;
+    }
+  }
+
+  &-small.@{switch-prefix-cls}-checked .@{switch-prefix-cls}-loading-icon {
+    left: 100%;
+    margin-left: @switch-sm-checked-margin-left;
+  }
+
+  &-small.@{switch-prefix-cls}-loading .@{switch-prefix-cls}-loading-icon {
+    animation: AntSwitchSmallLoadingCircle 1s infinite linear;
+  }
+
+  &-checked {
+    .@{switch-prefix-cls}-inner {
+      margin-right: 24px;
+      margin-left: 6px;
+    }
+
+    &::after {
+      left: 100%;
+      margin-left: -1px;
+      transform: translateX(-100%);
+    }
+  }
+
+  &-checked .@{switch-prefix-cls}-loading-icon {
+    left: 100%;
+    margin-left: -19px;
+  }
+}
+
+//R_____________
+@{R}.@{switch-prefix-cls} {
+  .@{switch-prefix-cls}-inner {
+    margin-left: 6px;
+    margin-right: 24px;
+  }
+
+  .@{switch-prefix-cls}-loading-icon,
+  &::after {
+    right: 1px;
+  }
+
+  &::after {
+    box-shadow: 0 2px 4px 0 @switch-shadow-color;
+  }
+
+  &:focus {
+    box-shadow: 0 0 0 2px fade(@switch-color, 20%);
+  }
+
+  &-small {
+    .@{switch-prefix-cls}-inner {
+      margin-left: 3px;
+      margin-right: 18px;
+    }
+  }
+
+  &-small.@{switch-prefix-cls}-checked {
+    .@{switch-prefix-cls}-inner {
+      margin-left: 18px;
+      margin-right: 3px;
+    }
+  }
+
+  &-small.@{switch-prefix-cls}-checked .@{switch-prefix-cls}-loading-icon {
+    right: 100%;
+    margin-right: @switch-sm-checked-margin-left;
+  }
+
+  &-small.@{switch-prefix-cls}-loading .@{switch-prefix-cls}-loading-icon {
+    animation: AntSwitchSmallLoadingCircle 1s infinite linear;
+  }
+
+  &-checked {
+    .@{switch-prefix-cls}-inner {
+      margin-left: 24px;
+      margin-right: 6px;
+    }
+
+    &::after {
+      // left: 100%;
+      // margin-left: -1px;
+      // transform: translateX(-100%);
+
+      right: 100%;
+      margin-right: -1px;
+      transform: translateX(100%);
+    }
+  }
+
+  &-checked .@{switch-prefix-cls}-loading-icon {
+    right: 100%;
+    margin-right: -19px;
+  }
+}
+
+@keyframes AntSwitchSmallLoadingCircle {
+  0% {
+    transform: rotate(0deg) scale(0.66667);
+    transform-origin: 50% 50%;
+  }
+  100% {
+    transform: rotate(360deg) scale(0.66667);
+    transform-origin: 50% 50%;
+  }
+}

@@ -14,7 +14,7 @@ title:
 More than one panel can be expanded at a time, the first panel is initialized to be active in this case.
 
 ```jsx
-import { Collapse, Icon, Select } from 'antd';
+import { Collapse, Icon, Select, Switch } from '../../index';
 
 const { Panel } = Collapse;
 const { Option } = Select;
@@ -40,19 +40,27 @@ const genExtra = () => (
 );
 
 class Demo extends React.Component {
-  state = {
-    expandIconPosition: 'left',
+  state = { isRtl: false, expandIconPosition: 'left' };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
   };
 
   onPositionChange = expandIconPosition => {
-    this.setState({ expandIconPosition });
+    this.setState({ ...this.state, expandIconPosition });
   };
 
   render() {
-    const { expandIconPosition } = this.state;
+    const { expandIconPosition, isRtl } = this.state;
     return (
       <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
         <Collapse
+          isRtl={isRtl}
           defaultActiveKey={['1']}
           onChange={callback}
           expandIconPosition={expandIconPosition}

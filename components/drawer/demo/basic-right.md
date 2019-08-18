@@ -17,17 +17,26 @@ Basic drawer.
 import { Drawer, Button } from 'antd';
 
 class App extends React.Component {
-  state = { visible: false };
+  state = { visible: false, isRtl: false };
 
   showDrawer = () => {
     this.setState({
       visible: true,
+      isRtl: false,
+    });
+  };
+
+  showDrawerRtl = () => {
+    this.setState({
+      visible: true,
+      isRtl: true,
     });
   };
 
   onClose = () => {
     this.setState({
       visible: false,
+      isRtl: false,
     });
   };
 
@@ -37,12 +46,16 @@ class App extends React.Component {
         <Button type="primary" onClick={this.showDrawer}>
           Open
         </Button>
+        <Button type="primary" onClick={this.showDrawerRtl}>
+          Open Rtl
+        </Button>
         <Drawer
           title="Basic Drawer"
-          placement="right"
+          // placement="right"
           closable={false}
           onClose={this.onClose}
           visible={this.state.visible}
+          isRtl={this.state.isRtl}
         >
           <p>Some contents...</p>
           <p>Some contents...</p>

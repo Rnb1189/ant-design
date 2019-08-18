@@ -1,0 +1,45 @@
+@import './confirm-shared.less';
+
+@confirm-prefix-cls: ~'@{ant-prefix}-modal-confirm';
+
+//L___________
+.@{confirm-prefix-cls} {
+  @{L}& &-body {
+    > .@{iconfont-css-prefix} {
+      float: left;
+      margin-right: 16px;
+      + .@{confirm-prefix-cls}-title + .@{confirm-prefix-cls}-content {
+        margin-left: 38px;
+      }
+    }
+  }
+
+  @{L}& .@{confirm-prefix-cls}-btns {
+    float: right;
+
+    button + button {
+      margin-left: 8px;
+    }
+  }
+}
+
+//R___________
+.@{confirm-prefix-cls} {
+  @{R}& &-body {
+    > .@{iconfont-css-prefix} {
+      float: right;
+      margin-left: 16px;
+      + .@{confirm-prefix-cls}-title + .@{confirm-prefix-cls}-content {
+        margin-right: 38px;
+      }
+    }
+  }
+
+  @{R}& .@{confirm-prefix-cls}-btns {
+    float: left;
+
+    button + button {
+      margin-right: 8px;
+    }
+  }
+}

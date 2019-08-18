@@ -14,23 +14,55 @@ title:
 A basic card containing a title, content and an extra corner content. Supports two sizes: `default` and `small`.
 
 ```jsx
-import { Card } from 'antd';
+import { Card, Switch } from '../../index';
 
-ReactDOM.render(
-  <div>
-    <Card title="Default size card" extra={<a href="#">More</a>} style={{ width: 300 }}>
-      <p>Card content</p>
-      <p>Card content</p>
-      <p>Card content</p>
-    </Card>
-    <Card size="small" title="Small size card" extra={<a href="#">More</a>} style={{ width: 300 }}>
-      <p>Card content</p>
-      <p>Card content</p>
-      <p>Card content</p>
-    </Card>
-  </div>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <Card
+            isRtl={isRtl}
+            title="Default size card"
+            extra={<a href="#">More</a>}
+            style={{ width: 300 }}
+          >
+            <p>Card content</p>
+            <p>Card content</p>
+            <p>Card content</p>
+          </Card>
+          <Card
+            isRtl={isRtl}
+            size="small"
+            title="Small size card"
+            extra={<a href="#">More</a>}
+            style={{ width: 300 }}
+          >
+            <p>Card content</p>
+            <p>Card content</p>
+            <p>Card content</p>
+          </Card>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```
 
 <style>

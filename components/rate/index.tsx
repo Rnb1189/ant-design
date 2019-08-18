@@ -1,8 +1,6 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import RcRate from 'rnb-rc-rate';
-import classNames from 'classnames';
-
 import omit from 'omit.js';
 import Icon from '../icon';
 import Tooltip from '../tooltip';
@@ -68,9 +66,6 @@ export default class Rate extends React.Component<RateProps, any> {
     const { prefixCls, ...restProps } = this.props;
 
     const rateProps = omit(restProps, ['tooltips']);
-
-    //NEw
-    const className = classNames(this.props.className, this.props.isRtl ? 'a-rtl' : 'a-ltr');
 
     return (
       <RcRate

@@ -69,8 +69,6 @@ export default class Search extends React.Component<SearchProps, any> {
 
   renderAddonAfter = (prefixCls: string) => {
     const { enterButton, size, disabled, addonAfter } = this.props;
-    //NEw
-    const rtlClass = this.props.isRtl ? 'a-rtl' : 'a-ltr';
 
     if (!enterButton) return addonAfter;
     const btnClassName = `${prefixCls}-button`;

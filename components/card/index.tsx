@@ -9,6 +9,7 @@ import Col from '../col';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 import warning from '../_util/warning';
 import { Omit } from '../_util/type';
+import Direction from '../_util/direction';
 
 export { CardGridProps } from './Grid';
 export { CardMetaProps } from './Meta';
@@ -23,6 +24,7 @@ export interface CardTabListType {
 }
 
 export interface CardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 'title'> {
+  isRtl?: boolean;
   prefixCls?: string;
   title?: React.ReactNode;
   extra?: React.ReactNode;
@@ -122,22 +124,29 @@ export default class Card extends React.Component<CardProps, {}> {
       ...others
     } = this.props;
 
+    const dirClass = Direction.classFromProps(this.props);
     const prefixCls = getPrefixCls('card', customizePrefixCls);
-    const classString = classNames(prefixCls, className, {
-      [`${prefixCls}-loading`]: loading,
-      [`${prefixCls}-bordered`]: bordered,
-      [`${prefixCls}-hoverable`]: this.getCompatibleHoverable(),
-      [`${prefixCls}-contain-grid`]: this.isContainGrid(),
-      [`${prefixCls}-contain-tabs`]: tabList && tabList.length,
-      [`${prefixCls}-${size}`]: size !== 'default',
-      [`${prefixCls}-type-${type}`]: !!type,
-    });
+    const classString = classNames(
+      prefixCls,
+      className,
+      {
+        [`${prefixCls}-loading`]: loading,
+        [`${prefixCls}-bordered`]: bordered,
+        [`${prefixCls}-hoverable`]: this.getCompatibleHoverable(),
+        [`${prefixCls}-contain-grid`]: this.isContainGrid(),
+        [`${prefixCls}-contain-tabs`]: tabList && tabList.length,
+        [`${prefixCls}-${size}`]: size !== 'default',
+        [`${prefixCls}-type-${type}`]: !!type,
+      },
+      //NEw
+      dirClass,
+    );
 
     const loadingBlockStyle =
       bodyStyle.padding === 0 || bodyStyle.padding === '0px' ? { padding: 24 } : undefined;
 
     const loadingBlock = (
-      <div className={`${prefixCls}-loading-content`} style={loadingBlockStyle}>
+      <div className={`${prefixCls}-loading-content ${dirClass}`} style={loadingBlockStyle}>
         <Row gutter={8}>
           <Col span={22}>
             <div className={`${prefixCls}-loading-block`} />
@@ -192,6 +201,7 @@ export default class Card extends React.Component<CardProps, {}> {
     const tabs =
       tabList && tabList.length ? (
         <Tabs
+          isRtl={this.props.isRtl}
           {...extraProps}
           className={`${prefixCls}-head-tabs`}
           size="large"
@@ -204,7 +214,7 @@ export default class Card extends React.Component<CardProps, {}> {
       ) : null;
     if (title || extra || tabs) {
       head = (
-        <div className={`${prefixCls}-head`} style={headStyle}>
+        <div className={`${prefixCls}-head ${dirClass}`} style={headStyle}>
           <div className={`${prefixCls}-head-wrapper`}>
             {title && <div className={`${prefixCls}-head-title`}>{title}</div>}
             {extra && <div className={`${prefixCls}-extra`}>{extra}</div>}
@@ -215,7 +225,7 @@ export default class Card extends React.Component<CardProps, {}> {
     }
     const coverDom = cover ? <div className={`${prefixCls}-cover`}>{cover}</div> : null;
     const body = (
-      <div className={`${prefixCls}-body`} style={bodyStyle}>
+      <div className={`${prefixCls}-body ${dirClass}`} style={bodyStyle}>
         {loading ? loadingBlock : children}
       </div>
     );

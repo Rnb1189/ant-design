@@ -5,10 +5,12 @@ import classNames from 'classnames';
 import ScrollNumber from './ScrollNumber';
 import { PresetColorTypes } from '../_util/colors';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
+import Direction from './../_util/direction';
 
 export { ScrollNumberProps } from './ScrollNumber';
 
 export interface BadgeProps {
+  isRtl?: boolean;
   /** Number to show in badge */
   count?: React.ReactNode;
   showZero?: boolean;
@@ -48,10 +50,16 @@ export default class Badge extends React.Component<BadgeProps, any> {
 
   getBadgeClassName(prefixCls: string) {
     const { className, children } = this.props;
-    return classNames(className, prefixCls, {
-      [`${prefixCls}-status`]: this.hasStatus(),
-      [`${prefixCls}-not-a-wrapper`]: !children,
-    }) as string;
+    return classNames(
+      className,
+      prefixCls,
+      {
+        [`${prefixCls}-status`]: this.hasStatus(),
+        [`${prefixCls}-not-a-wrapper`]: !children,
+      },
+      //NEw
+      Direction.classFromProps(this.props),
+    ) as string;
   }
 
   hasStatus(): boolean {

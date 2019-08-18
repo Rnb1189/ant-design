@@ -6,6 +6,7 @@ import classNames from 'classnames';
 import Icon from '../icon';
 import { withConfigConsumer, ConfigConsumerProps } from '../config-provider';
 import { tuple } from '../_util/type';
+import Direction from '../_util/direction';
 
 const DrawerContext = createReactContext<Drawer | null>(null);
 
@@ -18,6 +19,7 @@ type getContainerFunc = () => HTMLElement;
 const PlacementTypes = tuple('top', 'right', 'bottom', 'left');
 type placementType = (typeof PlacementTypes)[number];
 export interface DrawerProps {
+  isRtl?: boolean;
   closable?: boolean;
   destroyOnClose?: boolean;
   getContainer?: string | HTMLElement | getContainerFunc | false;
@@ -52,7 +54,7 @@ class Drawer extends React.Component<DrawerProps & ConfigConsumerProps, IDrawerS
     width: 256,
     height: 256,
     closable: true,
-    placement: 'right' as placementType,
+    // placement: 'right' as placementType,
     maskClosable: true,
     mask: true,
     level: null,
@@ -118,6 +120,16 @@ class Drawer extends React.Component<DrawerProps & ConfigConsumerProps, IDrawerS
     }
   };
 
+  //NEw
+  resolvePlacement = (props: any) => {
+    // if (this.props.placement) return this.props.placement;
+    // if (this.props.isRtl) return 'left';
+    // else return 'right';
+
+    const { placement, isRtl } = props;
+    return placement ? placement : isRtl ? 'left' : 'right';
+  };
+
   getDestroyOnClose = () => this.props.destroyOnClose && !this.props.visible;
 
   // get drawer push width or height
@@ -131,7 +143,11 @@ class Drawer extends React.Component<DrawerProps & ConfigConsumerProps, IDrawerS
   };
 
   getRcDrawerStyle = () => {
-    const { zIndex, placement, style } = this.props;
+    // const { zIndex, placement, style } = this.props;
+    //NEw
+    const { zIndex, style } = this.props;
+    const placement = this.resolvePlacement(this.props);
+
     const { push } = this.state;
     return {
       zIndex,
@@ -168,7 +184,11 @@ class Drawer extends React.Component<DrawerProps & ConfigConsumerProps, IDrawerS
 
   // render drawer body dom
   renderBody = () => {
-    const { bodyStyle, placement, prefixCls, visible } = this.props;
+    // const { bodyStyle, placement, prefixCls, visible } = this.props;
+    //NEw
+    const { bodyStyle, prefixCls, visible } = this.props;
+    const placement = this.resolvePlacement(this.props);
+
     if (this.destroyClose && !visible) {
       return null;
     }
@@ -210,7 +230,7 @@ class Drawer extends React.Component<DrawerProps & ConfigConsumerProps, IDrawerS
       prefixCls,
       zIndex,
       style,
-      placement,
+      // placement,
       className,
       wrapClassName,
       width,
@@ -238,6 +258,9 @@ class Drawer extends React.Component<DrawerProps & ConfigConsumerProps, IDrawerS
     );
     const haveMask = mask ? '' : 'no-mask';
     this.parentDrawer = value;
+    //NEw
+    const placement = this.resolvePlacement(this.props);
+
     const offsetStyle: any = {};
     if (placement === 'left' || placement === 'right') {
       offsetStyle.width = width;
@@ -255,7 +278,14 @@ class Drawer extends React.Component<DrawerProps & ConfigConsumerProps, IDrawerS
           showMask={mask}
           placement={placement}
           style={this.getRcDrawerStyle()}
-          className={classNames(wrapClassName, className, haveMask)}
+          // className={classNames(wrapClassName, className, haveMask)}
+          //NEw
+          className={classNames(
+            wrapClassName,
+            className,
+            haveMask,
+            Direction.classFromProps(this.props),
+          )}
         >
           {this.renderBody()}
         </RcDrawer>

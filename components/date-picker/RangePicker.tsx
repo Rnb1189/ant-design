@@ -14,7 +14,7 @@ import interopDefault from '../_util/interopDefault';
 import { RangePickerValue, RangePickerPresetRange } from './interface';
 import { formatDate } from './utils';
 import InputIcon from './InputIcon';
-import { direction } from '../_util/direction';
+import Direction from '../_util/direction';
 
 export interface RangePickerState {
   value?: RangePickerValue;
@@ -306,7 +306,7 @@ class RangePicker extends React.Component<any, RangePickerState> {
     );
 
     //NEw
-    const dirClass = this.props.isRtl ? direction.RTL : direction.LTR;
+    const dirClass = Direction.classFromProps(this.props);
     const calendarClassName = classNames(
       {
         [`${prefixCls}-time`]: showTime,

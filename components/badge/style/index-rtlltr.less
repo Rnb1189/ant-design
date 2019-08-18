@@ -1,0 +1,45 @@
+@import './index-shared.less';
+
+.@{badge-prefix-cls} {
+  @{L}& &-count,
+  @{L}& &-dot,
+  .@{number-prefix-cls}-custom-component {
+    right: 0;
+    transform: translate(50%, -50%);
+    transform-origin: 100% 0%;
+  }
+
+  @{L}& &-status {
+    &-processing {
+      &::after {
+        left: 0;
+      }
+    }
+
+    &-text {
+      margin-left: 8px;
+    }
+  }
+}
+
+.@{badge-prefix-cls} {
+  @{R}& &-count,
+  @{R}& &-dot,
+  .@{number-prefix-cls}-custom-component {
+    left: 0;
+    transform: translate(-50%, -50%);
+    transform-origin: 100% 0%;
+  }
+
+  @{R}& &-status {
+    &-processing {
+      &::after {
+        right: 0;
+      }
+    }
+
+    &-text {
+      margin-right: 8px;
+    }
+  }
+}

@@ -14,14 +14,36 @@ title:
 The badge can be wrapped with `a` tag to make it linkable.
 
 ```jsx
-import { Badge } from 'antd';
+import { Badge, Icon, Switch } from '../../index';
 
-ReactDOM.render(
-  <a href="#">
-    <Badge count={5}>
-      <span className="head-example" />
-    </Badge>
-  </a>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <br />
+        <a href="#">
+          <Badge isRtl={isRtl} count={5}>
+            <span className="head-example" />
+          </Badge>
+        </a>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

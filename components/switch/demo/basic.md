@@ -14,13 +14,39 @@ title:
 The most basic usage.
 
 ```jsx
-import { Switch } from 'antd';
+import { Switch } from '../../index';
 
-function onChange(checked) {
-  console.log(`switch to ${checked}`);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  onChange = checked => {
+    console.log(`switch to ${checked}`);
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <Switch isRtl={isRtl} defaultChecked onChange={this.onChange} />
+        </div>
+      </div>
+    );
+  }
 }
 
-ReactDOM.render(<Switch defaultChecked onChange={onChange} />, mountNode);
+ReactDOM.render(<App />, mountNode);
 ```
 
 <style>

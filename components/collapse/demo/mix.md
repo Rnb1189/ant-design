@@ -14,13 +14,8 @@ title:
 `Collapse` is nested inside the `Collapse`.
 
 ```jsx
-import { Collapse } from 'antd';
-
+import { Collapse, Switch } from '../../index';
 const { Panel } = Collapse;
-
-function callback(key) {
-  console.log(key);
-}
 
 const text = `
   A dog is a type of domesticated animal.
@@ -28,22 +23,46 @@ const text = `
   it can be found as a welcome guest in many households across the world.
 `;
 
-ReactDOM.render(
-  <Collapse onChange={callback}>
-    <Panel header="This is panel header 1" key="1">
-      <Collapse defaultActiveKey="1">
-        <Panel header="This is panel nest panel" key="1">
-          <p>{text}</p>
-        </Panel>
-      </Collapse>
-    </Panel>
-    <Panel header="This is panel header 2" key="2">
-      <p>{text}</p>
-    </Panel>
-    <Panel header="This is panel header 3" key="3">
-      <p>{text}</p>
-    </Panel>
-  </Collapse>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  callback = key => {
+    console.log(key);
+  };
+  render() {
+    const isRtl = this.state.isRtl;
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <Collapse isRtl={isRtl} onChange={this.callback}>
+          <Panel header="This is panel header 1" key="1">
+            <Collapse isRtl={isRtl} defaultActiveKey="1">
+              <Panel header="This is panel nest panel" key="1">
+                <p>{text}</p>
+              </Panel>
+            </Collapse>
+          </Panel>
+          <Panel header="This is panel header 2" key="2">
+            <p>{text}</p>
+          </Panel>
+          <Panel header="This is panel header 3" key="3">
+            <p>{text}</p>
+          </Panel>
+        </Collapse>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

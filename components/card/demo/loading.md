@@ -14,27 +14,35 @@ title:
 Shows a loading indicator while the contents of the card is being fetched.
 
 ```jsx
-import { Skeleton, Switch, Card, Icon, Avatar } from 'antd';
+import { Skeleton, Switch, Card, Icon, Avatar } from '../../index';
 
 const { Meta } = Card;
 
 class App extends React.Component {
-  state = {
-    loading: true,
+  state = { isRtl: false, loading: true };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
   };
 
   onChange = checked => {
-    this.setState({ loading: !checked });
+    this.setState({ ...this.state, loading: !checked });
   };
 
   render() {
-    const { loading } = this.state;
+    const { loading, isRtl } = this.state;
 
     return (
       <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <br />
         <Switch checked={!loading} onChange={this.onChange} />
 
-        <Card style={{ width: 300, marginTop: 16 }} loading={loading}>
+        <Card isRtl={isRtl} style={{ width: 300, marginTop: 16 }} loading={loading}>
           <Meta
             avatar={
               <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
@@ -45,11 +53,13 @@ class App extends React.Component {
         </Card>
 
         <Card
+          isRtl={isRtl}
           style={{ width: 300, marginTop: 16 }}
           actions={[<Icon type="setting" />, <Icon type="edit" />, <Icon type="ellipsis" />]}
         >
-          <Skeleton loading={loading} avatar active>
+          <Skeleton isRtl={isRtl} loading={loading} avatar active>
             <Meta
+              isRtl={isRtl}
               avatar={
                 <Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png" />
               }

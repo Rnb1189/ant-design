@@ -6,12 +6,14 @@ import omit from 'omit.js';
 import Wave from '../_util/wave';
 import Icon from '../icon';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
+import Direction from './../_util/direction';
 
 export type SwitchSize = 'small' | 'default';
 export type SwitchChangeEventHandler = (checked: boolean, event: MouseEvent) => void;
 export type SwitchClickEventHandler = SwitchChangeEventHandler;
 
 export interface SwitchProps {
+  isRtl?: boolean;
   prefixCls?: string;
   size?: SwitchSize;
   className?: string;
@@ -58,10 +60,15 @@ export default class Switch extends React.Component<SwitchProps, {}> {
   renderSwitch = ({ getPrefixCls }: ConfigConsumerProps) => {
     const { prefixCls: customizePrefixCls, size, loading, className = '', disabled } = this.props;
     const prefixCls = getPrefixCls('switch', customizePrefixCls);
-    const classes = classNames(className, {
-      [`${prefixCls}-small`]: size === 'small',
-      [`${prefixCls}-loading`]: loading,
-    });
+    const classes = classNames(
+      className,
+      {
+        [`${prefixCls}-small`]: size === 'small',
+        [`${prefixCls}-loading`]: loading,
+      },
+      //New
+      Direction.classFromProps(this.props),
+    );
     const loadingIcon = loading ? (
       <Icon type="loading" className={`${prefixCls}-loading-icon`} />
     ) : null;

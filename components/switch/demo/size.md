@@ -14,14 +14,39 @@ title:
 `size="small"` represents a small sized switch.
 
 ```jsx
-import { Switch } from 'antd';
+import { Switch } from '../../index';
 
-ReactDOM.render(
-  <div>
-    <Switch defaultChecked />
-    <br />
-    <Switch size="small" defaultChecked />
-  </div>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  onChange = checked => {
+    console.log(`switch to ${checked}`);
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <Switch isRtl={isRtl} defaultChecked />
+          <br />
+          <Switch isRtl={isRtl} size="small" defaultChecked />
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

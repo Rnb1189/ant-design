@@ -1,0 +1,29 @@
+@import './index-shared.less';
+
+@{L}.@{autocomplete-prefix-cls} {
+  &.@{select-prefix-cls} {
+    .@{select-prefix-cls}-search--inline {
+      float: left;
+    }
+
+    &-allow-clear {
+      .@{select-prefix-cls}-selection:hover .@{select-prefix-cls}-selection__rendered {
+        margin-right: 0 !important;
+      }
+    }
+  }
+}
+
+@{R}.@{autocomplete-prefix-cls} {
+  &.@{select-prefix-cls} {
+    .@{select-prefix-cls}-search--inline {
+      float: right;
+    }
+
+    &-allow-clear {
+      .@{select-prefix-cls}-selection:hover .@{select-prefix-cls}-selection__rendered {
+        margin-left: 0 !important;
+      }
+    }
+  }
+}

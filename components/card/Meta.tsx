@@ -1,8 +1,10 @@
 import * as React from 'react';
 import classNames from 'classnames';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
+import Direction from './../_util/direction';
 
 export interface CardMetaProps {
+  isRtl?: boolean;
   prefixCls?: string;
   style?: React.CSSProperties;
   className?: string;
@@ -22,8 +24,10 @@ const Meta: React.SFC<CardMetaProps> = props => (
         description,
         ...others
       } = props;
+      //NEw
+      const dirClass = Direction.classFromProps(props);
       const prefixCls = getPrefixCls('card', customizePrefixCls);
-      const classString = classNames(`${prefixCls}-meta`, className);
+      const classString = classNames(`${prefixCls}-meta`, className, dirClass);
       const avatarDom = avatar ? <div className={`${prefixCls}-meta-avatar`}>{avatar}</div> : null;
       const titleDom = title ? <div className={`${prefixCls}-meta-title`}>{title}</div> : null;
       const descriptionDom = description ? (

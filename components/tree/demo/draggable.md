@@ -14,7 +14,7 @@ title:
 Drag treeNode to insert after the other treeNode or insert into the other parent TreeNode.
 
 ```jsx
-import { Tree } from 'antd';
+import { Tree, Switch } from '../../index';
 
 const { TreeNode } = Tree;
 
@@ -48,8 +48,16 @@ generateData(z);
 
 class Demo extends React.Component {
   state = {
+    isRtl: false,
     gData,
     expandedKeys: ['0-0', '0-0-0', '0-0-0-0'],
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
   };
 
   onDragEnter = info => {
@@ -118,6 +126,7 @@ class Demo extends React.Component {
     }
 
     this.setState({
+      ...this.state,
       gData: data,
     });
   };
@@ -134,17 +143,26 @@ class Demo extends React.Component {
         }
         return <TreeNode key={item.key} title={item.title} />;
       });
+    const isRtl = this.state.isRtl;
+
     return (
-      <Tree
-        className="draggable-tree"
-        defaultExpandedKeys={this.state.expandedKeys}
-        draggable
-        blockNode
-        onDragEnter={this.onDragEnter}
-        onDrop={this.onDrop}
-      >
-        {loop(this.state.gData)}
-      </Tree>
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <Tree
+            isRtl={isRtl}
+            className="draggable-tree"
+            defaultExpandedKeys={this.state.expandedKeys}
+            draggable
+            blockNode
+            onDragEnter={this.onDragEnter}
+            onDrop={this.onDrop}
+          >
+            {loop(this.state.gData)}
+          </Tree>
+        </div>
+      </div>
     );
   }
 }

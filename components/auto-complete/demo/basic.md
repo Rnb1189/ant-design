@@ -14,33 +14,44 @@ title:
 Basic Usage, set datasource of autocomplete with `dataSource` property.
 
 ```jsx
-import { AutoComplete } from 'antd';
-
+import { AutoComplete, Switch } from '../../index';
 function onSelect(value) {
   console.log('onSelect', value);
 }
 
 class Complete extends React.Component {
-  state = {
-    dataSource: [],
+  state = { isRtl: false, dataSource: [] };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
   };
 
   handleSearch = value => {
     this.setState({
+      ...this.state,
       dataSource: !value ? [] : [value, value + value, value + value + value],
     });
   };
 
   render() {
-    const { dataSource } = this.state;
+    const { dataSource, isRtl } = this.state;
     return (
-      <AutoComplete
-        dataSource={dataSource}
-        style={{ width: 200 }}
-        onSelect={onSelect}
-        onSearch={this.handleSearch}
-        placeholder="input here"
-      />
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <br />
+        <AutoComplete
+          isRtl={isRtl}
+          dataSource={dataSource}
+          style={{ width: 200 }}
+          onSelect={onSelect}
+          onSearch={this.handleSearch}
+          placeholder="input here"
+        />
+      </div>
     );
   }
 }

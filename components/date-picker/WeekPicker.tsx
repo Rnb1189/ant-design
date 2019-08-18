@@ -8,7 +8,7 @@ import Icon from '../icon';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 import interopDefault from '../_util/interopDefault';
 import InputIcon from './InputIcon';
-import { direction } from '../_util/direction';
+import Direction from '../_util/direction';
 
 function formatValue(value: moment.Moment | null, format: string): string {
   return (value && value.format(format)) || '';
@@ -160,7 +160,7 @@ class WeekPicker extends React.Component<any, WeekPickerState> {
       'placeholder' in this.props ? this.props.placeholder : locale.lang.placeholder;
 
     //NEw
-    const dirClass = this.props.isRtl ? direction.RTL : direction.LTR;
+    const dirClass = Direction.classFromProps(this.props);
 
     const calendar = (
       <Calendar

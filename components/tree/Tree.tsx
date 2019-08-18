@@ -5,6 +5,7 @@ import classNames from 'classnames';
 import Icon from '../icon';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 import { collapseMotion } from '../_util/motion';
+import Direction from './../_util/direction';
 
 export interface AntdTreeNodeAttribute {
   eventKey: string;
@@ -97,6 +98,8 @@ export interface TreeNodeNormal {
 }
 
 export interface TreeProps {
+  //NEw:
+  isRtl: boolean;
   showLine?: boolean;
   className?: string;
   /** 是否支持多选 */
@@ -231,10 +234,15 @@ export default class Tree extends React.Component<TreeProps, any> {
         ref={this.setTreeRef}
         {...props}
         prefixCls={prefixCls}
-        className={classNames(className, {
-          [`${prefixCls}-icon-hide`]: !showIcon,
-          [`${prefixCls}-block-node`]: blockNode,
-        })}
+        className={classNames(
+          className,
+          {
+            [`${prefixCls}-icon-hide`]: !showIcon,
+            [`${prefixCls}-block-node`]: blockNode,
+          },
+          //NEw
+          Direction.classFromProps(this.props),
+        )}
         checkable={checkable ? <span className={`${prefixCls}-checkbox-inner`} /> : checkable}
         switcherIcon={(nodeProps: AntTreeNodeProps) =>
           this.renderSwitcherIcon(prefixCls, switcherIcon, nodeProps)

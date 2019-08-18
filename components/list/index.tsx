@@ -9,6 +9,7 @@ import Pagination, { PaginationConfig } from '../pagination';
 import { Row } from '../grid';
 
 import Item from './Item';
+import Direction from './../_util/direction';
 
 export { ListItemProps, ListItemMetaProps } from './Item';
 
@@ -32,6 +33,7 @@ export type ListSize = 'small' | 'default' | 'large';
 export type ListItemLayout = 'horizontal' | 'vertical';
 
 export interface ListProps<T> {
+  isRtl?: boolean;
   bordered?: boolean;
   className?: string;
   style?: React.CSSProperties;
@@ -183,6 +185,9 @@ export default class List<T> extends React.Component<ListProps<T>, ListState> {
       ...rest
     } = this.props;
 
+    //NEw
+    const dirClass = Direction.classFromProps(this.props);
+
     const prefixCls = getPrefixCls('list', customizePrefixCls);
     let loadingProp = loading;
     if (typeof loadingProp === 'boolean') {
@@ -205,17 +210,25 @@ export default class List<T> extends React.Component<ListProps<T>, ListState> {
         break;
     }
 
-    const classString = classNames(prefixCls, className, {
-      [`${prefixCls}-vertical`]: itemLayout === 'vertical',
-      [`${prefixCls}-${sizeCls}`]: sizeCls,
-      [`${prefixCls}-split`]: split,
-      [`${prefixCls}-bordered`]: bordered,
-      [`${prefixCls}-loading`]: isLoading,
-      [`${prefixCls}-grid`]: grid,
-      [`${prefixCls}-something-after-last-item`]: this.isSomethingAfterLastItem(),
-    });
+    const classString = classNames(
+      prefixCls,
+      className,
+      {
+        [`${prefixCls}-vertical`]: itemLayout === 'vertical',
+        [`${prefixCls}-${sizeCls}`]: sizeCls,
+        [`${prefixCls}-split`]: split,
+        [`${prefixCls}-bordered`]: bordered,
+        [`${prefixCls}-loading`]: isLoading,
+        [`${prefixCls}-grid`]: grid,
+        [`${prefixCls}-something-after-last-item`]: this.isSomethingAfterLastItem(),
+      },
+      //NEw
+      dirClass,
+    );
 
     const paginationProps = {
+      //NEw
+      isRtl: this.props.isRtl,
       ...this.defaultPaginationProps,
       total: dataSource.length,
       current: paginationCurrent,
@@ -275,12 +288,12 @@ export default class List<T> extends React.Component<ListProps<T>, ListState> {
     return (
       <div className={classString} {...rest}>
         {(paginationPosition === 'top' || paginationPosition === 'both') && paginationContent}
-        {header && <div className={`${prefixCls}-header`}>{header}</div>}
+        {header && <div className={`${prefixCls}-header ${dirClass}`}>{header}</div>}
         <Spin {...loadingProp}>
           {childrenContent}
           {children}
         </Spin>
-        {footer && <div className={`${prefixCls}-footer`}>{footer}</div>}
+        {footer && <div className={`${prefixCls}-footer ${dirClass}`}>{footer}</div>}
         {loadMore ||
           ((paginationPosition === 'bottom' || paginationPosition === 'both') && paginationContent)}
       </div>

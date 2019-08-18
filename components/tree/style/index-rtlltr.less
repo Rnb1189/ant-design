@@ -1,0 +1,136 @@
+@import './index-shared.less';
+
+//L__________
+.@{tree-prefix-cls} {
+  @{L}& {
+    direction: ltr;
+  }
+  @{L}&-checkbox-checked::after {
+    left: 0;
+  }
+
+  @{L}& li {
+    &.@{tree-prefix-cls}-treenode-loading {
+      span {
+        &.@{tree-prefix-cls}-switcher {
+          &.@{tree-prefix-cls}-switcher_open,
+          &.@{tree-prefix-cls}-switcher_close {
+            .@{tree-prefix-cls}-switcher-loading-icon {
+              left: 0;
+            }
+          }
+        }
+      }
+    }
+
+    ul {
+      padding: 0 0 0 @tree-child-padding;
+    }
+    .@{tree-prefix-cls}-node-content-wrapper {
+      padding: 0 5px;
+    }
+
+    span {
+      &.@{tree-prefix-cls}-checkbox {
+        margin: 0 4px 0 2px;
+      }
+
+      &.@{tree-prefix-cls}-switcher {
+        &.@{tree-prefix-cls}-switcher_close {
+          .@{tree-prefix-cls}-switcher-icon {
+            svg {
+              transform: rotate(-90deg);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @{L}& &-icon__open {
+    margin-right: 2px;
+  }
+  @{L}& &-icon__close {
+    margin-right: 2px;
+  }
+  @{L}&&-show-line {
+    li:not(:last-child)::before {
+      left: 12px;
+      border-left: 1px solid @border-color-base;
+    }
+  }
+}
+
+//R__________
+.@{tree-prefix-cls} {
+  @{R}& {
+    direction: rtl;
+  }
+  @{R}&-checkbox-checked::after {
+    right: 0;
+  }
+
+  @{R}& li {
+    &.@{tree-prefix-cls}-treenode-loading {
+      span {
+        &.@{tree-prefix-cls}-switcher {
+          &.@{tree-prefix-cls}-switcher_open,
+          &.@{tree-prefix-cls}-switcher_close {
+            .@{tree-prefix-cls}-switcher-loading-icon {
+              right: 0;
+            }
+          }
+        }
+      }
+    }
+
+    ul {
+      padding: 0 @tree-child-padding 0 0;
+    }
+    .@{tree-prefix-cls}-node-content-wrapper {
+      padding: 0 5px;
+    }
+    span {
+      &.@{tree-prefix-cls}-checkbox {
+        margin: 0 2px 0 4px;
+      }
+
+      &.@{tree-prefix-cls}-switcher {
+        &.@{tree-prefix-cls}-switcher_close {
+          .@{tree-prefix-cls}-switcher-icon {
+            svg {
+              transform: rotate(90deg);
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @{R}& &-icon__open {
+    margin-left: 2px;
+  }
+  @{R}& &-icon__close {
+    margin-left: 2px;
+  }
+  @{R}&&-show-line {
+    li:not(:last-child)::before {
+      right: 12px;
+      border-right: 1px solid @border-color-base;
+    }
+  }
+}
+
+//OMid: enllarge folder icon
+.@{tree-prefix-cls} {
+  &.@{tree-prefix-cls}-directory {
+    li {
+      .@{tree-prefix-cls}-node-content-wrapper {
+        .anticon-folder,
+        .anticon-folder-open {
+          transform: scale(1.16);
+        }
+      }
+    }
+  }
+}

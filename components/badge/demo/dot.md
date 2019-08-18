@@ -14,22 +14,44 @@ title:
 This will simply display a red badge, without a specific count. If count equals 0, it won't display the dot.
 
 ```jsx
-import { Badge, Icon } from 'antd';
+import { Badge, Icon, Switch } from '../../index';
 
-ReactDOM.render(
-  <div>
-    <Badge dot>
-      <Icon type="notification" />
-    </Badge>
-    <Badge count={0} dot>
-      <Icon type="notification" />
-    </Badge>
-    <Badge dot>
-      <a href="#">Link something</a>
-    </Badge>
-  </div>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <br />
+        <div>
+          <Badge isRtl={isRtl} dot>
+            <Icon type="notification" />
+          </Badge>
+          <Badge isRtl={isRtl} count={0} dot>
+            <Icon type="notification" />
+          </Badge>
+          <Badge isRtl={isRtl} dot>
+            <a href="#">Link something</a>
+          </Badge>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```
 
 <style>

@@ -14,14 +14,22 @@ title:
 Basic modal.
 
 ```jsx
-import { Modal, Button } from 'antd';
+import { Modal, Button } from '../../index';
 
 class App extends React.Component {
-  state = { visible: false };
+  state = { visible: false, visibleRtl: false };
 
   showModal = () => {
     this.setState({
       visible: true,
+      visibleRtl: false,
+    });
+  };
+
+  showModalRtl = () => {
+    this.setState({
+      visible: false,
+      visibleRtl: true,
     });
   };
 
@@ -29,6 +37,7 @@ class App extends React.Component {
     console.log(e);
     this.setState({
       visible: false,
+      visibleRtl: false,
     });
   };
 
@@ -36,6 +45,7 @@ class App extends React.Component {
     console.log(e);
     this.setState({
       visible: false,
+      visibleRtl: false,
     });
   };
 
@@ -48,6 +58,20 @@ class App extends React.Component {
         <Modal
           title="Basic Modal"
           visible={this.state.visible}
+          onOk={this.handleOk}
+          onCancel={this.handleCancel}
+        >
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+          <p>Some contents...</p>
+        </Modal>
+        <Button type="primary" onClick={this.showModalRtl}>
+          Open Modal (Rtl)
+        </Button>
+        <Modal
+          isRtl={true}
+          title="Basic Modal Rtl"
+          visible={this.state.visibleRtl}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >

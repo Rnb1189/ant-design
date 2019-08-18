@@ -1,0 +1,72 @@
+@import './index-shared.less';
+
+//L__________
+.@{card-prefix-cls} {
+  @{L}& {
+    direction: ltr;
+  }
+  @{L}& &-extra {
+    float: right;
+    margin-left: auto;
+  }
+
+  @{L}& &-contain-grid:not(&-loading) &-body {
+    margin: -1px 0 0 -1px;
+  }
+
+  @{L}& &-grid {
+    float: left;
+  }
+
+  @{L}& &-actions {
+    & > li {
+      float: left;
+      &:not(:last-child) {
+        border-right: @border-width-base @border-style-base @border-color-split;
+      }
+    }
+  }
+
+  @{L}& &-meta {
+    &-avatar {
+      float: left;
+      padding-right: 16px;
+    }
+  }
+}
+
+//R__________
+.@{card-prefix-cls} {
+  @{R}& {
+    direction: rtl;
+  }
+
+  @{R}& &-extra {
+    float: left;
+    margin-right: auto;
+  }
+
+  @{R}& &-contain-grid:not(&-loading) &-body {
+    margin: -1px -1px 0 0;
+  }
+
+  @{R}& &-grid {
+    float: right;
+  }
+
+  @{R}& &-actions {
+    & > li {
+      float: right;
+      &:not(:last-child) {
+        border-left: @border-width-base @border-style-base @border-color-split;
+      }
+    }
+  }
+
+  @{R}& &-meta {
+    &-avatar {
+      float: right;
+      padding-left: 16px;
+    }
+  }
+}

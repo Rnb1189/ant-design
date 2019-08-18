@@ -14,13 +14,8 @@ title:
 You can hide the arrow icon by passing `showArrow={false}` to `CollapsePanel` component.
 
 ```jsx
-import { Collapse } from 'antd';
-
+import { Collapse, Switch } from '../../index';
 const { Panel } = Collapse;
-
-function callback(key) {
-  console.log(key);
-}
 
 const text = `
   A dog is a type of domesticated animal.
@@ -28,15 +23,39 @@ const text = `
   it can be found as a welcome guest in many households across the world.
 `;
 
-ReactDOM.render(
-  <Collapse defaultActiveKey={['1']} onChange={callback}>
-    <Panel header="This is panel header with arrow icon" key="1">
-      <p>{text}</p>
-    </Panel>
-    <Panel showArrow={false} header="This is panel header with no arrow icon" key="2">
-      <p>{text}</p>
-    </Panel>
-  </Collapse>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  callback = key => {
+    console.log(key);
+  };
+  render() {
+    const isRtl = this.state.isRtl;
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <Collapse isRtl={isRtl} defaultActiveKey={['1']} onChange={this.callback}>
+          <Panel header="This is panel header with arrow icon" key="1">
+            <p>{text}</p>
+          </Panel>
+          <Panel showArrow={false} header="This is panel header with no arrow icon" key="2">
+            <p>{text}</p>
+          </Panel>
+        </Collapse>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

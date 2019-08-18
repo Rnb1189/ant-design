@@ -4,8 +4,10 @@ import Avatar, { SkeletonAvatarProps } from './Avatar';
 import Title, { SkeletonTitleProps } from './Title';
 import Paragraph, { SkeletonParagraphProps } from './Paragraph';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
+import Direction from '../_util/direction';
 
 export interface SkeletonProps {
+  isRtl?: boolean;
   active?: boolean;
   loading?: boolean;
   prefixCls?: string;
@@ -137,10 +139,16 @@ class Skeleton extends React.Component<SkeletonProps, any> {
         );
       }
 
-      const cls = classNames(prefixCls, className, {
-        [`${prefixCls}-with-avatar`]: hasAvatar,
-        [`${prefixCls}-active`]: active,
-      });
+      const cls = classNames(
+        prefixCls,
+        className,
+        //NEw
+        Direction.classFromProps(this.props),
+        {
+          [`${prefixCls}-with-avatar`]: hasAvatar,
+          [`${prefixCls}-active`]: active,
+        },
+      );
 
       return (
         <div className={cls}>

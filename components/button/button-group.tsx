@@ -43,7 +43,7 @@ const ButtonGroup: React.SFC<ButtonGroupProps> = props => (
 
       //NEw:
       // set the rtl of children acording to button group
-      others.children = React.Children.map(others.children, (child: any, index) => {
+      others.children = React.Children.map(others.children, (child: any) => {
         let result = child;
         if (child && child.props && child.props.isRtl === undefined) {
           result = React.cloneElement(child, { isRtl: props.isRtl });

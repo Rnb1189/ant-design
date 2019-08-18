@@ -6,6 +6,7 @@ import Dialog, { ModalFuncProps, destroyFns } from './Modal';
 import ActionButton from './ActionButton';
 import { getConfirmLocale } from './locale';
 import warning from '../_util/warning';
+import Direction from '../_util/direction';
 
 interface ConfirmDialogProps extends ModalFuncProps {
   afterClose?: () => void;
@@ -60,6 +61,8 @@ const ConfirmDialog = (props: ConfirmDialogProps) => {
     contentPrefixCls,
     `${contentPrefixCls}-${props.type}`,
     props.className,
+    //NEw
+    Direction.classFromProps(props),
   );
 
   const cancelButton = okCancel && (
@@ -77,6 +80,8 @@ const ConfirmDialog = (props: ConfirmDialogProps) => {
 
   return (
     <Dialog
+      //NEw
+      isRtl={props.isRtl}
       prefixCls={prefixCls}
       className={classString}
       wrapClassName={classNames({ [`${contentPrefixCls}-centered`]: !!props.centered })}
@@ -165,7 +170,7 @@ export default function confirm(config: ModalFuncProps) {
   }
 
   function render(props: any) {
-    ReactDOM.render(<ConfirmDialog {...props} getContainer={false}/>, div);
+    ReactDOM.render(<ConfirmDialog {...props} getContainer={false} />, div);
   }
 
   render(currentConfig);

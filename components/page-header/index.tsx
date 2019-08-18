@@ -79,8 +79,6 @@ const renderHeader = (prefixCls: string, props: PageHeaderProps) => {
 
 const renderTitle = (prefixCls: string, props: PageHeaderProps) => {
   const { title, subTitle, tags, extra } = props;
-  //NEw
-  const dirClass = Direction.classFromProps(props);
 
   const headingPrefixCls = `${prefixCls}-heading`;
   if (title || subTitle || tags || extra) {

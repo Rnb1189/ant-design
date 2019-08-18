@@ -14,26 +14,48 @@ title:
 Standalone badge with status.
 
 ```jsx
-import { Badge } from 'antd';
+import { Badge, Switch } from '../../index';
 
-ReactDOM.render(
-  <div>
-    <Badge status="success" />
-    <Badge status="error" />
-    <Badge status="default" />
-    <Badge status="processing" />
-    <Badge status="warning" />
-    <br />
-    <Badge status="success" text="Success" />
-    <br />
-    <Badge status="error" text="Error" />
-    <br />
-    <Badge status="default" text="Default" />
-    <br />
-    <Badge status="processing" text="Processing" />
-    <br />
-    <Badge status="warning" text="Warning" />
-  </div>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <br />
+        <div>
+          <Badge isRtl={isRtl} status="success" />
+          <Badge isRtl={isRtl} status="error" />
+          <Badge isRtl={isRtl} status="default" />
+          <Badge isRtl={isRtl} status="processing" />
+          <Badge isRtl={isRtl} status="warning" />
+          <br />
+          <Badge isRtl={isRtl} status="success" text="Success" />
+          <br />
+          <Badge isRtl={isRtl} status="error" text="Error" />
+          <br />
+          <Badge isRtl={isRtl} status="default" text="Default" />
+          <br />
+          <Badge isRtl={isRtl} status="processing" text="Processing" />
+          <br />
+          <Badge isRtl={isRtl} status="warning" text="Warning" />
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

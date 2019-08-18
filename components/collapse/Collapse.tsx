@@ -5,10 +5,12 @@ import CollapsePanel from './CollapsePanel';
 import Icon from '../icon';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 import animation from '../_util/openAnimation';
+import Direction from './../_util/direction';
 
 export type ExpandIconPosition = 'left' | 'right';
 
 export interface CollapseProps {
+  isRtl?: boolean;
   activeKey?: Array<string | number> | string | number;
   defaultActiveKey?: Array<string | number> | string | number;
   /** 手风琴效果 */
@@ -24,6 +26,7 @@ export interface CollapseProps {
 }
 
 interface PanelProps {
+  isRtl?: boolean;
   isActive?: boolean;
   header?: React.ReactNode;
   className?: string;
@@ -43,12 +46,17 @@ export default class Collapse extends React.Component<CollapseProps, any> {
     expandIconPosition: 'left',
   };
 
-  renderExpandIcon = (panelProps: PanelProps = {}, prefixCls: string) => {
+  renderExpandIcon = (panelProps: PanelProps = {}, prefixCls: string, isRtl: boolean) => {
     const { expandIcon } = this.props;
     const icon = expandIcon ? (
       expandIcon(panelProps)
     ) : (
-      <Icon type="right" rotate={panelProps.isActive ? 90 : undefined} />
+      //NEw
+      // <Icon type="right" rotate={panelProps.isActive ? 90 : undefined} />
+      <Icon
+        type={isRtl ? 'left' : 'right'}
+        rotate={panelProps.isActive ? (isRtl ? -90 : 90) : undefined}
+      />
     );
     return React.isValidElement(icon)
       ? React.cloneElement(icon as any, {
@@ -71,11 +79,16 @@ export default class Collapse extends React.Component<CollapseProps, any> {
         [`${prefixCls}-icon-position-${expandIconPosition}`]: true,
       },
       className,
+      //NEw
+      Direction.classFromProps(this.props),
     );
     return (
       <RcCollapse
         {...this.props}
-        expandIcon={(panelProps: PanelProps) => this.renderExpandIcon(panelProps, prefixCls)}
+        // expandIcon={(panelProps: PanelProps) => this.renderExpandIcon(panelProps, prefixCls)}
+        expandIcon={(panelProps: PanelProps) =>
+          this.renderExpandIcon(panelProps, prefixCls, !!this.props.isRtl)
+        }
         prefixCls={prefixCls}
         className={collapseClassName}
       />

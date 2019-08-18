@@ -6,6 +6,7 @@ import Input, { InputProps } from '../input';
 import Select, { AbstractSelectProps, SelectValue, OptionProps, OptGroupProps } from '../select';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 import { Omit } from '../_util/type';
+import Direction from './../_util/direction';
 
 export interface DataSourceItemObject {
   value: string;
@@ -28,6 +29,7 @@ export type ValidInputElement =
   | React.ReactElement<AutoCompleteInputProps>;
 
 export interface AutoCompleteProps extends Omit<AbstractSelectProps, 'loading'> {
+  isRtl: boolean;
   value?: SelectValue;
   defaultValue?: SelectValue;
   dataSource?: DataSourceItemType[];
@@ -101,13 +103,17 @@ export default class AutoComplete extends React.Component<AutoCompleteProps, {}>
     } = this.props;
     const prefixCls = getPrefixCls('select', customizePrefixCls);
 
-    const cls = classNames({
-      [`${prefixCls}-lg`]: size === 'large',
-      [`${prefixCls}-sm`]: size === 'small',
-      [className]: !!className,
-      [`${prefixCls}-show-search`]: true,
-      [`${prefixCls}-auto-complete`]: true,
-    });
+    const cls = classNames(
+      {
+        [`${prefixCls}-lg`]: size === 'large',
+        [`${prefixCls}-sm`]: size === 'small',
+        [className]: !!className,
+        [`${prefixCls}-show-search`]: true,
+        [`${prefixCls}-auto-complete`]: true,
+      },
+      //NEw
+      Direction.classFromProps(this.props),
+    );
 
     let options;
     const childArray = React.Children.toArray(children);

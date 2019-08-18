@@ -23,6 +23,12 @@ ReactDOM.render(
       <p>Card content</p>
       <p>Card content</p>
     </Card>
+    <div style={{ height: 20 }}></div>
+    <Card isRtl={true} title="Card title (Rtl)" bordered={false} style={{ width: 300 }}>
+      <p>Card content</p>
+      <p>Card content</p>
+      <p>Card content</p>
+    </Card>
   </div>,
   mountNode,
 );

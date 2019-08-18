@@ -18,58 +18,78 @@ A more complex example which define a customized footer button bar. The dialog w
 You could set `footer` to `null` if you don't need default footer buttons.
 
 ```jsx
-import { Modal, Button } from 'antd';
+import { Modal, Button, Switch } from '../../index';
 
 class App extends React.Component {
   state = {
+    isRtl: false,
     loading: false,
     visible: false,
   };
 
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
   showModal = () => {
     this.setState({
+      ...this.state,
       visible: true,
     });
   };
 
   handleOk = () => {
-    this.setState({ loading: true });
+    this.setState({ ...this.state, loading: true });
     setTimeout(() => {
-      this.setState({ loading: false, visible: false });
+      this.setState({ ...this.state, loading: false, visible: false });
     }, 3000);
   };
 
   handleCancel = () => {
-    this.setState({ visible: false });
+    this.setState({ ...this.state, visible: false });
   };
 
   render() {
-    const { visible, loading } = this.state;
+    const { visible, loading, isRtl } = this.state;
     return (
       <div>
-        <Button type="primary" onClick={this.showModal}>
-          Open Modal with customized footer
-        </Button>
-        <Modal
-          visible={visible}
-          title="Title"
-          onOk={this.handleOk}
-          onCancel={this.handleCancel}
-          footer={[
-            <Button key="back" onClick={this.handleCancel}>
-              Return
-            </Button>,
-            <Button key="submit" type="primary" loading={loading} onClick={this.handleOk}>
-              Submit
-            </Button>,
-          ]}
-        >
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-          <p>Some contents...</p>
-        </Modal>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <Button type="primary" onClick={this.showModal}>
+            Open Modal with customized footer
+          </Button>
+          <Modal
+            isRtl={isRtl}
+            visible={visible}
+            title="Title"
+            onOk={this.handleOk}
+            onCancel={this.handleCancel}
+            footer={[
+              <Button isRtl={isRtl} key="back" onClick={this.handleCancel}>
+                Return
+              </Button>,
+              <Button
+                isRtl={isRtl}
+                key="submit"
+                type="primary"
+                loading={loading}
+                onClick={this.handleOk}
+              >
+                Submit
+              </Button>,
+            ]}
+          >
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+            <p>Some contents...</p>
+          </Modal>
+        </div>
       </div>
     );
   }

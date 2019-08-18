@@ -14,14 +14,35 @@ title:
 Mark a pending state of switch.
 
 ```jsx
-import { Switch } from 'antd';
+import { Switch } from '../../index';
 
-ReactDOM.render(
-  <div>
-    <Switch loading defaultChecked />
-    <br />
-    <Switch size="small" loading />
-  </div>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <Switch isRtl={isRtl} loading defaultChecked />
+          <br />
+          <Switch isRtl={isRtl} size="small" loading />
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```

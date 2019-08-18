@@ -14,7 +14,7 @@ title:
 Searchable Tree.
 
 ```jsx
-import { Tree, Input } from 'antd';
+import { Tree, Input, Switch } from '../../index';
 
 const { TreeNode } = Tree;
 const { Search } = Input;
@@ -77,13 +77,22 @@ const getParentKey = (key, tree) => {
 
 class SearchTree extends React.Component {
   state = {
+    isRtl: false,
     expandedKeys: [],
     searchValue: '',
     autoExpandParent: true,
   };
 
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
   onExpand = expandedKeys => {
     this.setState({
+      ...this.state,
       expandedKeys,
       autoExpandParent: false,
     });
@@ -99,11 +108,7 @@ class SearchTree extends React.Component {
         return null;
       })
       .filter((item, i, self) => item && self.indexOf(item) === i);
-    this.setState({
-      expandedKeys,
-      searchValue: value,
-      autoExpandParent: true,
-    });
+    this.setState({ ...this.state, expandedKeys, searchValue: value, autoExpandParent: true });
   };
 
   render() {
@@ -132,16 +137,27 @@ class SearchTree extends React.Component {
         }
         return <TreeNode key={item.key} title={title} />;
       });
+    const isRtl = this.state.isRtl;
     return (
       <div>
-        <Search style={{ marginBottom: 8 }} placeholder="Search" onChange={this.onChange} />
-        <Tree
-          onExpand={this.onExpand}
-          expandedKeys={expandedKeys}
-          autoExpandParent={autoExpandParent}
-        >
-          {loop(gData)}
-        </Tree>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <Search
+            isRtl={isRtl}
+            style={{ marginBottom: 8 }}
+            placeholder="Search"
+            onChange={this.onChange}
+          />
+          <Tree
+            isRtl={isRtl}
+            onExpand={this.onExpand}
+            expandedKeys={expandedKeys}
+            autoExpandParent={autoExpandParent}
+          >
+            {loop(gData)}
+          </Tree>
+        </div>
       </div>
     );
   }

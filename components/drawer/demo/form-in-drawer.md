@@ -19,17 +19,26 @@ import { Drawer, Form, Button, Col, Row, Input, Select, DatePicker, Icon } from 
 const { Option } = Select;
 
 class DrawerForm extends React.Component {
-  state = { visible: false };
+  state = { visible: false, isRtl: false };
 
   showDrawer = () => {
     this.setState({
       visible: true,
+      isRtl: false,
+    });
+  };
+
+  showDrawerRtl = () => {
+    this.setState({
+      visible: true,
+      isRtl: true,
     });
   };
 
   onClose = () => {
     this.setState({
       visible: false,
+      isRtl: false,
     });
   };
 
@@ -40,11 +49,15 @@ class DrawerForm extends React.Component {
         <Button type="primary" onClick={this.showDrawer}>
           <Icon type="plus" /> New account
         </Button>
+        <Button type="primary" onClick={this.showDrawerRtl}>
+          <Icon type="plus" /> New account (Rtl)
+        </Button>
         <Drawer
           title="Create a new account"
           width={720}
           onClose={this.onClose}
           visible={this.state.visible}
+          isRtl={this.state.isRtl}
         >
           <Form layout="vertical" hideRequiredMark>
             <Row gutter={16}>
@@ -61,6 +74,7 @@ class DrawerForm extends React.Component {
                     rules: [{ required: true, message: 'Please enter url' }],
                   })(
                     <Input
+                      isRtl={this.state.isRtl}
                       style={{ width: '100%' }}
                       addonBefore="http://"
                       addonAfter=".com"
@@ -76,7 +90,7 @@ class DrawerForm extends React.Component {
                   {getFieldDecorator('owner', {
                     rules: [{ required: true, message: 'Please select an owner' }],
                   })(
-                    <Select placeholder="Please select an owner">
+                    <Select isRtl={this.state.isRtl} placeholder="Please select an owner">
                       <Option value="xiao">Xiaoxiao Fu</Option>
                       <Option value="mao">Maomao Zhou</Option>
                     </Select>,
@@ -88,7 +102,7 @@ class DrawerForm extends React.Component {
                   {getFieldDecorator('type', {
                     rules: [{ required: true, message: 'Please choose the type' }],
                   })(
-                    <Select placeholder="Please choose the type">
+                    <Select isRtl={this.state.isRtl} placeholder="Please choose the type">
                       <Option value="private">Private</Option>
                       <Option value="public">Public</Option>
                     </Select>,
@@ -102,7 +116,7 @@ class DrawerForm extends React.Component {
                   {getFieldDecorator('approver', {
                     rules: [{ required: true, message: 'Please choose the approver' }],
                   })(
-                    <Select placeholder="Please choose the approver">
+                    <Select isRtl={this.state.isRtl} placeholder="Please choose the approver">
                       <Option value="jack">Jack Ma</Option>
                       <Option value="tom">Tom Liu</Option>
                     </Select>,
@@ -115,6 +129,7 @@ class DrawerForm extends React.Component {
                     rules: [{ required: true, message: 'Please choose the dateTime' }],
                   })(
                     <DatePicker.RangePicker
+                      isRtl={this.state.isRtl}
                       style={{ width: '100%' }}
                       getPopupContainer={trigger => trigger.parentNode}
                     />,
@@ -132,7 +147,13 @@ class DrawerForm extends React.Component {
                         message: 'please enter url description',
                       },
                     ],
-                  })(<Input.TextArea rows={4} placeholder="please enter url description" />)}
+                  })(
+                    <Input.TextArea
+                      isRtl={this.state.isRtl}
+                      rows={4}
+                      placeholder="please enter url description"
+                    />,
+                  )}
                 </Form.Item>
               </Col>
             </Row>

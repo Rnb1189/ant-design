@@ -1,0 +1,44 @@
+@import './modal-shared.less';
+
+//L_______________
+.@{dialog-prefix-cls} {
+  @{L}& &-close {
+    right: 0;
+  }
+
+  @{L}& &-footer {
+    text-align: right;
+    button + button {
+      margin-left: 8px;
+    }
+  }
+}
+
+@{L}.@{dialog-prefix-cls}-centered {
+  & @{L}.@{dialog-prefix-cls} {
+    text-align: left;
+  }
+}
+
+//R____________
+.@{dialog-prefix-cls} {
+  @{R}& {
+    direction: rtl;
+  }
+  @{R}& &-close {
+    left: 0;
+  }
+
+  @{R}& &-footer {
+    text-align: left;
+    button + button {
+      margin-right: 8px;
+    }
+  }
+}
+
+@{R}.@{dialog-prefix-cls}-centered {
+  & @{R}.@{dialog-prefix-cls} {
+    text-align: right;
+  }
+}

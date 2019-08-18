@@ -14,22 +14,45 @@ title:
 Simplest Usage. Badge will be hidden when `count` is `0`, but we can use `showZero` to show it.
 
 ```jsx
-import { Badge, Icon } from 'antd';
+import { Badge, Icon, Switch } from '../../index';
 
-ReactDOM.render(
-  <div>
-    <Badge count={5}>
-      <a href="#" className="head-example" />
-    </Badge>
-    <Badge count={0} showZero>
-      <a href="#" className="head-example" />
-    </Badge>
-    <Badge count={<Icon type="clock-circle" style={{ color: '#f5222d' }} />}>
-      <a href="#" className="head-example" />
-    </Badge>
-  </div>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <br />
+        <br />
+        <div>
+          <Badge isRtl={isRtl} count={5}>
+            <a href="#" className="head-example" />
+          </Badge>
+          <Badge isRtl={isRtl} count={0} showZero>
+            <a href="#" className="head-example" />
+          </Badge>
+          <Badge isRtl={isRtl} count={<Icon type="clock-circle" style={{ color: '#f5222d' }} />}>
+            <a href="#" className="head-example" />
+          </Badge>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```
 
 <style>

@@ -14,8 +14,7 @@ title:
 Controlled mode lets parent nodes reflect the status of child nodes more intelligently.
 
 ```jsx
-import { Tree } from 'antd';
-
+import { Tree, Switch } from '../../index';
 const { TreeNode } = Tree;
 
 const treeData = [
@@ -64,30 +63,35 @@ const treeData = [
 
 class Demo extends React.Component {
   state = {
+    isRtl: false,
     expandedKeys: ['0-0-0', '0-0-1'],
     autoExpandParent: true,
     checkedKeys: ['0-0-0'],
     selectedKeys: [],
   };
 
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
   onExpand = expandedKeys => {
     console.log('onExpand', expandedKeys);
     // if not set autoExpandParent to false, if children expanded, parent can not collapse.
     // or, you can remove all expanded children keys.
-    this.setState({
-      expandedKeys,
-      autoExpandParent: false,
-    });
+    this.setState({ ...this.state, expandedKeys, autoExpandParent: false });
   };
 
   onCheck = checkedKeys => {
     console.log('onCheck', checkedKeys);
-    this.setState({ checkedKeys });
+    this.setState({ ...this.state, checkedKeys });
   };
 
   onSelect = (selectedKeys, info) => {
     console.log('onSelect', info);
-    this.setState({ selectedKeys });
+    this.setState({ ...this.state, selectedKeys });
   };
 
   renderTreeNodes = data =>
@@ -103,19 +107,28 @@ class Demo extends React.Component {
     });
 
   render() {
+    const isRtl = this.state.isRtl;
+    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
     return (
-      <Tree
-        checkable
-        onExpand={this.onExpand}
-        expandedKeys={this.state.expandedKeys}
-        autoExpandParent={this.state.autoExpandParent}
-        onCheck={this.onCheck}
-        checkedKeys={this.state.checkedKeys}
-        onSelect={this.onSelect}
-        selectedKeys={this.state.selectedKeys}
-      >
-        {this.renderTreeNodes(treeData)}
-      </Tree>
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <Tree
+            isRtl={isRtl}
+            checkable
+            onExpand={this.onExpand}
+            expandedKeys={this.state.expandedKeys}
+            autoExpandParent={this.state.autoExpandParent}
+            onCheck={this.onCheck}
+            checkedKeys={this.state.checkedKeys}
+            onSelect={this.onSelect}
+            selectedKeys={this.state.selectedKeys}
+          >
+            {this.renderTreeNodes(treeData)}
+          </Tree>
+        </div>
+      </div>
     );
   }
 }

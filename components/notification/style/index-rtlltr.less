@@ -1,0 +1,60 @@
+@import './index-shared.less';
+
+.@{notification-prefix-cls} {
+  &-notice {
+    &-closable &-message {
+      padding-right: 24px;
+    }
+
+    &-with-icon &-message {
+      margin-left: 48px;
+    }
+
+    &-with-icon &-description {
+      margin-left: 48px;
+    }
+
+    &-icon {
+      margin-left: 4px;
+    }
+
+    &-close {
+      right: 22px;
+    }
+
+    &-btn {
+      float: right;
+    }
+  }
+}
+
+html[direction='rtl'] .@{notification-prefix-cls}-notice {
+  &-closable .@{notification-prefix-cls}-notice-message {
+    padding-right: initial;
+    padding-left: 24px;
+  }
+
+  &-with-icon .@{notification-prefix-cls}-notice-message {
+    margin-left: initial;
+    margin-right: 48px;
+  }
+
+  &-with-icon .@{notification-prefix-cls}-notice-description {
+    margin-left: initial;
+    margin-right: 48px;
+  }
+
+  &-icon {
+    margin-left: initial;
+    margin-right: 4px;
+  }
+
+  &-close {
+    right: initial;
+    left: 22px;
+  }
+
+  &-btn {
+    float: left;
+  }
+}

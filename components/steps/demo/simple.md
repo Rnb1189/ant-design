@@ -37,7 +37,7 @@ class App extends React.Component {
         <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
         <br />
         <div>
-          <Steps isRtl={isRtl} isRtl={isRtl} current={1}>
+          <Steps isRtl={isRtl} current={1}>
             <Step title="Finished" description="This is a description." />
             <Step title="In Progress" description="This is a description." />
             <Step title="Waiting" description="This is a description." />

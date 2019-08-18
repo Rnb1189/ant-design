@@ -15,21 +15,44 @@ debug: true
 The badge will display `title` when hovered over, instead of `count`.
 
 ```jsx
-import { Badge } from 'antd';
+import { Badge, Switch } from '../../index';
 
-ReactDOM.render(
-  <div>
-    <Badge count={5} title="Custom hover text">
-      <a href="#" className="head-example" />
-    </Badge>
-  </div>,
-  mountNode,
-);
+class App extends React.Component {
+  state = {
+    isRtl: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
+  };
+
+  render() {
+    const isRtl = this.state.isRtl;
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <br />
+        <div>
+          <Badge isRtl={isRtl} count={5} title="Custom hover text">
+            <a href="#" className="head-example" />
+          </Badge>
+        </div>
+      </div>
+    );
+  }
+}
+
+ReactDOM.render(<App />, mountNode);
 ```
 
 <style>
 .ant-badge:not(.ant-badge-not-a-wrapper) {
   margin-right: 20px;
+  margin-left: 20px;
 }
 .head-example {
   width: 42px;
