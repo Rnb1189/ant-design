@@ -22,7 +22,7 @@ You can control the indent width by setting `indentSize`.
 > Note, no support for recursive selection of tree structure data table yet.
 
 ```jsx
-import { Table } from 'antd';
+import { Table } from '../../index';
 
 const columns = [
   {
@@ -123,7 +123,11 @@ const rowSelection = {
 };
 
 ReactDOM.render(
-  <Table columns={columns} rowSelection={rowSelection} dataSource={data} />,
+  <div>
+    <Table columns={columns} rowSelection={rowSelection} dataSource={data} />
+    <div style={{ margin: 20, backgroundColor: '#fff0f6' }}>Rtl</div>
+    <Table isRtl={true} columns={columns} rowSelection={rowSelection} dataSource={data} />
+  </div>,
   mountNode,
 );
 ```

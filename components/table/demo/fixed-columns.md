@@ -22,7 +22,7 @@ To fix some columns and scroll inside other columns, and you must set `scroll.x`
 > A fixed value which is greater than table width for `scroll.x` is recommended. The sum of unfixed columns should not greater than `scroll.x`.
 
 ```jsx
-import { Table } from 'antd';
+import { Table } from '../../index';
 
 const columns = [
   {
@@ -71,5 +71,12 @@ const data = [
   },
 ];
 
-ReactDOM.render(<Table columns={columns} dataSource={data} scroll={{ x: 1300 }} />, mountNode);
+ReactDOM.render(
+  <div>
+    <Table columns={columns} dataSource={data} scroll={{ x: 1300 }} />
+    <div style={{ margin: 20, backgroundColor: '#fff0f6' }}>Rtl</div>
+    <Table isRtl={true} columns={columns} dataSource={data} scroll={{ x: 1300 }} />
+  </div>,
+  mountNode,
+);
 ```

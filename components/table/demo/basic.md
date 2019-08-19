@@ -14,7 +14,7 @@ title:
 Simple table with actions.
 
 ```jsx
-import { Table, Divider, Tag } from 'antd';
+import { Table, Divider, Tag } from '../../index';
 
 const columns = [
   {
@@ -90,5 +90,12 @@ const data = [
   },
 ];
 
-ReactDOM.render(<Table columns={columns} dataSource={data} />, mountNode);
+ReactDOM.render(
+  <div>
+    <Table columns={columns} dataSource={data} />
+    <div style={{ margin: 20, backgroundColor: '#fff0f6' }}>Rtl</div>
+    <Table isRtl={true} columns={columns} dataSource={data} />
+  </div>,
+  mountNode,
+);
 ```

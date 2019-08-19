@@ -20,7 +20,7 @@ This example shows how to fetch and present data from a remote server, and how t
 **Note, this example use [Mock API](https://randomuser.me) that you can look up in Network Console.**
 
 ```jsx
-import { Table } from 'antd';
+import { Table } from '../../index';
 import reqwest from 'reqwest';
 
 const columns = [
@@ -95,14 +95,26 @@ class App extends React.Component {
 
   render() {
     return (
-      <Table
-        columns={columns}
-        rowKey={record => record.login.uuid}
-        dataSource={this.state.data}
-        pagination={this.state.pagination}
-        loading={this.state.loading}
-        onChange={this.handleTableChange}
-      />
+      <div>
+        <Table
+          columns={columns}
+          rowKey={record => record.login.uuid}
+          dataSource={this.state.data}
+          pagination={this.state.pagination}
+          loading={this.state.loading}
+          onChange={this.handleTableChange}
+        />
+        <div style={{ margin: 20, backgroundColor: '#fff0f6' }}>Rtl</div>
+        <Table
+          isRtl={true}
+          columns={columns}
+          rowKey={record => record.login.uuid}
+          dataSource={this.state.data}
+          pagination={this.state.pagination}
+          loading={this.state.loading}
+          onChange={this.handleTableChange}
+        />
+      </div>
     );
   }
 }

@@ -22,7 +22,7 @@ Control filters and sorters by `filteredValue` and `sortOrder`.
 > 3. `column.key` is required.
 
 ```jsx
-import { Table, Button } from 'antd';
+import { Table, Button, Switch } from '../../index';
 
 const data = [
   {
@@ -52,9 +52,10 @@ const data = [
 ];
 
 class App extends React.Component {
-  state = {
-    filteredInfo: null,
-    sortedInfo: null,
+  state = { isRtl: false, filteredInfo: null, sortedInfo: null };
+
+  toggleRtl = () => {
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   handleChange = (pagination, filters, sorter) => {
@@ -86,7 +87,7 @@ class App extends React.Component {
   };
 
   render() {
-    let { sortedInfo, filteredInfo } = this.state;
+    let { sortedInfo, filteredInfo, isRtl } = this.state;
     sortedInfo = sortedInfo || {};
     filteredInfo = filteredInfo || {};
     const columns = [
@@ -120,12 +121,14 @@ class App extends React.Component {
     ];
     return (
       <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
         <div className="table-operations">
           <Button onClick={this.setAgeSort}>Sort age</Button>
           <Button onClick={this.clearFilters}>Clear filters</Button>
           <Button onClick={this.clearAll}>Clear filters and sorters</Button>
         </div>
-        <Table columns={columns} dataSource={data} onChange={this.handleChange} />
+        <Table isRtl={isRtl} columns={columns} dataSource={data} onChange={this.handleChange} />
       </div>
     );
   }

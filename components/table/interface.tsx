@@ -14,6 +14,7 @@ export type ColumnFilterItem = {
 };
 
 export interface FilterDropdownProps {
+  isRtl?: boolean;
   prefixCls?: string;
   setSelectedKeys?: (selectedKeys: string[]) => void;
   selectedKeys?: string[];
@@ -139,6 +140,8 @@ export interface TableEventListeners {
 }
 
 export interface TableProps<T> {
+  //NEw
+  isRtl?: boolean;
   prefixCls?: string;
   dropdownPrefixCls?: string;
   rowSelection?: TableRowSelection<T>;
@@ -212,6 +215,9 @@ export interface SelectionItem {
 }
 
 export interface SelectionCheckboxAllProps<T> {
+  //NEw
+  isRtl?: boolean;
+
   store: Store;
   locale: TableLocale;
   disabled: boolean;
@@ -231,6 +237,8 @@ export interface SelectionCheckboxAllState {
 }
 
 export interface SelectionBoxProps {
+  //NEw
+  isRtl?: boolean;
   store: Store;
   type?: RowSelectionType;
   defaultSelection: string[];
@@ -253,6 +261,9 @@ export interface SelectionInfo<T> {
 }
 
 export interface FilterMenuProps<T> {
+  //NEw
+  isRtl?: boolean;
+
   locale: TableLocale;
   selectedKeys: string[];
   column: ColumnProps<T>;

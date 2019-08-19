@@ -40,6 +40,7 @@ import LocaleReceiver from '../locale-provider/LocaleReceiver';
 import defaultLocale from '../locale-provider/default';
 import { ConfigConsumer, ConfigConsumerProps, RenderEmptyHandler } from '../config-provider';
 import warning from '../_util/warning';
+import Direction from '../_util/direction';
 
 function noop() {}
 
@@ -70,6 +71,8 @@ export default class Table<T> extends React.Component<TableProps<T>, TableState<
   static ColumnGroup = ColumnGroup;
 
   static propTypes = {
+    //NEw
+    isRtl: PropTypes.bool,
     dataSource: PropTypes.array,
     columns: PropTypes.array,
     prefixCls: PropTypes.string,
@@ -734,6 +737,8 @@ export default class Table<T> extends React.Component<TableProps<T>, TableState<
       return (
         <span onClick={stopPropagation}>
           <SelectionBox
+            // NEw
+            isRtl={!!this.props.isRtl}
             type={type}
             store={this.store}
             rowIndex={rowKey}
@@ -801,6 +806,8 @@ export default class Table<T> extends React.Component<TableProps<T>, TableState<
         );
         selectionColumn.title = selectionColumn.title || (
           <SelectionCheckboxAll
+            // NEw
+            isRtl={!!this.props.isRtl}
             store={this.store}
             locale={locale}
             data={data}
@@ -868,6 +875,8 @@ export default class Table<T> extends React.Component<TableProps<T>, TableState<
         const colFilters = key in filters ? filters[key] : [];
         filterDropdown = (
           <FilterDropdown
+            // NEw
+            isRtl={!!this.props.isRtl}
             locale={locale}
             column={column}
             selectedKeys={colFilters}
@@ -1007,6 +1016,7 @@ export default class Table<T> extends React.Component<TableProps<T>, TableState<
     const total = pagination.total || this.getLocalData().length;
     return total > 0 && (position === paginationPosition || position === 'both') ? (
       <Pagination
+        isRtl={!!this.props.isRtl}
         key={`pagination-${paginationPosition}`}
         {...pagination}
         className={classNames(pagination.className, `${prefixCls}-pagination`)}
@@ -1160,13 +1170,19 @@ export default class Table<T> extends React.Component<TableProps<T>, TableState<
     if (!locale || !locale.emptyText) {
       mergedLocale.emptyText = renderEmpty('Table');
     }
+    //NEw
+    const dirClass = Direction.classFromProps(this.props);
 
-    const classString = classNames({
-      [`${prefixCls}-${this.props.size}`]: true,
-      [`${prefixCls}-bordered`]: this.props.bordered,
-      [`${prefixCls}-empty`]: !data.length,
-      [`${prefixCls}-without-column-header`]: !showHeader,
-    });
+    const classString = classNames(
+      {
+        [`${prefixCls}-${this.props.size}`]: true,
+        [`${prefixCls}-bordered`]: this.props.bordered,
+        [`${prefixCls}-empty`]: !data.length,
+        [`${prefixCls}-without-column-header`]: !showHeader,
+      },
+      //NEw
+      dirClass,
+    );
 
     let columns = this.renderRowSelection(prefixCls, mergedLocale);
     columns = this.renderColumnsDropdown(prefixCls, dropdownPrefixCls, columns, mergedLocale);
@@ -1205,6 +1221,10 @@ export default class Table<T> extends React.Component<TableProps<T>, TableState<
       style,
       className,
     } = this.props;
+
+    //NEw
+    const dirClass = Direction.classFromProps(this.props);
+
     const data = this.getCurrentPageData();
 
     let loading = this.props.loading as SpinProps;
@@ -1230,7 +1250,8 @@ export default class Table<T> extends React.Component<TableProps<T>, TableState<
         : `${prefixCls}-without-pagination`;
 
     return (
-      <div className={classNames(`${prefixCls}-wrapper`, className)} style={style}>
+      // <div className={classNames(`${prefixCls}-wrapper`, className)} style={style}>
+      <div className={classNames(`${prefixCls}-wrapper`, className, dirClass)} style={style}>
         <Spin
           {...loading}
           className={loading.spinning ? `${paginationPatchClass} ${prefixCls}-spin-holder` : ''}

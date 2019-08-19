@@ -14,7 +14,7 @@ title:
 Add border, title and footer for table.
 
 ```jsx
-import { Table } from 'antd';
+import { Table } from '../../index';
 
 const columns = [
   {
@@ -55,13 +55,25 @@ const data = [
 ];
 
 ReactDOM.render(
-  <Table
-    columns={columns}
-    dataSource={data}
-    bordered
-    title={() => 'Header'}
-    footer={() => 'Footer'}
-  />,
+  <div>
+    <Table
+      columns={columns}
+      dataSource={data}
+      bordered
+      title={() => 'Header'}
+      footer={() => 'Footer'}
+    />
+    <div style={{ margin: 20, backgroundColor: '#fff0f6' }}>Rtl</div>
+    <Table
+      isRtl={true}
+      columns={columns}
+      dataSource={data}
+      bordered
+      title={() => 'Header'}
+      footer={() => 'Footer'}
+    />
+  </div>,
+
   mountNode,
 );
 ```

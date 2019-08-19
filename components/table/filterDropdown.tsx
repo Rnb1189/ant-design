@@ -12,6 +12,7 @@ import Radio from '../radio';
 import FilterDropdownMenuWrapper from './FilterDropdownMenuWrapper';
 import { FilterMenuProps, FilterMenuState, ColumnProps, ColumnFilterItem } from './interface';
 import { generateValueMaps } from './util';
+import Direction from '../_util/direction';
 
 function stopPropagation(e: React.SyntheticEvent<any>) {
   e.stopPropagation();
@@ -152,7 +153,9 @@ class FilterMenu<T> extends React.Component<FilterMenuProps<T>, FilterMenuState<
   }
 
   renderMenuItem(item: ColumnFilterItem) {
-    const { column } = this.props;
+    // const { column } = this.props;
+    //NEw
+    const { column, isRtl } = this.props;
     const { selectedKeys } = this.state;
     const multiple = 'filterMultiple' in column ? column.filterMultiple : true;
 
@@ -160,9 +163,12 @@ class FilterMenu<T> extends React.Component<FilterMenuProps<T>, FilterMenuState<
     const internalSelectedKeys = (selectedKeys || []).map(key => key.toString());
 
     const input = multiple ? (
-      <Checkbox checked={internalSelectedKeys.indexOf(item.value.toString()) >= 0} />
+      <Checkbox
+        isRtl={!!isRtl}
+        checked={internalSelectedKeys.indexOf(item.value.toString()) >= 0}
+      />
     ) : (
-      <Radio checked={internalSelectedKeys.indexOf(item.value.toString()) >= 0} />
+      <Radio isRtl={!!isRtl} checked={internalSelectedKeys.indexOf(item.value.toString()) >= 0} />
     );
 
     return (
@@ -251,9 +257,15 @@ class FilterMenu<T> extends React.Component<FilterMenuProps<T>, FilterMenuState<
     const { column, locale, prefixCls, dropdownPrefixCls, getPopupContainer } = this.props;
     // default multiple selection in filter dropdown
     const multiple = 'filterMultiple' in column ? column.filterMultiple : true;
-    const dropdownMenuClass = classNames({
-      [`${dropdownPrefixCls}-menu-without-submenu`]: !this.hasSubMenu(),
-    });
+    //NEw
+    const dirClass = Direction.classFromProps(this.props);
+
+    const dropdownMenuClass = classNames(
+      {
+        [`${dropdownPrefixCls}-menu-without-submenu`]: !this.hasSubMenu(),
+      },
+      dirClass,
+    );
     let { filterDropdown } = column;
     if (filterDropdown instanceof Function) {
       filterDropdown = filterDropdown({
@@ -268,12 +280,14 @@ class FilterMenu<T> extends React.Component<FilterMenuProps<T>, FilterMenuState<
     }
 
     const menus = filterDropdown ? (
-      <FilterDropdownMenuWrapper className={`${prefixCls}-dropdown`}>
+      <FilterDropdownMenuWrapper className={`${prefixCls}-dropdown ${dirClass}`}>
         {filterDropdown}
       </FilterDropdownMenuWrapper>
     ) : (
-      <FilterDropdownMenuWrapper className={`${prefixCls}-dropdown`}>
+      <FilterDropdownMenuWrapper className={`${prefixCls}-dropdown ${dirClass}`}>
         <Menu
+          //NEw
+          isRtl={!!this.props.isRtl}
           multiple={multiple}
           onClick={this.handleMenuItemClick}
           prefixCls={`${dropdownPrefixCls}-menu`}
@@ -298,6 +312,7 @@ class FilterMenu<T> extends React.Component<FilterMenuProps<T>, FilterMenuState<
 
     return (
       <Dropdown
+        isRtl={!!this.props.isRtl}
         trigger={['click']}
         placement="bottomRight"
         overlay={menus}

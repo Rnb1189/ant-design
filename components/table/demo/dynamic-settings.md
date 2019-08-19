@@ -14,7 +14,7 @@ title:
 Select different settings to see the result.
 
 ```jsx
-import { Table, Icon, Switch, Radio, Form, Divider } from 'antd';
+import { Table, Icon, Switch, Radio, Form, Divider } from '../../index';
 
 const FormItem = Form.Item;
 
@@ -75,6 +75,7 @@ const pagination = { position: 'bottom' };
 
 class Demo extends React.Component {
   state = {
+    isRtl: false,
     bordered: false,
     loading: false,
     pagination,
@@ -86,6 +87,10 @@ class Demo extends React.Component {
     rowSelection: {},
     scroll: undefined,
     hasData: true,
+  };
+
+  toggleRtl = isRtl => {
+    this.setState({ ...this.state, isRtl });
   };
 
   handleToggle = prop => enable => {
@@ -137,6 +142,10 @@ class Demo extends React.Component {
       <div>
         <div className="components-table-demo-control-bar">
           <Form layout="inline">
+            <FormItem label="Rtl">
+              <Switch checked={state.isRtl} onChange={this.toggleRtl} />
+            </FormItem>
+            <br />
             <FormItem label="Bordered">
               <Switch checked={state.bordered} onChange={this.handleToggle('bordered')} />
             </FormItem>

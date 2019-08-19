@@ -14,7 +14,7 @@ title:
 By using custom components, we can integrate table with react-dnd to implement drag sorting.
 
 ```jsx
-import { Table } from 'antd';
+import { Table } from '../../index';
 import { DndProvider, DragSource, DropTarget } from 'react-dnd';
 import HTML5Backend from 'react-dnd-html5-backend';
 import update from 'immutability-helper';

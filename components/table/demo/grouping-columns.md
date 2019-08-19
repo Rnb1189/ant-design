@@ -14,7 +14,7 @@ title:
 Group table head with `columns[n].children`.
 
 ```jsx
-import { Table } from 'antd';
+import { Table } from '../../index';
 
 const columns = [
   {
@@ -116,13 +116,24 @@ for (let i = 0; i < 100; i++) {
 }
 
 ReactDOM.render(
-  <Table
-    columns={columns}
-    dataSource={data}
-    bordered
-    size="middle"
-    scroll={{ x: '130%', y: 240 }}
-  />,
+  <div>
+    <Table
+      columns={columns}
+      dataSource={data}
+      bordered
+      size="middle"
+      scroll={{ x: '130%', y: 240 }}
+    />
+    <div style={{ margin: 20, backgroundColor: '#fff0f6' }}>Rtl</div>
+    <Table
+      isRtl={true}
+      columns={columns}
+      dataSource={data}
+      bordered
+      size="middle"
+      scroll={{ x: '130%', y: 240 }}
+    />
+  </div>,
   mountNode,
 );
 ```

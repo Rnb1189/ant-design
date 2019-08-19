@@ -144,7 +144,14 @@ export default class SelectionCheckboxAll<T> extends React.Component<
   }
 
   render() {
-    const { disabled, prefixCls, selections, getPopupContainer } = this.props;
+    const {
+      disabled,
+      prefixCls,
+      selections,
+      getPopupContainer,
+      //NEw
+      isRtl,
+    } = this.props;
     const { checked, indeterminate } = this.state;
 
     const selectionPrefixCls = `${prefixCls}-selection`;
@@ -157,14 +164,14 @@ export default class SelectionCheckboxAll<T> extends React.Component<
         : this.defaultSelections;
 
       const menu = (
-        <Menu className={`${selectionPrefixCls}-menu`} selectedKeys={[]}>
+        <Menu isRtl={!!isRtl} className={`${selectionPrefixCls}-menu`} selectedKeys={[]}>
           {this.renderMenus(newSelections)}
         </Menu>
       );
 
       customSelections =
         newSelections.length > 0 ? (
-          <Dropdown overlay={menu} getPopupContainer={getPopupContainer}>
+          <Dropdown isRtl={!!isRtl} overlay={menu} getPopupContainer={getPopupContainer}>
             <div className={`${selectionPrefixCls}-down`}>
               <Icon type="down" />
             </div>
@@ -175,6 +182,7 @@ export default class SelectionCheckboxAll<T> extends React.Component<
     return (
       <div className={selectionPrefixCls}>
         <Checkbox
+          isRtl={isRtl}
           className={classNames({ [`${selectionPrefixCls}-select-all-custom`]: customSelections })}
           checked={checked}
           indeterminate={indeterminate}

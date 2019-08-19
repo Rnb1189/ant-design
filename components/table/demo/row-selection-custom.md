@@ -14,7 +14,7 @@ title:
 Use `rowSelection.selections` custom selections, default no select dropdown, show default selections via setting to `true`.
 
 ```jsx
-import { Table } from 'antd';
+import { Table, Switch } from '../../index';
 
 const columns = [
   {
@@ -43,7 +43,15 @@ for (let i = 0; i < 46; i++) {
 
 class App extends React.Component {
   state = {
+    isRtl: false,
     selectedRowKeys: [], // Check here to configure the default column
+  };
+
+  toggleRtl = () => {
+    this.setState({
+      ...this.state,
+      isRtl: !this.state.isRtl,
+    });
   };
 
   onSelectChange = selectedRowKeys => {
@@ -52,7 +60,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { selectedRowKeys } = this.state;
+    const { selectedRowKeys, isRtl } = this.state;
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange,
@@ -97,7 +105,13 @@ class App extends React.Component {
         },
       ],
     };
-    return <Table rowSelection={rowSelection} columns={columns} dataSource={data} />;
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <Table isRtl={isRtl} rowSelection={rowSelection} columns={columns} dataSource={data} />
+      </div>
+    );
   }
 }
 

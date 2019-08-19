@@ -14,7 +14,7 @@ title:
 Implement resizable column by integrate with react-resizable.
 
 ```jsx
-import { Table } from 'antd';
+import { Table, Switch } from '../../index';
 import { Resizable } from 'react-resizable';
 
 const ResizeableTitle = props => {
@@ -38,6 +38,7 @@ const ResizeableTitle = props => {
 
 class Demo extends React.Component {
   state = {
+    isRtl: false,
     columns: [
       {
         title: 'Date',
@@ -97,6 +98,10 @@ class Demo extends React.Component {
     },
   ];
 
+  toggleRtl = () => {
+    this.setState({ isRtl: !this.state.isRtl });
+  };
+
   handleResize = index => (e, { size }) => {
     this.setState(({ columns }) => {
       const nextColumns = [...columns];
@@ -116,8 +121,21 @@ class Demo extends React.Component {
         onResize: this.handleResize(index),
       }),
     }));
+    const isRtl = this.state.isRtl;
 
-    return <Table bordered components={this.components} columns={columns} dataSource={this.data} />;
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <Table
+          isRtl={isRtl}
+          bordered
+          components={this.components}
+          columns={columns}
+          dataSource={this.data}
+        />
+      </div>
+    );
   }
 }
 

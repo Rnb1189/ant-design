@@ -14,7 +14,7 @@ title:
 There are two compacted table sizes: `middle` and `small`. The `small` size is used in Modals only.
 
 ```jsx
-import { Table } from 'antd';
+import { Table } from '../../index';
 
 const columns = [
   {
@@ -57,7 +57,13 @@ ReactDOM.render(
     <Table columns={columns} dataSource={data} size="middle" />
     <h4>Small size table</h4>
     <Table columns={columns} dataSource={data} size="small" />
+    <div style={{ margin: 20, backgroundColor: '#fff0f6' }}>Rtl</div>
+    <h4>Middle size table</h4>
+    <Table isRtl={true} columns={columns} dataSource={data} size="middle" />
+    <h4>Small size table</h4>
+    <Table isRtl={true} columns={columns} dataSource={data} size="small" />
   </div>,
+
   mountNode,
 );
 ```

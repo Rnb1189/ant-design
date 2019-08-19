@@ -14,7 +14,7 @@ title:
 Implement a customized column search example via `filterDropdown`.
 
 ```jsx
-import { Table, Input, Button, Icon } from 'antd';
+import { Table, Input, Button, Icon, Switch } from '../../index';
 import Highlighter from 'react-highlight-words';
 
 const data = [
@@ -45,14 +45,19 @@ const data = [
 ];
 
 class App extends React.Component {
-  state = {
-    searchText: '',
+  state = { isRtl: false, searchText: '' };
+
+  toggleRtl = () => {
+    this.setState({
+      isRtl: !this.state.isRtl,
+    });
   };
 
   getColumnSearchProps = dataIndex => ({
     filterDropdown: ({ setSelectedKeys, selectedKeys, confirm, clearFilters }) => (
-      <div style={{ padding: 8 }}>
+      <div style={{ padding: 8, direction: this.state.isRtl ? 'rtl' : 'ltr' }}>
         <Input
+          isRtl={this.state.isRtl}
           ref={node => {
             this.searchInput = node;
           }}
@@ -63,15 +68,25 @@ class App extends React.Component {
           style={{ width: 188, marginBottom: 8, display: 'block' }}
         />
         <Button
+          isRtl={this.state.isRtl}
           type="primary"
           onClick={() => this.handleSearch(selectedKeys, confirm)}
           icon="search"
           size="small"
-          style={{ width: 90, marginRight: 8 }}
+          style={{
+            width: 90,
+            marginRight: this.state.isRtl ? 0 : 8,
+            marginLeft: this.state.isRtl ? 8 : 0,
+          }}
         >
           Search
         </Button>
-        <Button onClick={() => this.handleReset(clearFilters)} size="small" style={{ width: 90 }}>
+        <Button
+          isRtl={this.state.isRtl}
+          onClick={() => this.handleReset(clearFilters)}
+          size="small"
+          style={{ width: 90 }}
+        >
           Reset
         </Button>
       </div>
@@ -91,6 +106,7 @@ class App extends React.Component {
     },
     render: text => (
       <Highlighter
+        isRtl={this.state.isRtl}
         highlightStyle={{ backgroundColor: '#ffc069', padding: 0 }}
         searchWords={[this.state.searchText]}
         autoEscape
@@ -132,7 +148,14 @@ class App extends React.Component {
         ...this.getColumnSearchProps('address'),
       },
     ];
-    return <Table columns={columns} dataSource={data} />;
+    const isRtl = this.state.isRtl;
+    return (
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <Table isRtl={isRtl} columns={columns} dataSource={data} />{' '}
+      </div>
+    );
   }
 }
 

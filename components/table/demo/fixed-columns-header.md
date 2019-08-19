@@ -22,7 +22,7 @@ A Solution for displaying large amounts of data with long columns.
 > A fixed value which is greater than table width for `scroll.x` is recommended. The sum of unfixed columns should not greater than `scroll.x`.
 
 ```jsx
-import { Table } from 'antd';
+import { Table } from '../../index';
 
 const columns = [
   {
@@ -102,7 +102,11 @@ for (let i = 0; i < 100; i++) {
 }
 
 ReactDOM.render(
-  <Table columns={columns} dataSource={data} scroll={{ x: 1500, y: 300 }} />,
+  <div>
+    <Table columns={columns} dataSource={data} scroll={{ x: 1500, y: 300 }} />
+    <div style={{ margin: 20, backgroundColor: '#fff0f6' }}>Rtl</div>
+    <Table isRtl={true} columns={columns} dataSource={data} scroll={{ x: 1500, y: 300 }} />
+  </div>,
   mountNode,
 );
 ```

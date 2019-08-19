@@ -14,7 +14,7 @@ title:
 To perform operations and clear selections after selecting some rows, use `rowSelection.selectedRowKeys` to control selected rows.
 
 ```jsx
-import { Table, Button } from 'antd';
+import { Table, Switch, Button } from '../../index';
 
 const columns = [
   {
@@ -43,8 +43,13 @@ for (let i = 0; i < 46; i++) {
 
 class App extends React.Component {
   state = {
+    isRtl: false,
     selectedRowKeys: [], // Check here to configure the default column
     loading: false,
+  };
+
+  toggleRtl = () => {
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   start = () => {
@@ -64,7 +69,7 @@ class App extends React.Component {
   };
 
   render() {
-    const { loading, selectedRowKeys } = this.state;
+    const { loading, selectedRowKeys, isRtl } = this.state;
     const rowSelection = {
       selectedRowKeys,
       onChange: this.onSelectChange,
@@ -72,15 +77,23 @@ class App extends React.Component {
     const hasSelected = selectedRowKeys.length > 0;
     return (
       <div>
-        <div style={{ marginBottom: 16 }}>
-          <Button type="primary" onClick={this.start} disabled={!hasSelected} loading={loading}>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div style={{ marginBottom: 16, direction: isRtl ? 'rtl' : 'ltr' }}>
+          <Button
+            isRtl={isRtl}
+            type="primary"
+            onClick={this.start}
+            disabled={!hasSelected}
+            loading={loading}
+          >
             Reload
           </Button>
           <span style={{ marginLeft: 8 }}>
             {hasSelected ? `Selected ${selectedRowKeys.length} items` : ''}
           </span>
         </div>
-        <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+        <Table isRtl={isRtl} rowSelection={rowSelection} columns={columns} dataSource={data} />
       </div>
     );
   }

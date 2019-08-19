@@ -18,7 +18,7 @@ Using JSX style API (introduced in 2.5.0)
 > Since this is just a syntax sugar for the prop `columns`, you can't compose `Column` and `ColumnGroup` with other Components.
 
 ```jsx
-import { Table, Divider, Tag } from 'antd';
+import { Table, Divider, Tag } from '../../index';
 
 const { Column, ColumnGroup } = Table;
 
@@ -50,39 +50,75 @@ const data = [
 ];
 
 ReactDOM.render(
-  <Table dataSource={data}>
-    <ColumnGroup title="Name">
-      <Column title="First Name" dataIndex="firstName" key="firstName" />
-      <Column title="Last Name" dataIndex="lastName" key="lastName" />
-    </ColumnGroup>
-    <Column title="Age" dataIndex="age" key="age" />
-    <Column title="Address" dataIndex="address" key="address" />
-    <Column
-      title="Tags"
-      dataIndex="tags"
-      key="tags"
-      render={tags => (
-        <span>
-          {tags.map(tag => (
-            <Tag color="blue" key={tag}>
-              {tag}
-            </Tag>
-          ))}
-        </span>
-      )}
-    />
-    <Column
-      title="Action"
-      key="action"
-      render={(text, record) => (
-        <span>
-          <a href="javascript:;">Invite {record.lastName}</a>
-          <Divider type="vertical" />
-          <a href="javascript:;">Delete</a>
-        </span>
-      )}
-    />
-  </Table>,
+  <div>
+    <Table dataSource={data}>
+      <ColumnGroup title="Name">
+        <Column title="First Name" dataIndex="firstName" key="firstName" />
+        <Column title="Last Name" dataIndex="lastName" key="lastName" />
+      </ColumnGroup>
+      <Column title="Age" dataIndex="age" key="age" />
+      <Column title="Address" dataIndex="address" key="address" />
+      <Column
+        title="Tags"
+        dataIndex="tags"
+        key="tags"
+        render={tags => (
+          <span>
+            {tags.map(tag => (
+              <Tag color="blue" key={tag}>
+                {tag}
+              </Tag>
+            ))}
+          </span>
+        )}
+      />
+      <Column
+        title="Action"
+        key="action"
+        render={(text, record) => (
+          <span>
+            <a href="javascript:;">Invite {record.lastName}</a>
+            <Divider type="vertical" />
+            <a href="javascript:;">Delete</a>
+          </span>
+        )}
+      />
+    </Table>
+    <div style={{ margin: 20, backgroundColor: '#fff0f6' }}>Rtl</div>
+    <Table isRtl={true} dataSource={data}>
+      <ColumnGroup title="Name">
+        <Column title="First Name" dataIndex="firstName" key="firstName" />
+        <Column title="Last Name" dataIndex="lastName" key="lastName" />
+      </ColumnGroup>
+      <Column title="Age" dataIndex="age" key="age" />
+      <Column title="Address" dataIndex="address" key="address" />
+      <Column
+        title="Tags"
+        dataIndex="tags"
+        key="tags"
+        render={tags => (
+          <span>
+            {tags.map(tag => (
+              <Tag color="blue" key={tag}>
+                {tag}
+              </Tag>
+            ))}
+          </span>
+        )}
+      />
+      <Column
+        title="Action"
+        key="action"
+        render={(text, record) => (
+          <span>
+            <a href="javascript:;">Invite {record.lastName}</a>
+            <Divider type="vertical" />
+            <a href="javascript:;">Delete</a>
+          </span>
+        )}
+      />
+    </Table>
+  </div>,
   mountNode,
 );
 ```

@@ -1,0 +1,261 @@
+@{L}.@{table-prefix-cls}-wrapper {
+  direction: ltr;
+  .@{table-prefix-cls} {
+    table {
+      text-align: left;
+      // border-radius: @table-border-radius-base @table-border-radius-base 0 0;
+    }
+
+    &-thead > tr > th {
+      text-align: left;
+
+      .@{iconfont-css-prefix}-filter,
+      .@{table-prefix-cls}-filter-icon {
+        right: 0;
+        > svg {
+          left: 50%;
+          margin-left: -@font-size-sm / 2;
+        }
+      }
+
+      .@{table-prefix-cls}-column-sorter {
+        .@{table-prefix-cls}-column-sorter-inner {
+          margin-left: 0.57142857em;
+        }
+      }
+
+      &.@{table-prefix-cls}-column-has-actions {
+        /* stylelint-disable-next-line */
+        &.@{table-prefix-cls}-column-has-filters {
+          padding-right: 30px !important;
+        }
+      }
+    }
+
+    &-thead > tr:first-child > th {
+      &:first-child {
+        border-top-left-radius: @table-border-radius-base;
+      }
+
+      &:last-child {
+        border-top-right-radius: @table-border-radius-base;
+      }
+    }
+
+    &-footer {
+      // border-radius: 0 0 @table-border-radius-base @table-border-radius-base;
+      &::before {
+        left: 0;
+      }
+    }
+
+    &-loading {
+      .@{table-prefix-cls}-spin-holder {
+        left: 50%;
+        margin-left: -30px;
+      }
+    }
+
+    &-bordered {
+      .@{table-prefix-cls}-header > table,
+      .@{table-prefix-cls}-body > table,
+      .@{table-prefix-cls}-fixed-left table,
+      .@{table-prefix-cls}-fixed-right table {
+        border: @border-width-base @border-style-base @border-color-split;
+        border-right: 0;
+      }
+
+      //OMid: repeated
+      &.@{table-prefix-cls}-fixed-header {
+        .@{table-prefix-cls}-header > table {
+          border-bottom: 0;
+        }
+
+        .@{table-prefix-cls}-body > table {
+          border-top-left-radius: 0;
+          border-top-right-radius: 0;
+        }
+
+        .@{table-prefix-cls}-header + .@{table-prefix-cls}-body > table,
+        .@{table-prefix-cls}-body-inner > table {
+          border-top: 0;
+        }
+      }
+
+      .@{table-prefix-cls}-thead > tr > th,
+      .@{table-prefix-cls}-tbody > tr > td {
+        border-right: @border-width-base @border-style-base @border-color-split;
+      }
+    }
+
+    &-placeholder {
+      border-radius: 0 0 @border-radius-base @border-radius-base;
+      .@{iconfont-css-prefix} {
+        margin-right: 4px;
+      }
+    }
+
+    &-pagination.@{ant-prefix}-pagination {
+      float: right;
+    }
+
+    /*OMid: moved outside because its not inside the table*/
+    &-filter-dropdown {
+      // margin-left: -8px;
+      // .@{ant-prefix}-dropdown-menu {
+      //   border-radius: @border-radius-base @border-radius-base 0 0;
+      //   &-item > label + span {
+      //     padding-right: 0;
+      //   }
+      // }
+      // .@{ant-prefix}-checkbox-wrapper + span {
+      //   padding-left: 8px;
+      // }
+      // &-link {
+      //   &.confirm {
+      //     float: left;
+      //   }
+      //   &.clear {
+      //     float: right;
+      //   }
+      // }
+    }
+
+    &-selection {
+      &-select-all-custom {
+        margin-right: 4px !important;
+      }
+
+      &-menu {
+        margin-left: -30px;
+      }
+    }
+
+    .@{table-prefix-cls}-row-indent + .@{table-prefix-cls}-row-expand-icon {
+      margin-right: 8px;
+    }
+
+    &-fixed-header .@{table-prefix-cls}-scroll .@{table-prefix-cls}-header {
+      &::-webkit-scrollbar {
+        border-width: 0 0 1px 0;
+      }
+    }
+
+    &-bordered.@{table-prefix-cls}-fixed-header
+      .@{table-prefix-cls}-scroll
+      .@{table-prefix-cls}-header {
+      &::-webkit-scrollbar {
+        border: 1px solid @border-color-split;
+        border-width: 1px 1px 1px 0;
+      }
+      &.@{table-prefix-cls}-hide-scrollbar
+        .@{table-prefix-cls}-thead
+        > tr:only-child
+        > th:last-child {
+        border-right-color: transparent;
+      }
+    }
+
+    &-fixed-left {
+      left: 0;
+      box-shadow: 6px 0 6px -4px @shadow-color;
+
+      .@{table-prefix-cls}-body-inner {
+        margin-right: -20px;
+        padding-right: 20px;
+      }
+      //OMid: moved outside
+      // .@{table-prefix-cls}-fixed-header & .@{table-prefix-cls}-body-inner {
+      //   // padding-right: 0;
+      // }
+      &,
+      table {
+        border-radius: @table-border-radius-base 0 0 0;
+      }
+      .ant-table-thead > tr > th:last-child {
+        border-top-right-radius: 0;
+      }
+    }
+
+    &-fixed-right {
+      right: 0;
+      box-shadow: -6px 0 6px -4px @shadow-color;
+      &,
+      table {
+        border-radius: 0 @table-border-radius-base 0 0;
+      }
+
+      .ant-table-thead > tr > th:first-child {
+        border-top-left-radius: 0;
+      }
+    }
+
+    &.@{table-prefix-cls}-scroll-position-left .@{table-prefix-cls}-fixed-left {
+      box-shadow: none;
+    }
+
+    &.@{table-prefix-cls}-scroll-position-right .@{table-prefix-cls}-fixed-right {
+      box-shadow: none;
+    }
+
+    /* ========================== Row Selection ==========================*/
+    &-thead > tr > th.@{table-prefix-cls}-selection-column-custom {
+      .@{table-prefix-cls}-selection {
+        margin-right: -15px;
+      }
+    }
+
+    &-thead > tr > th.@{table-prefix-cls}-selection-column,
+    &-tbody > tr > td.@{table-prefix-cls}-selection-column {
+      .@{ant-prefix}-radio-wrapper {
+        margin-right: 0;
+      }
+    }
+  }
+}
+
+@{L}.@{table-prefix-cls}-filter-dropdown {
+  margin-left: -8px;
+
+  .@{ant-prefix}-dropdown-menu {
+    &-item > label + span {
+      padding-right: 0;
+    }
+  }
+
+  .@{ant-prefix}-checkbox-wrapper + span {
+    padding-left: 8px;
+  }
+
+  .@{table-prefix-cls}-filter-dropdown-link {
+    &.confirm {
+      float: left;
+    }
+    &.clear {
+      float: right;
+    }
+  }
+}
+
+// /*OMid: we need to repeat it*/
+// .@{table-prefix-cls} {
+//   @{L}&&-scroll-position-left &-fixed-left {
+//     box-shadow: none;
+//   }
+
+//   @{L}&&-scroll-position-right &-fixed-right {
+//     box-shadow: none;
+//   }
+// }
+
+/*OMid: Moved from upper*/
+.@{table-prefix-cls} {
+  &-fixed-left {
+    @{L}.@{table-prefix-cls}-wrapper
+      .@{table-prefix-cls}-fixed-header
+      &
+      .@{table-prefix-cls}-body-inner {
+      padding-right: 0;
+    }
+  }
+}

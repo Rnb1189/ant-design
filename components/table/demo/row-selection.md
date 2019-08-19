@@ -18,7 +18,7 @@ Rows can be selectable by making first column as a selectable column.
 > selection happens when clicking checkbox defaultly. You can see <https://codesandbox.io/s/000vqw38rl> if you need row-click selection behavior.
 
 ```jsx
-import { Table } from 'antd';
+import { Table } from '../../index';
 
 const columns = [
   {
@@ -74,7 +74,11 @@ const rowSelection = {
 };
 
 ReactDOM.render(
-  <Table rowSelection={rowSelection} columns={columns} dataSource={data} />,
+  <div>
+    <Table rowSelection={rowSelection} columns={columns} dataSource={data} />
+    <div style={{ margin: 20, backgroundColor: '#fff0f6' }}>Rtl</div>
+    <Table isRtl={true} rowSelection={rowSelection} columns={columns} dataSource={data} />
+  </div>,
   mountNode,
 );
 ```

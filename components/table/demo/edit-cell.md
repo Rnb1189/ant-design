@@ -14,7 +14,7 @@ title:
 Table with editable cells.
 
 ```jsx
-import { Table, Input, Button, Popconfirm, Form } from 'antd';
+import { Table, Input, Button, Popconfirm, Form } from '../../index';
 
 const EditableContext = React.createContext();
 

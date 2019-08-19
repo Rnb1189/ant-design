@@ -14,7 +14,7 @@ title:
 When there's too much information to show and the table can't display all at once.
 
 ```jsx
-import { Table } from 'antd';
+import { Table } from '../../index';
 
 const columns = [
   { title: 'Name', dataIndex: 'name', key: 'name' },
@@ -53,11 +53,20 @@ const data = [
 ];
 
 ReactDOM.render(
-  <Table
-    columns={columns}
-    expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
-    dataSource={data}
-  />,
+  <div>
+    <Table
+      columns={columns}
+      expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
+      dataSource={data}
+    />
+    <div style={{ margin: 20, backgroundColor: '#fff0f6' }}>Rtl</div>
+    <Table
+      isRtl={true}
+      columns={columns}
+      expandedRowRender={record => <p style={{ margin: 0 }}>{record.description}</p>}
+      dataSource={data}
+    />
+  </div>,
   mountNode,
 );
 ```

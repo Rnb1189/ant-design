@@ -31,7 +31,6 @@ class App extends React.Component {
 
   render() {
     const isRtl = this.state.isRtl;
-    const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };
     return (
       <div>
         <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
