@@ -24,18 +24,15 @@ class App extends React.Component {
   };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   enterLoading = () => {
-    this.setState({ ...this.state, loading: true });
+    this.setState({ loading: true });
   };
 
   enterIconLoading = () => {
-    this.setState({ ...this.state, iconLoading: true });
+    this.setState({ iconLoading: true });
   };
 
   render() {

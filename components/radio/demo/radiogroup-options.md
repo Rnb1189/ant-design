@@ -37,16 +37,12 @@ class App extends React.Component {
   };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   onChange1 = e => {
     console.log('radio1 checked', e.target.value);
     this.setState({
-      ...this.state,
       value1: e.target.value,
     });
   };
@@ -54,7 +50,6 @@ class App extends React.Component {
   onChange2 = e => {
     console.log('radio2 checked', e.target.value);
     this.setState({
-      ...this.state,
       value2: e.target.value,
     });
   };
@@ -62,7 +57,6 @@ class App extends React.Component {
   onChange3 = e => {
     console.log('radio3 checked', e.target.value);
     this.setState({
-      ...this.state,
       value3: e.target.value,
     });
   };

@@ -27,16 +27,12 @@ class App extends React.Component {
   handleClick = e => {
     console.log('click ', e);
     this.setState({
-      ...this.state,
       current: e.key,
     });
   };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   render() {

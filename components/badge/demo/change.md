@@ -22,15 +22,12 @@ class Demo extends React.Component {
   state = { isRtl: false, count: 5, show: true };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   increase = () => {
     const count = this.state.count + 1;
-    this.setState({ ...this.state, count });
+    this.setState({ count });
   };
 
   decline = () => {
@@ -38,11 +35,11 @@ class Demo extends React.Component {
     if (count < 0) {
       count = 0;
     }
-    this.setState({ ...this.state, count });
+    this.setState({ count });
   };
 
   onChange = show => {
-    this.setState({ ...this.state, show });
+    this.setState({ show });
   };
 
   render() {

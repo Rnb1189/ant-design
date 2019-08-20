@@ -75,15 +75,11 @@ class CompactDemo extends React.Component {
   };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   handleChange = value => {
     this.setState({
-      ...this.state,
       dataSource:
         !value || value.indexOf('@') >= 0
           ? []

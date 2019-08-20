@@ -34,10 +34,7 @@ class Demo extends React.Component {
   };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   render() {
@@ -52,7 +49,7 @@ class Demo extends React.Component {
             isRtl={isRtl}
             style={{ width: 200 }}
             onChange={val => {
-              this.setState({ ...this.state, parentPos: val });
+              this.setState({ parentPos: val });
             }}
           >
             {positionList.map(pos => (
@@ -66,7 +63,7 @@ class Demo extends React.Component {
             isRtl={isRtl}
             style={{ width: 200 }}
             onChange={val => {
-              this.setState({ ...this.state, childPos: val });
+              this.setState({ childPos: val });
             }}
           >
             {positionList.map(pos => (
@@ -80,7 +77,7 @@ class Demo extends React.Component {
             isRtl={isRtl}
             style={{ width: 200 }}
             onChange={val => {
-              this.setState({ ...this.state, parentType: val });
+              this.setState({ parentType: val });
             }}
           >
             <Option value="line">Parent - line</Option>
@@ -91,7 +88,7 @@ class Demo extends React.Component {
             isRtl={isRtl}
             style={{ width: 200 }}
             onChange={val => {
-              this.setState({ ...this.state, childType: val });
+              this.setState({ childType: val });
             }}
           >
             <Option value="line">Child - line</Option>

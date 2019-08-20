@@ -23,11 +23,9 @@ class App extends React.Component {
   };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
+
   render() {
     const isRtl = this.state.isRtl;
     const dirStyle = { direction: `${isRtl ? 'rtl' : 'ltr'}` };

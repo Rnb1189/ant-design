@@ -26,22 +26,17 @@ class Sider extends React.Component {
   };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   changeMode = value => {
     this.setState({
-      ...this.state,
       mode: value ? 'vertical' : 'inline',
     });
   };
 
   changeTheme = value => {
     this.setState({
-      ...this.state,
       theme: value ? 'dark' : 'light',
     });
   };

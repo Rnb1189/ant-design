@@ -34,14 +34,11 @@ class Demo extends React.Component {
   }
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   onChange = activeKey => {
-    this.setState({ ...this.state, activeKey });
+    this.setState({ activeKey });
   };
 
   onEdit = (targetKey, action) => {
@@ -52,7 +49,7 @@ class Demo extends React.Component {
     const { panes } = this.state;
     const activeKey = `newTab${this.newTabIndex++}`;
     panes.push({ title: 'New Tab', content: 'New Tab Pane', key: activeKey });
-    this.setState({ ...this.state, panes, activeKey });
+    this.setState({ panes, activeKey });
   };
 
   remove = targetKey => {
@@ -71,7 +68,7 @@ class Demo extends React.Component {
         activeKey = panes[0].key;
       }
     }
-    this.setState({ ...this.state, panes, activeKey });
+    this.setState({ panes, activeKey });
   };
 
   render() {

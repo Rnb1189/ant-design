@@ -54,10 +54,7 @@ class Demo extends React.Component {
   };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   onDragEnter = info => {
@@ -126,7 +123,6 @@ class Demo extends React.Component {
     }
 
     this.setState({
-      ...this.state,
       gData: data,
     });
   };

@@ -23,14 +23,11 @@ class App extends React.Component {
   };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   handleChange = value => {
-    this.setState({ ...this.state, value });
+    this.setState({ value });
   };
 
   render() {

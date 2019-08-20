@@ -30,15 +30,11 @@ class App extends React.Component {
   };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   onChange = checkedList => {
     this.setState({
-      ...this.state,
       checkedList,
       indeterminate: !!checkedList.length && checkedList.length < plainOptions.length,
       checkAll: checkedList.length === plainOptions.length,
@@ -47,7 +43,6 @@ class App extends React.Component {
 
   onCheckAllChange = e => {
     this.setState({
-      ...this.state,
       checkedList: e.target.checked ? plainOptions : [],
       indeterminate: false,
       checkAll: e.target.checked,

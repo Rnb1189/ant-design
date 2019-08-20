@@ -228,6 +228,15 @@
     "lint-staged:demo": "cross-env RUN_ENV=DEMO eslint --ext '.md'",
     "prettier": "prettier -c --write '**/*'"
   },
+  "pre-commit": [
+    "lint-staged"
+  ],
+  "lint-staged": {
+    "**/*.{js,jsx,tsx,ts,less,md,json}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
   "sideEffects": [
     "dist/*",
     "es/**/style/*",

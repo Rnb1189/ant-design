@@ -1,8 +1,7 @@
 ---
-order: 0
-title:
-  zh-CN: 基本使用
-  en-US: Basic Usage
+
+order: 0 title: zh-CN: 基本使用 en-US: Basic Usage
+
 ---
 
 ## zh-CN
@@ -23,15 +22,11 @@ class Complete extends React.Component {
   state = { isRtl: false, dataSource: [] };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   handleSearch = value => {
     this.setState({
-      ...this.state,
       dataSource: !value ? [] : [value, value + value, value + value + value],
     });
   };

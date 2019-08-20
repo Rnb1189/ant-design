@@ -43,14 +43,11 @@ class Demo extends React.Component {
   state = { isRtl: false, expandIconPosition: 'left' };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   onPositionChange = expandIconPosition => {
-    this.setState({ ...this.state, expandIconPosition });
+    this.setState({ expandIconPosition });
   };
 
   render() {

@@ -1,8 +1,7 @@
 ---
-order: 2
-title:
-  zh-CN: 按钮尺寸
-  en-US: Size
+
+order: 2 title: zh-CN: 按钮尺寸 en-US: Size
+
 ---
 
 ## zh-CN
@@ -27,12 +26,11 @@ class ButtonSize extends React.Component {
   };
   toggleRtl = () => {
     this.setState({
-      ...this.state,
       isRtl: !this.state.isRtl,
     });
   };
   handleSizeChange = e => {
-    this.setState({ ...this.state, size: e.target.value });
+    this.setState({ size: e.target.value });
   };
 
   render() {
@@ -44,7 +42,7 @@ class ButtonSize extends React.Component {
         <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
         <br />
         <div style={dirStyle}>
-          <Radio.Group value={size} onChange={this.handleSizeChange}>
+          <Radio.Group isRtl={isRtl} value={size} onChange={this.handleSizeChange}>
             <Radio.Button value="large">Large</Radio.Button>
             <Radio.Button value="default">Default</Radio.Button>
             <Radio.Button value="small">Small</Radio.Button>

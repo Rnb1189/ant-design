@@ -33,18 +33,15 @@ class App extends React.Component {
   }
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   onGutterChange = gutterKey => {
-    this.setState({ ...this.state, gutterKey });
+    this.setState({ gutterKey });
   };
 
   onColCountChange = colCountKey => {
-    this.setState({ ...this.state, colCountKey });
+    this.setState({ colCountKey });
   };
 
   render() {

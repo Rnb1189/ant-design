@@ -90,7 +90,7 @@ class Demo extends React.Component {
   };
 
   toggleRtl = isRtl => {
-    this.setState({ ...this.state, isRtl });
+    this.setState({ isRtl });
   };
 
   handleToggle = prop => enable => {

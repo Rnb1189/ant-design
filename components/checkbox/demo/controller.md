@@ -24,18 +24,15 @@ class App extends React.Component {
   };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   toggleChecked = () => {
-    this.setState({ ...this.state, checked: !this.state.checked });
+    this.setState({ checked: !this.state.checked });
   };
 
   toggleDisable = () => {
-    this.setState({ ...this.state, disabled: !this.state.disabled });
+    this.setState({ disabled: !this.state.disabled });
   };
 
   onChange = e => {

@@ -30,16 +30,12 @@ class App extends React.Component {
 
   toggleCollapsed = () => {
     this.setState({
-      ...this.state,
       collapsed: !this.state.collapsed,
     });
   };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   render() {

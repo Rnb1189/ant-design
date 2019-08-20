@@ -20,15 +20,11 @@ const { Header, Sider, Content } = Layout;
 class SiderDemo extends React.Component {
   state = { isRtl: false, collapsed: false };
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   toggle = () => {
     this.setState({
-      ...this.state,
       collapsed: !this.state.collapsed,
     });
   };

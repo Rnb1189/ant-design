@@ -26,10 +26,7 @@ class EditableTagGroup extends React.Component {
   };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   handleClose = removedTag => {
@@ -39,11 +36,11 @@ class EditableTagGroup extends React.Component {
   };
 
   showInput = () => {
-    this.setState({ ...this.state, inputVisible: true }, () => this.input.focus());
+    this.setState({ inputVisible: true }, () => this.input.focus());
   };
 
   handleInputChange = e => {
-    this.setState({ ...this.state, inputValue: e.target.value });
+    this.setState({ inputValue: e.target.value });
   };
 
   handleInputConfirm = () => {
@@ -54,7 +51,6 @@ class EditableTagGroup extends React.Component {
     }
     console.log(tags);
     this.setState({
-      ...this.state,
       tags,
       inputVisible: false,
       inputValue: '',

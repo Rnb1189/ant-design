@@ -22,11 +22,9 @@ class App extends React.Component {
   };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
+
   onChange = e => {
     console.log(`radio checked:${e.target.value}`);
   };

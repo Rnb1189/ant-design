@@ -22,14 +22,11 @@ class App extends React.Component {
   state = { isRtl: false, loading: true };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   onChange = checked => {
-    this.setState({ ...this.state, loading: !checked });
+    this.setState({ loading: !checked });
   };
 
   render() {

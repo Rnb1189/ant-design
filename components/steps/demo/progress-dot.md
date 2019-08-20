@@ -1,8 +1,7 @@
 ---
-order: 8
-title:
-  zh-CN: 点状步骤条
-  en-US: Dot Style
+
+order: 8 title: zh-CN: 点状步骤条 en-US: Dot Style
+
 ---
 
 ## zh-CN
@@ -23,10 +22,7 @@ class App extends React.Component {
   };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   render() {

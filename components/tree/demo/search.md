@@ -84,15 +84,11 @@ class SearchTree extends React.Component {
   };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   onExpand = expandedKeys => {
     this.setState({
-      ...this.state,
       expandedKeys,
       autoExpandParent: false,
     });
@@ -108,7 +104,7 @@ class SearchTree extends React.Component {
         return null;
       })
       .filter((item, i, self) => item && self.indexOf(item) === i);
-    this.setState({ ...this.state, expandedKeys, searchValue: value, autoExpandParent: true });
+    this.setState({ expandedKeys, searchValue: value, autoExpandParent: true });
   };
 
   render() {

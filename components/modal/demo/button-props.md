@@ -21,7 +21,6 @@ class App extends React.Component {
 
   showModal = () => {
     this.setState({
-      ...this.state,
       visible: true,
     });
   };
@@ -29,7 +28,6 @@ class App extends React.Component {
   handleOk = e => {
     console.log(e);
     this.setState({
-      ...this.state,
       visible: false,
     });
   };
@@ -37,7 +35,6 @@ class App extends React.Component {
   handleCancel = e => {
     console.log(e);
     this.setState({
-      ...this.state,
       visible: false,
     });
   };

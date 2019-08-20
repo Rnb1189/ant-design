@@ -28,18 +28,15 @@ class Sider extends React.Component {
   };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   onOpenChange = openKeys => {
     const latestOpenKey = openKeys.find(key => this.state.openKeys.indexOf(key) === -1);
     if (this.rootSubmenuKeys.indexOf(latestOpenKey) === -1) {
-      this.setState({ ...this.state, openKeys });
+      this.setState({ openKeys });
     } else {
-      this.setState({ ...this.state, openKeys: latestOpenKey ? [latestOpenKey] : [] });
+      this.setState({ openKeys: latestOpenKey ? [latestOpenKey] : [] });
     }
   };
 

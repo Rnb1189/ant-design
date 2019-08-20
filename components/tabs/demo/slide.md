@@ -28,15 +28,12 @@ class SlidingTabsDemo extends React.Component {
   }
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   handleModeChange = e => {
     const mode = e.target.value;
-    this.setState({ ...this.state, mode });
+    this.setState({ mode });
   };
 
   render() {

@@ -26,11 +26,9 @@ class Sider extends React.Component {
     console.log('click ', e);
   };
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
+
   render() {
     const dirStyle = { direction: `${this.state.isRtl ? 'rtl' : 'ltr'}` };
     return (

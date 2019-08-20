@@ -24,17 +24,17 @@
   }
 
   // arrow
-  @{L} &-arrow {
+  @{L}& &-arrow {
     .iconfont-mixin();
     right: @control-padding-horizontal - 1px;
   }
-  @{R} &-arrow {
+  @{R}& &-arrow {
     .iconfont-mixin();
     left: @control-padding-horizontal - 1px;
   }
   //_____
 
-  @{L} &-selection {
+  @{L}& &-selection {
     &:hover {
       .ltr-hover;
     }
@@ -46,7 +46,7 @@
       padding-right: 20px;
     }
   }
-  @{R} &-selection {
+  @{R}& &-selection {
     &:hover {
       .rtl-hover;
     }
@@ -60,28 +60,28 @@
   }
   //_____
 
-  @{L} &-no-arrow &-selection-selected-value {
+  @{L}&-no-arrow &-selection-selected-value {
     padding-right: 0;
   }
-  @{R} &-no-arrow &-selection-selected-value {
+  @{R}&-no-arrow &-selection-selected-value {
     padding-left: 0;
   }
   //_____
 
-  @{L} &-disabled &-selection--multiple &-selection__choice {
+  @{L}&-disabled &-selection--multiple &-selection__choice {
     padding-right: 10px;
   }
-  @{R} &-disabled &-selection--multiple &-selection__choice {
+  @{R}&-disabled &-selection--multiple &-selection__choice {
     padding-left: 10px;
   }
 
-  @{L} &-sm {
+  @{L}&-sm {
     .@{select-prefix-cls}-selection__clear,
     .@{select-prefix-cls}-arrow {
       right: @control-padding-horizontal-sm;
     }
   }
-  @{R} &-sm {
+  @{R}&-sm {
     .@{select-prefix-cls}-selection__clear,
     .@{select-prefix-cls}-arrow {
       left: @control-padding-horizontal-sm;
@@ -89,49 +89,49 @@
   }
   //_____/
 
-  @{L} &-selection__placeholder,
-  @{L} &-search__field__placeholder {
+  @{L}& &-selection__placeholder,
+  @{L}& &-search__field__placeholder {
     right: 9px;
     left: 0;
     text-align: left;
   }
-  @{R} &-selection__placeholder,
-  @{R} &-search__field__placeholder {
+  @{R}& &-selection__placeholder,
+  @{R}& &-search__field__placeholder {
     left: 9px;
     right: 0;
     text-align: right;
   }
   //_____
 
-  @{L} &-search__field__placeholder {
+  @{L}& &-search__field__placeholder {
     left: @control-padding-horizontal;
   }
-  @{R} &-search__field__placeholder {
+  @{R}& &-search__field__placeholder {
     right: @control-padding-horizontal;
   }
   //_____
 
-  @{L} &-search__field__mirror {
+  @{L}& &-search__field__mirror {
     left: 0;
   }
-  @{R} &-search__field__mirror {
+  @{R}& &-search__field__mirror {
     right: 0;
   }
   //_____
 
-  @{L} &-search--inline {
+  @{L}& &-search--inline {
     > i {
       float: right;
     }
   }
-  @{R} &-search--inline {
+  @{R}& &-search--inline {
     > i {
       float: left;
     }
   }
   //_____
 
-  @{L} &-selection--multiple {
+  @{L}& &-selection--multiple {
     .@{select-prefix-cls}-search--inline {
       float: left;
     }
@@ -150,7 +150,7 @@
       right: 4px;
     }
   }
-  @{R} &-selection--multiple {
+  @{R}& &-selection--multiple {
     .@{select-prefix-cls}-search--inline {
       float: right;
     }
@@ -171,37 +171,37 @@
   }
   //_____
 
-  @{L} &-allow-clear &-selection--single &-selection-selected-value {
+  @{L}&-allow-clear &-selection--single &-selection-selected-value {
     padding-right: 16px;
   }
-  @{R} &-allow-clear &-selection--single &-selection-selected-value {
+  @{R}&-allow-clear &-selection--single &-selection-selected-value {
     padding-left: 16px;
   }
   //_____
 
-  @{L} &-allow-clear &-selection--multiple &-selection__rendered,
-  @{L} &-show-arrow &-selection--multiple &-selection__rendered {
+  @{L}&-allow-clear &-selection--multiple &-selection__rendered,
+  @{L}&-show-arrow &-selection--multiple &-selection__rendered {
     margin-right: 20px; // In case that clear button will overlap content
   }
-  @{R} &-allow-clear &-selection--multiple &-selection__rendered,
-  @{R} &-show-arrow &-selection--multiple &-selection__rendered {
+  @{R}&-allow-clear &-selection--multiple &-selection__rendered,
+  @{R}&-show-arrow &-selection--multiple &-selection__rendered {
     margin-left: 20px; // In case that clear button will overlap content
   }
   //_____
 
-  @{L} &-combobox&-allow-clear &-selection:hover &-selection__rendered,
-  @{L} &-combobox&-show-arrow &-selection:hover &-selection__rendered {
+  @{L}&-combobox&-allow-clear &-selection:hover &-selection__rendered,
+  @{L}&-combobox&-show-arrow &-selection:hover &-selection__rendered {
     margin-right: 20px; // In case that clear button will overlap content
   }
-  @{R} &-combobox&-allow-clear &-selection:hover &-selection__rendered,
-  @{R} &-combobox&-show-arrow &-selection:hover &-selection__rendered {
+  @{R}&-combobox&-allow-clear &-selection:hover &-selection__rendered,
+  @{R}&-combobox&-show-arrow &-selection:hover &-selection__rendered {
     margin-left: 20px; // In case that clear button will overlap content
   }
   //_____
 }
 
 .@{select-prefix-cls}-dropdown {
-  @{L} &-menu {
+  @{L}& &-menu {
     padding-left: 0; // Override default ul/ol
     &-item-group-list {
       > .@{select-prefix-cls}-dropdown-menu-item {
@@ -209,7 +209,7 @@
       }
     }
   }
-  @{R} &-menu {
+  @{R}& &-menu {
     direction: rtl;
     padding-right: 0; // Override default ul/ol
     &-item-group-list {
@@ -242,10 +242,10 @@
 
   // Patch for popup adjust
   // https://github.com/ant-design/ant-design/issues/14422
-  @{L} &--empty&--multiple &-menu-item {
+  @{L}& &--empty&--multiple &-menu-item {
     padding-right: @control-padding-horizontal;
   }
-  @{R} &--empty&--multiple &-menu-item {
+  @{R}& &--empty&--multiple &-menu-item {
     padding-left: @control-padding-horizontal;
   }
 }

@@ -28,28 +28,24 @@ class App extends React.Component {
   };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   showModal = () => {
     this.setState({
-      ...this.state,
       visible: true,
     });
   };
 
   handleOk = () => {
-    this.setState({ ...this.state, loading: true });
+    this.setState({ loading: true });
     setTimeout(() => {
-      this.setState({ ...this.state, loading: false, visible: false });
+      this.setState({ loading: false, visible: false });
     }, 3000);
   };
 
   handleCancel = () => {
-    this.setState({ ...this.state, visible: false });
+    this.setState({ visible: false });
   };
 
   render() {

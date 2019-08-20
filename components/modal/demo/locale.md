@@ -20,22 +20,17 @@ class LocalizedModal extends React.Component {
   state = { isRtl: false, visible: false };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   showModal = () => {
     this.setState({
-      ...this.state,
       visible: true,
     });
   };
 
   hideModal = () => {
     this.setState({
-      ...this.state,
       visible: false,
     });
   };

@@ -1,8 +1,7 @@
 ---
-order: 2
-title:
-  zh-CN: 带图标的步骤条
-  en-US: With icon
+
+order: 2 title: zh-CN: 带图标的步骤条 en-US: With icon
+
 ---
 
 ## zh-CN
@@ -23,10 +22,7 @@ class App extends React.Component {
   };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   render() {

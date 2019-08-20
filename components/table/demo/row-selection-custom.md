@@ -1,8 +1,7 @@
 ---
-order: 4
-title:
-  en-US: Custom selection
-  zh-CN: 自定义选择项
+
+order: 4 title: en-US: Custom selection zh-CN: 自定义选择项
+
 ---
 
 ## zh-CN
@@ -48,10 +47,7 @@ class App extends React.Component {
   };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   onSelectChange = selectedRowKeys => {

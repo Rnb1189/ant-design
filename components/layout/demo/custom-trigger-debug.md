@@ -20,10 +20,7 @@ class SiderDemo extends React.Component {
   state = { isRtl: false, collapsed: true };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   toggle = () => {

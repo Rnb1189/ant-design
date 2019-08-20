@@ -71,27 +71,24 @@ class Demo extends React.Component {
   };
 
   toggleRtl = () => {
-    this.setState({
-      ...this.state,
-      isRtl: !this.state.isRtl,
-    });
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   onExpand = expandedKeys => {
     console.log('onExpand', expandedKeys);
     // if not set autoExpandParent to false, if children expanded, parent can not collapse.
     // or, you can remove all expanded children keys.
-    this.setState({ ...this.state, expandedKeys, autoExpandParent: false });
+    this.setState({ expandedKeys, autoExpandParent: false });
   };
 
   onCheck = checkedKeys => {
     console.log('onCheck', checkedKeys);
-    this.setState({ ...this.state, checkedKeys });
+    this.setState({ checkedKeys });
   };
 
   onSelect = (selectedKeys, info) => {
     console.log('onSelect', info);
-    this.setState({ ...this.state, selectedKeys });
+    this.setState({ selectedKeys });
   };
 
   renderTreeNodes = data =>
