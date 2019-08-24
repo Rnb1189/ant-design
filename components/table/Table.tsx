@@ -1,4 +1,4 @@
- import * as React from 'react';
+import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import RcTable, { INTERNAL_COL_DEFINE } from 'rc-table';
 import * as PropTypes from 'prop-types';
@@ -456,7 +456,7 @@ export default class Table<T> extends React.Component<TableProps<T>, TableState<
       onChange.apply(
         null,
         this.prepareParamsArguments({
-           
+          ...this.state,
           ...newState,
         }),
       );
@@ -522,7 +522,7 @@ export default class Table<T> extends React.Component<TableProps<T>, TableState<
         onChange.apply(
           null,
           this.prepareParamsArguments({
-             
+            ...this.state,
             selectionDirty: false,
             filters,
             pagination,
@@ -716,7 +716,7 @@ export default class Table<T> extends React.Component<TableProps<T>, TableState<
       onChange.apply(
         null,
         this.prepareParamsArguments({
-           
+          ...this.state,
           selectionDirty: false,
           pagination,
         }),
@@ -993,7 +993,7 @@ export default class Table<T> extends React.Component<TableProps<T>, TableState<
       onChange.apply(
         null,
         this.prepareParamsArguments({
-           
+          ...this.state,
           pagination: nextPagination,
         }),
       );
