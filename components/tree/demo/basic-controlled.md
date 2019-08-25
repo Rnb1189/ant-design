@@ -100,7 +100,7 @@ class Demo extends React.Component {
           </TreeNode>
         );
       }
-      return <TreeNode {...item} />;
+      return <TreeNode key={item.key} {...item} />;
     });
 
   render() {

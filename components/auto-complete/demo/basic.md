@@ -10,7 +10,7 @@ order: 0 title: zh-CN: 基本使用 en-US: Basic Usage
 
 ## en-US
 
-Basic Usage, set datasource of autocomplete with `dataSource` property.
+Basic Usage, set data source of autocomplete with `dataSource` property.
 
 ```jsx
 import { AutoComplete, Switch } from '../../index';
@@ -19,32 +19,45 @@ function onSelect(value) {
 }
 
 class Complete extends React.Component {
-  state = { isRtl: false, dataSource: [] };
+  state = { isRtl: false, value: '', dataSource: [] };
 
   toggleRtl = () => {
     this.setState({ isRtl: !this.state.isRtl });
   };
 
-  handleSearch = value => {
+  onSearch = searchText => {
     this.setState({
-      dataSource: !value ? [] : [value, value + value, value + value + value],
+      dataSource: !searchText ? [] : [searchText, searchText.repeat(2), searchText.repeat(3)],
     });
   };
 
+  onChange = value => {
+    this.setState({ value });
+  };
+
   render() {
-    const { dataSource, isRtl } = this.state;
+    const { dataSource, value } = this.state;
     return (
       <div>
-        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
-        <br />
-        <br />
         <AutoComplete
           isRtl={isRtl}
           dataSource={dataSource}
           style={{ width: 200 }}
           onSelect={onSelect}
-          onSearch={this.handleSearch}
+          onSearch={this.onSearch}
           placeholder="input here"
+        />
+        <br />
+        <br />
+        <AutoComplete
+          isRtl={isRtl}
+          value={value}
+          dataSource={dataSource}
+          style={{ width: 200 }}
+          onSelect={onSelect}
+          onSearch={this.onSearch}
+          onChange={this.onChange}
+          placeholder="control mode"
         />
       </div>
     );

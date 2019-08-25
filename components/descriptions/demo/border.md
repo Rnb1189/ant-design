@@ -37,7 +37,7 @@ class App extends React.Component {
             <Descriptions.Item label="Billing Mode">Prepaid</Descriptions.Item>
             <Descriptions.Item label="Automatic Renewal">YES</Descriptions.Item>
             <Descriptions.Item label="Order time">2018-04-24 18:00:00</Descriptions.Item>
-            <Descriptions.Item label="Usage Time" span={3}>
+            <Descriptions.Item label="Usage Time" span={2}>
               2019-04-24 18:00:00
             </Descriptions.Item>
             <Descriptions.Item label="Status" span={3}>

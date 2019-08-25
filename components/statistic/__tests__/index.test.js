@@ -3,8 +3,8 @@ import MockDate from 'mockdate';
 import moment from 'moment';
 import { mount } from 'enzyme';
 import Statistic from '..';
-
-const delay = timeout => new Promise(resolve => setTimeout(resolve, timeout));
+import { formatTimeStr } from '../utils';
+import { sleep } from '../../../tests/utils';
 
 describe('Statistic', () => {
   beforeAll(() => {
@@ -69,7 +69,7 @@ describe('Statistic', () => {
       const instance = wrapper.instance();
       expect(instance.countdownId).not.toBe(undefined);
 
-      await delay(10);
+      await sleep(10);
 
       wrapper.unmount();
       expect(instance.countdownId).toBe(undefined);
@@ -102,6 +102,12 @@ describe('Statistic', () => {
         expect(onFinish).toHaveBeenCalled();
         jest.useFakeTimers();
       });
+    });
+  });
+
+  describe('utils', () => {
+    it('format should support escape', () => {
+      expect(formatTimeStr(1000 * 60 * 60 * 24, 'D [Day]')).toBe('1 Day');
     });
   });
 });

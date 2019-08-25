@@ -1,10 +1,10 @@
 import * as React from 'react';
 import RcTree, { TreeNode } from 'rc-tree';
-import DirectoryTree from './DirectoryTree';
 import classNames from 'classnames';
+import DirectoryTree from './DirectoryTree';
 import Icon from '../icon';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
-import { collapseMotion } from '../_util/motion';
+import collapseMotion from '../_util/motion';
 import Direction from './../_util/direction';
 
 export interface AntdTreeNodeAttribute {
@@ -106,7 +106,7 @@ export interface TreeProps {
   multiple?: boolean;
   /** 是否自动展开父节点 */
   autoExpandParent?: boolean;
-  /** checkable状态下节点选择完全受控（父子节点选中状态不再关联）*/
+  /** checkable状态下节点选择完全受控（父子节点选中状态不再关联） */
   checkStrictly?: boolean;
   /** 是否支持选中 */
   checkable?: boolean;
@@ -150,7 +150,7 @@ export interface TreeProps {
   onLoad?: (loadedKeys: string[], info: { event: 'load'; node: AntTreeNode }) => void;
   /** 响应右键点击 */
   onRightClick?: (options: AntTreeNodeMouseEvent) => void;
-  /** 设置节点可拖拽（IE>8）*/
+  /** 设置节点可拖拽（IE>8） */
   draggable?: boolean;
   onDragStart?: (options: AntTreeNodeMouseEvent) => void;
   onDragEnter?: (options: AntTreeNodeDragEnterEvent) => void;
@@ -171,6 +171,7 @@ export interface TreeProps {
 
 export default class Tree extends React.Component<TreeProps, any> {
   static TreeNode: React.ComponentClass<AntTreeNodeProps> = TreeNode;
+
   static DirectoryTree = DirectoryTree;
 
   static defaultProps = {
@@ -205,19 +206,18 @@ export default class Tree extends React.Component<TreeProps, any> {
           theme="outlined"
         />
       );
-    } else {
-      const switcherCls = `${prefixCls}-switcher-icon`;
-      if (isLeaf) {
-        return null;
-      } else if (switcherIcon) {
-        const switcherOriginCls = switcherIcon.props.className || '';
-        return React.cloneElement(switcherIcon, {
-          className: classNames(switcherOriginCls, switcherCls),
-        });
-      } else {
-        return <Icon type="caret-down" className={switcherCls} theme="filled" />;
-      }
     }
+    const switcherCls = `${prefixCls}-switcher-icon`;
+    if (isLeaf) {
+      return null;
+    }
+    if (switcherIcon) {
+      const switcherOriginCls = switcherIcon.props.className || '';
+      return React.cloneElement(switcherIcon, {
+        className: classNames(switcherOriginCls, switcherCls),
+      });
+    }
+    return <Icon type="caret-down" className={switcherCls} theme="filled" />;
   };
 
   setTreeRef = (node: any) => {
@@ -225,9 +225,16 @@ export default class Tree extends React.Component<TreeProps, any> {
   };
 
   renderTree = ({ getPrefixCls }: ConfigConsumerProps) => {
-    const props = this.props;
-    const { prefixCls: customizePrefixCls, className, showIcon, switcherIcon, blockNode } = props;
-    const checkable = props.checkable;
+    const { props } = this;
+    const {
+      prefixCls: customizePrefixCls,
+      className,
+      showIcon,
+      switcherIcon,
+      blockNode,
+      children,
+    } = props;
+    const { checkable } = props;
     const prefixCls = getPrefixCls('tree', customizePrefixCls);
     return (
       <RcTree
@@ -248,7 +255,7 @@ export default class Tree extends React.Component<TreeProps, any> {
           this.renderSwitcherIcon(prefixCls, switcherIcon, nodeProps)
         }
       >
-        {this.props.children}
+        {children}
       </RcTree>
     );
   };

@@ -39,14 +39,6 @@ export default class Rate extends React.Component<RateProps, any> {
 
   private rcRate: any;
 
-  focus() {
-    this.rcRate.focus();
-  }
-
-  blur() {
-    this.rcRate.blur();
-  }
-
   saveRate = (node: any) => {
     this.rcRate = node;
   };
@@ -61,6 +53,14 @@ export default class Rate extends React.Component<RateProps, any> {
       </Tooltip>
     );
   };
+
+  focus() {
+    this.rcRate.focus();
+  }
+
+  blur() {
+    this.rcRate.blur();
+  }
 
   renderRate = ({ getPrefixCls }: ConfigConsumerProps) => {
     const { prefixCls, ...restProps } = this.props;

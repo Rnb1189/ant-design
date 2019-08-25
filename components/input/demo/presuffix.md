@@ -34,7 +34,6 @@ class App extends React.Component {
         <br />
         <div style={dirStyle}>
           <Input
-            isRtl={isRtl}
             placeholder="Enter your username"
             prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
             suffix={
@@ -43,6 +42,11 @@ class App extends React.Component {
               </Tooltip>
             }
           />
+
+          <br />
+          <br />
+
+          <Input prefix="￥" suffix="RMB" />
         </div>
       </div>
     );

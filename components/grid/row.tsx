@@ -1,7 +1,7 @@
-import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 import * as React from 'react';
 import classNames from 'classnames';
 import * as PropTypes from 'prop-types';
+import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 import RowContext from './RowContext';
 import { tuple } from '../_util/type';
 import ResponsiveObserve, {
@@ -44,7 +44,9 @@ export default class Row extends React.Component<RowProps, RowState> {
   state: RowState = {
     screens: {},
   };
+
   token: string;
+
   componentDidMount() {
     this.token = ResponsiveObserve.subscribe(screens => {
       if (typeof this.props.gutter === 'object') {
@@ -52,9 +54,11 @@ export default class Row extends React.Component<RowProps, RowState> {
       }
     });
   }
+
   componentWillUnmount() {
     ResponsiveObserve.unsubscribe(this.token);
   }
+
   getGutter(): number | undefined {
     const { gutter } = this.props;
     if (typeof gutter === 'object') {
@@ -67,6 +71,7 @@ export default class Row extends React.Component<RowProps, RowState> {
     }
     return gutter as number;
   }
+
   renderRow = ({ getPrefixCls }: ConfigConsumerProps) => {
     const {
       prefixCls: customizePrefixCls,

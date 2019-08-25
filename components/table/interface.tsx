@@ -4,6 +4,8 @@ import { Store } from './createStore';
 import { RadioChangeEvent } from '../radio';
 import { CheckboxChangeEvent } from '../checkbox';
 import { PaginationConfig } from '../pagination';
+
+// eslint-disable-next-line import/prefer-default-export
 export { PaginationConfig } from '../pagination';
 
 export type CompareFn<T> = (a: T, b: T, sortOrder?: SortOrder) => number;
@@ -81,6 +83,8 @@ export interface TableLocale {
   selectAll?: React.ReactNode;
   selectInvert?: React.ReactNode;
   sortTitle?: string;
+  expand?: string;
+  collapse?: string;
 }
 
 export type RowSelectionType = 'checkbox' | 'radio';
@@ -123,7 +127,7 @@ export interface ExpandIconProps<T> {
   record: T;
   needIndentSpaced: boolean;
   expandable: boolean;
-  onExpand: (record: T, event: MouseEvent) => void;
+  onExpand: (record: T, event?: React.MouseEvent) => void;
 }
 
 export interface TableCurrentDataSource<T> {
@@ -191,6 +195,7 @@ export interface TableProps<T> {
   style?: React.CSSProperties;
   children?: React.ReactNode;
   sortDirections?: SortOrder[];
+  getPopupContainer?: (triggerNode: HTMLElement) => HTMLElement;
 }
 
 export interface TableStateFilters {

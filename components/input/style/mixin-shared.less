@@ -2,6 +2,7 @@
 @import '../../style/mixins/index';
 
 @input-affix-width: 19px;
+@input-affix-with-clear-btn-width: 38px;
 
 // size mixins for input
 .input-lg() {
@@ -9,20 +10,33 @@
   padding: @input-padding-vertical-lg @input-padding-horizontal-lg;
   font-size: @font-size-lg;
   line-height: @input-height-lg;
-  line-height: ~'@{line-height-base} \9'; // https://github.com/ant-design/ant-design/issues/17753
+  // https://github.com/ant-design/ant-design/issues/17753
+  line-height: ~'@{line-height-base} \9';
+  // stylelint-disable-next-line
+  _:-ms-input-placeholder,
+  :root & {
+    line-height: @line-height-base;
+  }
 }
 
 .input-sm() {
   height: @input-height-sm;
   padding: @input-padding-vertical-sm @input-padding-horizontal-sm;
   line-height: @input-height-sm;
-  line-height: ~'@{line-height-base} \9'; // https://github.com/ant-design/ant-design/issues/17753
+  // https://github.com/ant-design/ant-design/issues/17753
+  line-height: ~'@{line-height-base} \9';
+  // stylelint-disable-next-line
+  _:-ms-input-placeholder,
+  :root & {
+    line-height: @line-height-base;
+  }
 }
 
 // input status
 // == when focus or actived
 .active(@color: @outline-color) {
   border-color: ~`colorPalette('@{color}', 5) `;
+  border-right-width: @border-width-base !important;
   outline: 0;
   // border-right-width: @border-width-base !important;
   // box-shadow: @input-outline-offset @outline-blur-size @outline-width fade(@color, 20%);
@@ -54,7 +68,12 @@
   color: @input-color;
   font-size: @font-size-base;
   line-height: @input-height-base;
-  line-height: ~'@{line-height-base} \9'; // https://github.com/ant-design/ant-design/issues/17753
+  // https://github.com/ant-design/ant-design/issues/17753
+  line-height: ~'@{line-height-base} \9';
+  _:-ms-input-placeholder,
+  :root & {
+    line-height: @line-height-base;
+  }
   background-color: @input-bg;
   background-image: none;
   border: @border-width-base @border-style-base @input-border-color;

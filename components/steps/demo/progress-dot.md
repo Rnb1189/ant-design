@@ -13,7 +13,7 @@ order: 8 title: zh-CN: 点状步骤条 en-US: Dot Style
 Steps with progress dot style.
 
 ```jsx
-import { Steps, Switch } from '../../index';
+import { Steps, Divider, Switch } from '../../index';
 const { Step } = Steps;
 
 class App extends React.Component {
@@ -36,6 +36,14 @@ class App extends React.Component {
           <Steps isRtl={isRtl} progressDot current={1}>
             <Step title="Finished" description="This is a description." />
             <Step title="In Progress" description="This is a description." />
+            <Step title="Waiting" description="This is a description." />
+          </Steps>
+          <Divider />
+          <Steps progressDot current={1} direction="vertical">
+            <Step title="Finished" description="This is a description. This is a description." />
+            <Step title="Finished" description="This is a description. This is a description." />
+            <Step title="In Progress" description="This is a description. This is a description." />
+            <Step title="Waiting" description="This is a description." />
             <Step title="Waiting" description="This is a description." />
           </Steps>
         </div>
