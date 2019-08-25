@@ -1,7 +1,8 @@
 ---
-
-order: 2 title: zh-CN: 带图标的步骤条 en-US: With icon
-
+order: 2
+title:
+  zh-CN: 带图标的步骤条
+  en-US: With icon
 ---
 
 ## zh-CN

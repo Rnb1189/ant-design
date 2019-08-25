@@ -1,7 +1,8 @@
 ---
-
-order: 8 title: zh-CN: 点状步骤条 en-US: Dot Style
-
+order: 8
+title:
+  zh-CN: 点状步骤条
+  en-US: Dot Style
 ---
 
 ## zh-CN

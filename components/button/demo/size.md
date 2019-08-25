@@ -1,7 +1,8 @@
 ---
-
-order: 2 title: zh-CN: 按钮尺寸 en-US: Size
-
+order: 2
+title:
+  zh-CN: 按钮尺寸
+  en-US: Size
 ---
 
 ## zh-CN
