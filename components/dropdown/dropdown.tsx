@@ -146,18 +146,6 @@ export default class Dropdown extends React.Component<DropDownProps, any> {
       ...rtlSetting,
     });
 
-    // const dropdownTrigger = React.cloneElement(child, {
-    //   // className: classNames(child.props.className, `${prefixCls}-trigger`),
-    //   //NEw
-    //   className: classNames(
-    //     child.props.className,
-    //     `${prefixCls}-trigger`,
-    //     // !!this.props.isRtl ? 'a-rtl' : 'a-ltr',
-    //   ),
-    //   disabled,
-    //   isRtl: this.props.isRtl,
-    // });
-
     const triggerActions = disabled ? [] : trigger;
     let alignPoint;
     if (triggerActions && triggerActions.indexOf('contextMenu') !== -1) {
