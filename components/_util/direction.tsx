@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { Component } from 'react';
 
 export default class Direction {
   static RTL: string = 'a-rtl';

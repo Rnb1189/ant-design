@@ -151,7 +151,7 @@ export default class Pagination extends React.Component<PaginationProps, {}> {
 }
 
 //NEw
-const RtlMiniSelect = Direction.withRtlClassName(MiniSelect);
-const LtrMiniSelect = Direction.withLtrClassName(MiniSelect);
-const RtlSelect = Direction.withRtlClassName(Select);
-const LtrSelect = Direction.withLtrClassName(Select);
+// const RtlMiniSelect = Direction.withRtlClassName(MiniSelect);
+// const LtrMiniSelect = Direction.withLtrClassName(MiniSelect);
+// const RtlSelect = Direction.withRtlClassName(Select);
+// const LtrSelect = Direction.withLtrClassName(Select);
