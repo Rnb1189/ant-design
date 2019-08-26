@@ -270,21 +270,16 @@
   }
 }
 
-// @{R}.@{menu-prefix-cls} {
-//   ul& > li.@{menu-prefix-cls}-item {
-//     text-align: right;
-//   }
-//   div&-submenu-title {
-//     text-align: right;
-//   }
-//   div&-submenu-title {
-//     text-align: right;
-//   }
-// }
-
 .@{menu-prefix-cls} {
   @{R}&&-sub {
     text-align: right;
+  }
+}
+
+//OMid: needed
+@{L}.@{menu-prefix-cls} {
+  &-sub.@{menu-prefix-cls}-inline {
+    border: 0;
   }
 }
 
