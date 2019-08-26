@@ -61,15 +61,15 @@ class App extends React.Component {
         <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
         <br />
         <div id="components-dropdown-demo-dropdown-button">
-          <Dropdown.Button isRtl={isRtl} onClick={this.handleButtonClick} overlay={menu}>
+          <Dropdown.Button isRtl={false} onClick={this.handleButtonClick} overlay={menu}>
             Dropdown1
           </Dropdown.Button>
           <br />
-          <Dropdown.Button isRtl={isRtl} overlay={menu} icon={<Icon type="user" />}>
+          <Dropdown.Button isRtl={false} overlay={menu} icon={<Icon type="user" />}>
             Dropdown2
           </Dropdown.Button>
           <br />
-          <Dropdown.Button isRtl={isRtl} onClick={this.handleButtonClick} overlay={menu} disabled>
+          <Dropdown.Button isRtl={false} onClick={this.handleButtonClick} overlay={menu} disabled>
             Dropdown3
           </Dropdown.Button>
           <br />

@@ -134,16 +134,29 @@ export default class Dropdown extends React.Component<DropDownProps, any> {
     const prefixCls = getPrefixCls('dropdown', customizePrefixCls);
     const child = React.Children.only(children) as React.ReactElement<any>;
 
+    //NEw
+    const rtlSetting: any = {};
+    if (child && child.props) {
+      if ('isRtl' in child.props === false) rtlSetting['isRtl'] = this.props.isRtl;
+    }
+
     const dropdownTrigger = React.cloneElement(child, {
-      // className: classNames(child.props.className, `${prefixCls}-trigger`),
-      //NEw
-      className: classNames(
-        child.props.className,
-        `${prefixCls}-trigger`,
-        !!this.props.isRtl ? 'a-rtl' : 'a-ltr',
-      ),
+      className: classNames(child.props.className, `${prefixCls}-trigger`),
       disabled,
+      ...rtlSetting,
     });
+
+    // const dropdownTrigger = React.cloneElement(child, {
+    //   // className: classNames(child.props.className, `${prefixCls}-trigger`),
+    //   //NEw
+    //   className: classNames(
+    //     child.props.className,
+    //     `${prefixCls}-trigger`,
+    //     // !!this.props.isRtl ? 'a-rtl' : 'a-ltr',
+    //   ),
+    //   disabled,
+    //   isRtl: this.props.isRtl,
+    // });
 
     const triggerActions = disabled ? [] : trigger;
     let alignPoint;
