@@ -36,18 +36,18 @@ function finalizeCompile() {
     fs.readdir(componentsPath, (err, files) => {
       files.forEach(file => {
         // NEw
-        if (fs.existsSync(path.join(componentsPath, file, 'style', 'index.less'))) {
-          componentsLessContent += `@import "../${path.join(file, 'style', 'index.less')}";\n`;
-        }
-        // if  (fs.existsSync(path.join(componentsPath, file, 'style', 'index-rtlltr.less'))) {
-        //   componentsLessContent += `@import "../${path.join(
-        //     file,
-        //     'style',
-        //     'index-rtlltr.less',
-        //   )}";\n`;
-        // } else if (fs.existsSync(path.join(componentsPath, file, 'style', 'index.less'))) {
+        // if (fs.existsSync(path.join(componentsPath, file, 'style', 'index.less'))) {
         //   componentsLessContent += `@import "../${path.join(file, 'style', 'index.less')}";\n`;
         // }
+        if (fs.existsSync(path.join(componentsPath, file, 'style', 'index-rtlltr.less'))) {
+          componentsLessContent += `@import "../${path.join(
+            file,
+            'style',
+            'index-rtlltr.less',
+          )}";\n`;
+        } else if (fs.existsSync(path.join(componentsPath, file, 'style', 'index.less'))) {
+          componentsLessContent += `@import "../${path.join(file, 'style', 'index.less')}";\n`;
+        }
       });
       fs.writeFileSync(
         path.join(process.cwd(), 'lib', 'style', 'components.less'),
