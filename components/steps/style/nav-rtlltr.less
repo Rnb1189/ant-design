@@ -1,0 +1,77 @@
+@import './nav-shared.less';
+
+//L______
+@{L}.@{steps-prefix-cls}-navigation {
+  &.@{steps-prefix-cls}-small {
+    .@{steps-prefix-cls}-item {
+      &-container {
+        margin-left: -12px;
+      }
+    }
+  }
+
+  .@{steps-prefix-cls}-item {
+    &-container {
+      text-align: left;
+      margin-left: -16px;
+
+      .@{steps-prefix-cls}-item-title {
+        padding-right: 0;
+      }
+    }
+
+    &::after {
+      border-left: none;
+      transform: rotate(45deg);
+      left: 100%;
+      margin-left: -2px;
+    }
+
+    &::before {
+      left: 50%;
+      transition: width 0.3s, left 0.3s;
+    }
+  }
+
+  .@{steps-prefix-cls}-item.@{steps-prefix-cls}-item-active::before {
+    left: 0;
+  }
+}
+
+//R______
+@{R}.@{steps-prefix-cls}-navigation {
+  &.@{steps-prefix-cls}-small {
+    .@{steps-prefix-cls}-item {
+      &-container {
+        margin-right: -12px;
+      }
+    }
+  }
+
+  .@{steps-prefix-cls}-item {
+    &-container {
+      text-align: right;
+      margin-right: -16px;
+
+      .@{steps-prefix-cls}-item-title {
+        padding-left: 0;
+      }
+    }
+
+    &::after {
+      border-right: none;
+      transform: rotate(-45deg);
+      right: 100%;
+      margin-right: -2px;
+    }
+
+    &::before {
+      right: 50%;
+      transition: width 0.3s, right 0.3s;
+    }
+  }
+
+  .@{steps-prefix-cls}-item.@{steps-prefix-cls}-item-active::before {
+    right: 0;
+  }
+}
