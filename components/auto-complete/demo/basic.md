@@ -37,29 +37,33 @@ class Complete extends React.Component {
   };
 
   render() {
-    const { dataSource, value } = this.state;
+    const { dataSource, value, isRtl } = this.state;
     return (
       <div>
-        <AutoComplete
-          isRtl={isRtl}
-          dataSource={dataSource}
-          style={{ width: 200 }}
-          onSelect={onSelect}
-          onSearch={this.onSearch}
-          placeholder="input here"
-        />
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
         <br />
-        <br />
-        <AutoComplete
-          isRtl={isRtl}
-          value={value}
-          dataSource={dataSource}
-          style={{ width: 200 }}
-          onSelect={onSelect}
-          onSearch={this.onSearch}
-          onChange={this.onChange}
-          placeholder="control mode"
-        />
+        <div>
+          <AutoComplete
+            isRtl={isRtl}
+            dataSource={dataSource}
+            style={{ width: 200 }}
+            onSelect={onSelect}
+            onSearch={this.onSearch}
+            placeholder="input here"
+          />
+          <br />
+          <br />
+          <AutoComplete
+            isRtl={isRtl}
+            value={value}
+            dataSource={dataSource}
+            style={{ width: 200 }}
+            onSelect={onSelect}
+            onSearch={this.onSearch}
+            onChange={this.onChange}
+            placeholder="control mode"
+          />
+        </div>
       </div>
     );
   }

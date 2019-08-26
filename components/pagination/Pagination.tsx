@@ -121,6 +121,18 @@ export default class Pagination extends React.Component<PaginationProps, {}> {
                 Direction.classFromProps(this.props),
               )}
               selectComponentClass={isSmall ? MiniSelect : Select}
+              //
+              //NEw
+              // selectComponentClass={
+              //   isSmall
+              //     ? this.props.isRtl
+              //       ? RtlMiniSelect
+              //       : LtrMiniSelect
+              //     : this.props.isRtl
+              //     ? RtlSelect
+              //     : LtrSelect
+              // }
+              // //
               locale={locale}
             />
           );
@@ -137,3 +149,9 @@ export default class Pagination extends React.Component<PaginationProps, {}> {
     );
   }
 }
+
+//NEw
+const RtlMiniSelect = Direction.withRtlClassName(MiniSelect);
+const LtrMiniSelect = Direction.withLtrClassName(MiniSelect);
+const RtlSelect = Direction.withRtlClassName(Select);
+const LtrSelect = Direction.withLtrClassName(Select);

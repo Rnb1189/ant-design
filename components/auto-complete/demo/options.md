@@ -14,13 +14,15 @@ title:
 You could pass `AutoComplete.Option` as children of `AutoComplete`, instead of using `dataSource`。
 
 ```jsx
-import { AutoComplete } from 'antd';
+import { AutoComplete, Switch } from '../../index';
 
 const { Option } = AutoComplete;
 
 class Complete extends React.Component {
-  state = {
-    result: [],
+  state = { isRtl: false, result: [] };
+
+  toggleRtl = () => {
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   handleSearch = value => {
@@ -34,12 +36,22 @@ class Complete extends React.Component {
   };
 
   render() {
-    const { result } = this.state;
+    const { result, isRtl } = this.state;
     const children = result.map(email => <Option key={email}>{email}</Option>);
     return (
-      <AutoComplete style={{ width: 200 }} onSearch={this.handleSearch} placeholder="input here">
-        {children}
-      </AutoComplete>
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div>
+          <AutoComplete
+            style={{ width: 200 }}
+            onSearch={this.handleSearch}
+            placeholder="input here"
+          >
+            {children}
+          </AutoComplete>
+        </div>
+      </div>
     );
   }
 }

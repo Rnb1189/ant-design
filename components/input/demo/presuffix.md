@@ -14,7 +14,7 @@ title:
 Add prefix or suffix icons inside input.
 
 ```jsx
-import { Input, Tooltip, Icon, Switch } from '../../index';
+import { Input, Tooltip, Icon, Button, Switch } from '../../index';
 
 class App extends React.Component {
   state = {
@@ -34,6 +34,7 @@ class App extends React.Component {
         <br />
         <div style={dirStyle}>
           <Input
+            isRtl={isRtl}
             placeholder="Enter your username"
             prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
             suffix={
@@ -46,7 +47,22 @@ class App extends React.Component {
           <br />
           <br />
 
-          <Input prefix="￥" suffix="RMB" />
+          <Input isRtl={isRtl} prefix="￥" suffix="RMB" />
+          <br />
+          <br />
+          <Input
+            isRtl={isRtl}
+            suffix={
+              <Button
+                className="search-btn"
+                style={{ marginRight: -12 }}
+                size="large"
+                type="primary"
+              >
+                <Icon type="search" />
+              </Button>
+            }
+          />
         </div>
       </div>
     );

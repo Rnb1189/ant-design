@@ -14,7 +14,7 @@ title:
 Demonstration of [Lookup Patterns: Uncertain Category](https://ant.design/docs/spec/reaction#Lookup-Patterns). Basic Usage, set datasource of autocomplete with `dataSource` property.
 
 ```jsx
-import { Icon, Button, Input, AutoComplete } from 'antd';
+import { Icon, Button, Input, AutoComplete, Switch } from '../../index';
 
 const { Option } = AutoComplete;
 
@@ -58,8 +58,10 @@ function renderOption(item) {
 }
 
 class Complete extends React.Component {
-  state = {
-    dataSource: [],
+  state = { isRtl: false, dataSource: [] };
+
+  toggleRtl = () => {
+    this.setState({ isRtl: !this.state.isRtl });
   };
 
   handleSearch = value => {
@@ -69,32 +71,39 @@ class Complete extends React.Component {
   };
 
   render() {
-    const { dataSource } = this.state;
+    const { dataSource, isRtl } = this.state;
     return (
-      <div className="global-search-wrapper" style={{ width: 300 }}>
-        <AutoComplete
-          className="global-search"
-          size="large"
-          style={{ width: '100%' }}
-          dataSource={dataSource.map(renderOption)}
-          onSelect={onSelect}
-          onSearch={this.handleSearch}
-          placeholder="input here"
-          optionLabelProp="text"
-        >
-          <Input
-            suffix={
-              <Button
-                className="search-btn"
-                style={{ marginRight: -12 }}
-                size="large"
-                type="primary"
-              >
-                <Icon type="search" />
-              </Button>
-            }
-          />
-        </AutoComplete>
+      <div>
+        <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
+        <br />
+        <div className="global-search-wrapper" style={{ width: 300 }}>
+          <AutoComplete
+            isRtl={isRtl}
+            className="global-search"
+            size="large"
+            style={{ width: '100%' }}
+            dataSource={dataSource.map(renderOption)}
+            onSelect={onSelect}
+            onSearch={this.handleSearch}
+            placeholder="input here"
+            optionLabelProp="text"
+          >
+            <Input
+              isRtl={isRtl}
+              suffix={
+                <Button
+                  isRtl={isRtl}
+                  className="search-btn"
+                  style={{ marginRight: -12 }}
+                  size="large"
+                  type="primary"
+                >
+                  <Icon type="search" />
+                </Button>
+              }
+            />
+          </AutoComplete>
+        </div>
       </div>
     );
   }

@@ -35,7 +35,17 @@ function finalizeCompile() {
     // Build components in one file: lib/style/components.less
     fs.readdir(componentsPath, (err, files) => {
       files.forEach(file => {
-        if (fs.existsSync(path.join(componentsPath, file, 'style', 'index.less'))) {
+        // NEw
+        // if (fs.existsSync(path.join(componentsPath, file, 'style', 'index.less'))) {
+        //   componentsLessContent += `@import "../${path.join(file, 'style', 'index.less')}";\n`;
+        // }
+        if (fs.existsSync(path.join(componentsPath, file, 'style', 'index-rtlltr.less'))) {
+          componentsLessContent += `@import "../${path.join(
+            file,
+            'style',
+            'index-rtlltr.less',
+          )}";\n`;
+        } else if (fs.existsSync(path.join(componentsPath, file, 'style', 'index.less'))) {
           componentsLessContent += `@import "../${path.join(file, 'style', 'index.less')}";\n`;
         }
       });

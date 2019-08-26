@@ -14,7 +14,7 @@ title:
 Demonstration of [Lookup Patterns: Certain Category](https://ant.design/docs/spec/reaction#Lookup-Patterns). Basic Usage, set datasource of autocomplete with `dataSource` property.
 
 ```jsx
-import { Icon, Input, AutoComplete } from 'antd';
+import { Icon, Input, AutoComplete } from '../../index';
 
 const { Option, OptGroup } = AutoComplete;
 
@@ -93,20 +93,39 @@ const options = dataSource
 
 function Complete() {
   return (
-    <div className="certain-category-search-wrapper" style={{ width: 250 }}>
-      <AutoComplete
-        className="certain-category-search"
-        dropdownClassName="certain-category-search-dropdown"
-        dropdownMatchSelectWidth={false}
-        dropdownStyle={{ width: 300 }}
-        size="large"
-        style={{ width: '100%' }}
-        dataSource={options}
-        placeholder="input here"
-        optionLabelProp="value"
-      >
-        <Input suffix={<Icon type="search" className="certain-category-icon" />} />
-      </AutoComplete>
+    <div>
+      <div className="certain-category-search-wrapper" style={{ width: 250 }}>
+        <AutoComplete
+          className="certain-category-search"
+          dropdownClassName="certain-category-search-dropdown"
+          dropdownMatchSelectWidth={false}
+          dropdownStyle={{ width: 300 }}
+          size="large"
+          style={{ width: '100%' }}
+          dataSource={options}
+          placeholder="input here"
+          optionLabelProp="value"
+        >
+          <Input suffix={<Icon type="search" className="certain-category-icon" />} />
+        </AutoComplete>
+      </div>
+      <br />
+      <div className="certain-category-search-wrapper" style={{ width: 250 }}>
+        <AutoComplete
+          isRtl={true}
+          className="certain-category-search"
+          dropdownClassName="certain-category-search-dropdown"
+          dropdownMatchSelectWidth={false}
+          dropdownStyle={{ width: 300 }}
+          size="large"
+          style={{ width: '100%' }}
+          dataSource={options}
+          placeholder="input here"
+          optionLabelProp="value"
+        >
+          <Input isRtl={true} suffix={<Icon type="search" className="certain-category-icon" />} />
+        </AutoComplete>
+      </div>
     </div>
   );
 }
@@ -115,8 +134,11 @@ ReactDOM.render(<Complete />, mountNode);
 ```
 
 ```css
-.certain-category-search.ant-select-auto-complete .ant-input-affix-wrapper .ant-input-suffix {
+.a-ltr.certain-category-search.ant-select-auto-complete .ant-input-affix-wrapper .ant-input-suffix {
   right: 12px;
+}
+.a-rtl.certain-category-search.ant-select-auto-complete .ant-input-affix-wrapper .ant-input-suffix {
+  left: 12px;
 }
 
 .certain-category-search-dropdown .ant-select-dropdown-menu-item-group-title {

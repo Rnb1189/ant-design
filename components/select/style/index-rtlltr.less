@@ -282,3 +282,13 @@
     padding-left: @control-padding-horizontal;
   }
 }
+
+//OMid: this was needed
+.@{select-prefix-cls} {
+  @{L} &-combobox,
+  @{R} &-combobox {
+    .@{select-prefix-cls}-arrow {
+      display: none;
+    }
+  }
+}

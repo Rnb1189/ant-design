@@ -52,8 +52,7 @@ class App extends React.Component {
             isRtl={this.state.isRtl}
             defaultSelectedKeys={['1']}
             defaultOpenKeys={['sub1']}
-            mode="horizontal"
-            // mode="inline"
+            mode="inline"
             theme="dark"
             inlineCollapsed={this.state.collapsed}
           >
