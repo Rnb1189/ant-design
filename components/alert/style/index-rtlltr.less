@@ -1,5 +1,16 @@
 @import './index-shared.less';
 
+////////////////
+// @L: e('.a-ltr');
+// @R: e('.a-rtl');
+// .LTR() {
+//   direction: ltr;
+// }
+// .RTL() {
+//   direction: rtl;
+// }
+////////////////
+
 .@{alert-prefix-cls} {
   @{L}& {
     direction: ltr;
@@ -20,10 +31,6 @@
   }
 
   @{L}& &-close-icon {
-    right: 16px;
-  }
-
-  @{L}& &-close-text {
     right: 16px;
   }
 
@@ -63,10 +70,6 @@
     left: 16px;
   }
 
-  @{R}& &-close-text {
-    left: 16px;
-  }
-
   @{R}&-with-description {
     padding: 15px 64px 15px 15px;
   }
@@ -77,5 +80,11 @@
 
   @{R}&-with-description &-close-icon {
     left: 16px;
+  }
+}
+
+.@{alert-prefix-cls} {
+  &-with-description&-no-icon {
+    padding: 15px;
   }
 }

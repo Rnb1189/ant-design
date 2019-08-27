@@ -39,6 +39,7 @@ function finalizeCompile() {
         // if (fs.existsSync(path.join(componentsPath, file, 'style', 'index.less'))) {
         //   componentsLessContent += `@import "../${path.join(file, 'style', 'index.less')}";\n`;
         // }
+
         if (fs.existsSync(path.join(componentsPath, file, 'style', 'index-rtlltr.less'))) {
           componentsLessContent += `@import "../${path.join(
             file,
