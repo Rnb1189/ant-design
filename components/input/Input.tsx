@@ -112,11 +112,16 @@ class Input extends React.Component<InputProps, any> {
 
   getInputClassName(prefixCls: string) {
     const { size, disabled } = this.props;
-    return classNames(prefixCls, {
-      [`${prefixCls}-sm`]: size === 'small',
-      [`${prefixCls}-lg`]: size === 'large',
-      [`${prefixCls}-disabled`]: disabled,
-    });
+    return classNames(
+      prefixCls,
+      {
+        [`${prefixCls}-sm`]: size === 'small',
+        [`${prefixCls}-lg`]: size === 'large',
+        [`${prefixCls}-disabled`]: disabled,
+      },
+      //MEw
+      Direction.classFromProps(this.props),
+    );
   }
 
   setValue(

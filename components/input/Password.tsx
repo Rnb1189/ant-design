@@ -87,6 +87,8 @@ export default class Password extends React.Component<PasswordProps, PasswordSta
     });
     return (
       <Input
+        //NEw
+        isRtl={this.props.isRtl}
         {...omit(restProps, ['suffix'])}
         type={this.state.visible ? 'text' : 'password'}
         size={size}

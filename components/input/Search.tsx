@@ -140,6 +140,8 @@ export default class Search extends React.Component<SearchProps, any> {
 
     return (
       <Input
+        //NEw
+        isRtl={this.props.isRtl}
         onPressEnter={this.onSearch}
         {...restProps}
         size={size}

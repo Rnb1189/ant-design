@@ -97,61 +97,66 @@ class CompactDemo extends React.Component {
         <br />
         <div style={{}}>
           <InputGroup isRtl={isRtl} size="large">
-            <Row gutter={8}>
+            <Row isRtl={isRtl} gutter={8}>
               <Col span={5}>
-                <Input defaultValue="05710" />
+                <Input isRtl={isRtl} defaultValue="05710" />
               </Col>
               <Col span={8}>
-                <Input defaultValue="268888880" />
+                <Input isRtl={isRtl} defaultValue="268888880" />
               </Col>
             </Row>
           </InputGroup>
           <br />
           <InputGroup isRtl={isRtl} compact>
-            <Input style={{ width: '20%' }} defaultValue="0571" />
-            <Input style={{ width: '30%' }} defaultValue="26888888" />
+            <Input isRtl={isRtl} style={{ width: '20%' }} defaultValue="0571" />
+            <Input isRtl={isRtl} style={{ width: '30%' }} defaultValue="26888888" />
           </InputGroup>
           <br />
           <InputGroup isRtl={isRtl} compact>
-            <Select defaultValue="Zhejiang">
+            <Select isRtl={isRtl} defaultValue="Zhejiang">
               <Option value="Zhejiang">Zhejiang</Option>
               <Option value="Jiangsu">Jiangsu</Option>
             </Select>
-            <Input style={{ width: '50%' }} defaultValue="Xihu District, Hangzhou" />
+            <Input isRtl={isRtl} style={{ width: '50%' }} defaultValue="Xihu District, Hangzhou" />
           </InputGroup>
           <br />
           <InputGroup isRtl={isRtl} compact>
-            <Select defaultValue="Option1">
+            <Select isRtl={isRtl} defaultValue="Option1">
               <Option value="Option1">Option1</Option>
               <Option value="Option2">Option2</Option>
             </Select>
-            <Input style={{ width: '50%' }} defaultValue="input content" />
-            <InputNumber />
+            <Input isRtl={isRtl} style={{ width: '50%' }} defaultValue="input content" />
+            <InputNumber isRtl={isRtl} />
           </InputGroup>
           <br />
           <InputGroup isRtl={isRtl} compact>
-            <Input style={{ width: '50%' }} defaultValue="input content" />
-            <DatePicker style={{ width: '50%' }} />
+            <Input isRtl={isRtl} style={{ width: '50%' }} defaultValue="input content" />
+            <DatePicker isRtl={isRtl} style={{ width: '50%' }} />
           </InputGroup>
           <br />
           <InputGroup isRtl={isRtl} compact>
-            <Select defaultValue="Option1-1">
+            <Select isRtl={isRtl} defaultValue="Option1-1">
               <Option value="Option1-1">Option1-1</Option>
               <Option value="Option1-2">Option1-2</Option>
             </Select>
-            <Select defaultValue="Option2-2">
+            <Select isRtl={isRtl} defaultValue="Option2-2">
               <Option value="Option2-1">Option2-1</Option>
               <Option value="Option2-2">Option2-2</Option>
             </Select>
           </InputGroup>
           <br />
           <InputGroup isRtl={isRtl} compact>
-            <Select defaultValue="1">
+            <Select isRtl={isRtl} defaultValue="1">
               <Option value="1">Between</Option>
               <Option value="2">Except</Option>
             </Select>
-            <Input style={{ width: 100, textAlign: 'center' }} placeholder="Minimum" />
             <Input
+              isRtl={isRtl}
+              style={{ width: 100, textAlign: 'center' }}
+              placeholder="Minimum"
+            />
+            <Input
+              isRtl={isRtl}
               style={{
                 width: 30,
                 borderLeft: 0,
@@ -162,17 +167,19 @@ class CompactDemo extends React.Component {
               disabled
             />
             <Input
+              isRtl={isRtl}
               style={{ width: 100, textAlign: 'center', borderLeft: 0 }}
               placeholder="Maximum"
             />
           </InputGroup>
           <br />
           <InputGroup isRtl={isRtl} compact>
-            <Select defaultValue="Sign Up">
+            <Select isRtl={isRtl} defaultValue="Sign Up">
               <Option value="Sign Up">Sign Up</Option>
               <Option value="Sign In">Sign In</Option>
             </Select>
             <AutoComplete
+              isRtl={isRtl}
               dataSource={this.state.dataSource}
               style={{ width: 200 }}
               onChange={this.handleChange}
@@ -181,11 +188,16 @@ class CompactDemo extends React.Component {
           </InputGroup>
           <br />
           <InputGroup isRtl={isRtl} compact>
-            <Select style={{ width: '30%' }} defaultValue="Home">
+            <Select isRtl={isRtl} style={{ width: '30%' }} defaultValue="Home">
               <Option value="Home">Home</Option>
               <Option value="Company">Company</Option>
             </Select>
-            <Cascader style={{ width: '70%' }} options={options} placeholder="Select Address" />
+            <Cascader
+              isRtl={isRtl}
+              style={{ width: '70%' }}
+              options={options}
+              placeholder="Select Address"
+            />
           </InputGroup>
         </div>
       </div>
