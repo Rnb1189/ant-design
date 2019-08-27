@@ -71,6 +71,8 @@
   .col-rtl(1); // kickstart it}
 }
 
+////////////
+/*
 .loop-grid-columns(@index, @class) when (@index > 0) {
   .@{ant-prefix}-col@{class}-@{index} {
     display: block;
@@ -115,8 +117,9 @@
     order: 0;
   }
 }
+*/
+///////////
 
-/*
 .loop-grid-columns(@index, @class) when (@index > 0) {
   .@{ant-prefix}-col@{class}-@{index} {
     display: block;
@@ -190,7 +193,6 @@
     order: 0;
   }
 }
-*/
 
 .make-grid(@class: ~'') {
   .float-grid-columns(@class);
