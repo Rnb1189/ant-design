@@ -107,6 +107,7 @@ function getNotificationInstance(
   if (!placement) {
     placement = isRtl === true ? 'topLeft' : 'topRight';
   }
+  placement = !placement ? defaultPlacement : placement;
 
   const cacheKey = `${prefixCls}-${placement}`;
   if (notificationInstance[cacheKey]) {
