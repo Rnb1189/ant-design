@@ -14,12 +14,20 @@ title:
 A notification box can appear from the `topRight`, `bottomRight`, `bottomLeft` or `topLeft` of the viewport.
 
 ```jsx
-import { Button, Select, notification } from 'antd';
+import { Button, Select, notification } from '../../index';
 
 const { Option } = Select;
 const options = ['topLeft', 'topRight', 'bottomLeft', 'bottomRight'];
 const openNotification = () => {
   notification.open({
+    message: 'Notification Title',
+    description:
+      'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
+  });
+};
+const openNotificationRtl = () => {
+  notification.open({
+    isRtl: true,
     message: 'Notification Title',
     description:
       'This is the content of the notification. This is the content of the notification. This is the content of the notification.',
@@ -45,6 +53,11 @@ ReactDOM.render(
     </Select>
     <Button type="primary" onClick={openNotification}>
       Open the notification box
+    </Button>
+    <br />
+    <br />
+    <Button type="primary" onClick={openNotificationRtl}>
+      Rtl
     </Button>
   </div>,
   mountNode,

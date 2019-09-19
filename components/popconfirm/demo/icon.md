@@ -14,7 +14,7 @@ title:
 Set `icon` props to customize the icon.
 
 ```jsx
-import { Popconfirm, Icon } from 'antd';
+import { Popconfirm, Icon } from '../../index';
 
 ReactDOM.render(
   <Popconfirm

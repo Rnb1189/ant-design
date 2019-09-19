@@ -8,6 +8,7 @@ import { tuple } from '../_util/type';
 import Line from './Line';
 import Circle from './Circle';
 import { validProgress } from './utils';
+import Direction from '../_util/direction';
 
 const ProgressTypes = tuple('line', 'circle', 'dashboard');
 export type ProgressType = (typeof ProgressTypes)[number];
@@ -17,6 +18,8 @@ export type StringGradients = { [percentage: string]: string };
 type FromToGradients = { from: string; to: string };
 export type ProgressGradient = { direction?: string } & (StringGradients | FromToGradients);
 export interface ProgressProps {
+  //NEw
+  isRtl?: boolean;
   prefixCls?: string;
   className?: string;
   type?: ProgressType;
@@ -48,6 +51,7 @@ export default class Progress extends React.Component<ProgressProps> {
   };
 
   static propTypes = {
+    isRtl: PropTypes.bool,
     status: PropTypes.oneOf(ProgressStatuses),
     type: PropTypes.oneOf(ProgressTypes),
     showInfo: PropTypes.bool,
@@ -129,6 +133,7 @@ export default class Progress extends React.Component<ProgressProps> {
         [`${prefixCls}-${size}`]: size,
       },
       className,
+      Direction.classFromProps(this.props),
     );
 
     return (

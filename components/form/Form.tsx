@@ -12,6 +12,7 @@ import FormItem, { FormLabelAlign } from './FormItem';
 import { FIELD_META_PROP, FIELD_DATA_PROP } from './constants';
 import FormContext from './context';
 import { FormWrappedProps } from './interface';
+import Direction from '../_util/direction';
 
 type FormCreateOptionMessagesCallback = (...args: any[]) => string;
 
@@ -32,6 +33,8 @@ const FormLayouts = tuple('horizontal', 'inline', 'vertical');
 export type FormLayout = (typeof FormLayouts)[number];
 
 export interface FormProps extends React.FormHTMLAttributes<HTMLFormElement> {
+  isRtl?: boolean;
+
   layout?: FormLayout;
   form?: WrappedFormUtils;
   onSubmit?: React.FormEventHandler<HTMLFormElement>;
@@ -250,6 +253,7 @@ export default class Form extends React.Component<FormProps, any> {
         [`${prefixCls}-hide-required-mark`]: hideRequiredMark,
       },
       className,
+      Direction.classFromProps(this.props),
     );
 
     const formProps = omit(this.props, [

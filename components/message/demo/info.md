@@ -17,13 +17,30 @@ Normal message for information.
 import { message, Button } from 'antd';
 
 const info = () => {
+  message.config({
+    getContainer: () => document.body,
+  });
+  message.info('This is a normal message');
+};
+const infoRtl = () => {
+  message.config({
+    getContainer: () => document.getElementById('dummycontainer'),
+  });
   message.info('This is a normal message');
 };
 
 ReactDOM.render(
-  <Button type="primary" onClick={info}>
-    Display normal message
-  </Button>,
+  <div>
+    <Button type="primary" onClick={info}>
+      Display normal message
+    </Button>
+    <br />
+    <br />
+    <Button type="primary" onClick={infoRtl}>
+      Rtl
+    </Button>
+    <span id="dummycontainer" className="brs-rtl-dropdown" />
+  </div>,
   mountNode,
 );
 ```

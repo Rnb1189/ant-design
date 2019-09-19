@@ -3,6 +3,7 @@ import { Circle as RCCircle } from 'rc-progress';
 import classNames from 'classnames';
 import { validProgress } from './utils';
 import { ProgressProps } from './progress';
+import Direction from '../_util/direction';
 
 interface CircleProps extends ProgressProps {
   prefixCls: string;
@@ -61,9 +62,12 @@ const Circle: React.SFC<CircleProps> = props => {
   const wrapperClassName = classNames(`${prefixCls}-inner`, {
     [`${prefixCls}-circle-gradient`]: isGradient,
   });
+  //NEw
+  const dirClass = Direction.classFromProps(props);
 
   return (
-    <div className={wrapperClassName} style={circleStyle}>
+    // <div className={wrapperClassName} style={circleStyle}>
+    <div className={`${wrapperClassName} ${dirClass}`} style={circleStyle}>
       <RCCircle
         percent={getPercentage(props)}
         strokeWidth={circleWidth}

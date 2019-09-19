@@ -1,6 +1,9 @@
 import * as React from 'react';
 import Notification from 'rc-notification';
 import Icon from '../icon';
+import Direction from './../_util/direction';
+import classNames from 'classnames';
+import { classNames } from 'classnames';
 
 export type NotificationPlacement = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 
@@ -80,6 +83,7 @@ function getPlacementStyle(
 }
 
 type NotificationInstanceProps = {
+  isRtl?: boolean;
   prefixCls: string;
   placement?: NotificationPlacement;
   getContainer?: () => HTMLElement;
@@ -89,14 +93,22 @@ type NotificationInstanceProps = {
 
 function getNotificationInstance(
   {
+    isRtl,
     prefixCls,
-    placement = defaultPlacement,
+    //NEw
+    // placement = defaultPlacement,
+    placement,
     getContainer = defaultGetContainer,
     top,
     bottom,
   }: NotificationInstanceProps,
   callback: (n: any) => void,
 ) {
+  //NEw
+  if (!placement) {
+    placement = isRtl === true ? 'topLeft' : 'topRight';
+  }
+
   const cacheKey = `${prefixCls}-${placement}`;
   if (notificationInstance[cacheKey]) {
     callback(notificationInstance[cacheKey]);
@@ -125,6 +137,7 @@ const typeToIcon = {
 };
 
 export interface ArgsProps {
+  isRtl?: boolean;
   message: React.ReactNode;
   description?: React.ReactNode;
   btn?: React.ReactNode;
@@ -158,6 +171,12 @@ function notice(args: ArgsProps) {
     );
   }
 
+  //NEw
+  const isRtl = !!args.isRtl;
+  const dirClass = Direction.classFromIsRtl(args.isRtl);
+  const mergedClass = classNames(args.className, dirClass);
+  ///
+
   const autoMarginTag =
     !args.description && iconNode ? (
       <span className={`${prefixCls}-message-single-line-auto-margin`} />
@@ -167,6 +186,7 @@ function notice(args: ArgsProps) {
 
   getNotificationInstance(
     {
+      isRtl,
       prefixCls: outerPrefixCls,
       placement,
       top,
@@ -192,7 +212,8 @@ function notice(args: ArgsProps) {
         onClick: args.onClick,
         key: args.key,
         style: args.style || {},
-        className: args.className,
+        // className: args.className,
+        className: mergedClass,
       });
     },
   );

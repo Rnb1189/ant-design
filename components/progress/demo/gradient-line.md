@@ -14,7 +14,7 @@ title:
 A package of `linear-gradient`. It is recommended to only pass two colors.
 
 ```jsx
-import { Progress } from 'antd';
+import { Progress } from '../../index';
 
 const Demo = () => (
   <div>
@@ -42,6 +42,46 @@ const Demo = () => (
       percent={90}
     />
     <Progress
+      type="circle"
+      strokeColor={{
+        '0%': '#108ee9',
+        '100%': '#87d068',
+      }}
+      percent={100}
+    />
+    <br />
+    <br />
+    <br />
+    <div style={{ backgroundColor: 'black', color: 'white' }}>Rtl</div>
+    <br />
+    <Progress
+      isRtl={true}
+      strokeColor={{
+        '0%': '#108ee9',
+        '100%': '#87d068',
+      }}
+      percent={99.9}
+    />
+    <Progress
+      isRtl={true}
+      strokeColor={{
+        from: '#108ee9',
+        to: '#87d068',
+      }}
+      percent={99.9}
+      status="active"
+    />
+    <Progress
+      isRtl={true}
+      type="circle"
+      strokeColor={{
+        '0%': '#108ee9',
+        '100%': '#87d068',
+      }}
+      percent={90}
+    />
+    <Progress
+      isRtl={true}
       type="circle"
       strokeColor={{
         '0%': '#108ee9',

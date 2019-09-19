@@ -8,6 +8,7 @@ import AnchorLink from './AnchorLink';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 import scrollTo from '../_util/scrollTo';
 import getScroll from '../_util/getScroll';
+import Direction from '../_util/direction';
 
 function getDefaultContainer() {
   return window;
@@ -45,6 +46,7 @@ type Section = {
 export type AnchorContainer = HTMLElement | Window;
 
 export interface AnchorProps {
+  isRtl?: boolean;
   prefixCls?: string;
   className?: string;
   style?: React.CSSProperties;
@@ -286,12 +288,20 @@ export default class Anchor extends React.Component<AnchorProps, AnchorState> {
     const inkClass = classNames(`${prefixCls}-ink-ball`, {
       visible: activeLink,
     });
+    //NEw
+    const dirClass = Direction.classFromProps(this.props);
 
-    const wrapperClass = classNames(className, `${prefixCls}-wrapper`);
+    // const wrapperClass = classNames(className, `${prefixCls}-wrapper`);
+    const wrapperClass = classNames(className, `${prefixCls}-wrapper`, dirClass);
 
-    const anchorClass = classNames(prefixCls, {
-      fixed: !affix && !showInkInFixed,
-    });
+    const anchorClass = classNames(
+      prefixCls,
+      {
+        fixed: !affix && !showInkInFixed,
+      },
+      //NEw
+      dirClass,
+    );
 
     const wrapperStyle = {
       maxHeight: offsetTop ? `calc(100vh - ${offsetTop}px)` : '100vh',
@@ -301,7 +311,7 @@ export default class Anchor extends React.Component<AnchorProps, AnchorState> {
     const anchorContent = (
       <div className={wrapperClass} style={wrapperStyle}>
         <div className={anchorClass}>
-          <div className={`${prefixCls}-ink`}>
+          <div className={`${prefixCls}-ink ${dirClass}`}>
             <span className={inkClass} ref={this.saveInkNode} />
           </div>
           {children}

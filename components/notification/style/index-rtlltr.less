@@ -1,16 +1,18 @@
 @import './index-shared.less';
 
-.@{notification-prefix-cls} {
-  &-notice {
-    &-closable &-message {
+// @{L}.@{notification-prefix-cls}-notice:not(@{R}) {
+@{L}.@{notification-prefix-cls}-notice {
+  direction: ltr;
+  .@{notification-prefix-cls}-notice {
+    &-closable .@{notification-prefix-cls}-notice-message {
       padding-right: 24px;
     }
 
-    &-with-icon &-message {
+    &-with-icon .@{notification-prefix-cls}-notice-message {
       margin-left: 48px;
     }
 
-    &-with-icon &-description {
+    &-with-icon .@{notification-prefix-cls}-notice-description {
       margin-left: 48px;
     }
 
@@ -28,33 +30,31 @@
   }
 }
 
-html[direction='rtl'] .@{notification-prefix-cls}-notice {
-  &-closable .@{notification-prefix-cls}-notice-message {
-    padding-right: initial;
-    padding-left: 24px;
-  }
+@{R}.@{notification-prefix-cls}-notice {
+  direction: rtl;
+  .@{notification-prefix-cls}-notice {
+    &-closable .@{notification-prefix-cls}-notice-message {
+      padding-left: 24px;
+    }
 
-  &-with-icon .@{notification-prefix-cls}-notice-message {
-    margin-left: initial;
-    margin-right: 48px;
-  }
+    &-with-icon .@{notification-prefix-cls}-notice-message {
+      margin-right: 48px;
+    }
 
-  &-with-icon .@{notification-prefix-cls}-notice-description {
-    margin-left: initial;
-    margin-right: 48px;
-  }
+    &-with-icon .@{notification-prefix-cls}-notice-description {
+      margin-right: 48px;
+    }
 
-  &-icon {
-    margin-left: initial;
-    margin-right: 4px;
-  }
+    &-icon {
+      margin-right: 4px;
+    }
 
-  &-close {
-    right: initial;
-    left: 22px;
-  }
+    &-close {
+      left: 22px;
+    }
 
-  &-btn {
-    float: left;
+    &-btn {
+      float: left;
+    }
   }
 }

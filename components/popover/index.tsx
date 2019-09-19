@@ -2,6 +2,7 @@ import * as React from 'react';
 import Tooltip, { AbstractTooltipProps, TooltipPlacement, TooltipTrigger } from '../tooltip';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 import warning from '../_util/warning';
+import Direction from '../_util/direction';
 
 export interface PopoverProps extends AbstractTooltipProps {
   title?: React.ReactNode;
@@ -32,10 +33,15 @@ export default class Popover extends React.Component<PopoverProps, {}> {
       '`overlay` is removed, please use `content` instead, ' +
         'see: https://u.ant.design/popover-content',
     );
+    //NEw
+    const dirClass = Direction.classFromProps(this.props);
+
     return (
       <div>
-        {title && <div className={`${prefixCls}-title`}>{title}</div>}
-        <div className={`${prefixCls}-inner-content`}>{content}</div>
+        {/* {title && <div className={`${prefixCls}-title`}>{title}</div>} */}
+        {/* <div className={`${prefixCls}-inner-content`}>{content}</div> */}
+        {title && <div className={`${prefixCls}-title ${dirClass}`}>{title}</div>}
+        <div className={`${prefixCls}-inner-content ${dirClass}`}>{content}</div>
       </div>
     );
   }

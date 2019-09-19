@@ -7,8 +7,10 @@ import { ButtonType, NativeButtonProps } from '../button/button';
 import LocaleReceiver from '../locale-provider/LocaleReceiver';
 import defaultLocale from '../locale/default';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
+import Direction from '../_util/direction';
 
 export interface PopconfirmProps extends AbstractTooltipProps {
+  isRtl?: boolean;
   title: React.ReactNode;
   disabled?: boolean;
   onConfirm?: (e?: React.MouseEvent<HTMLElement>) => void;
@@ -117,14 +119,16 @@ class Popconfirm extends React.Component<PopconfirmProps, PopconfirmState> {
       okType,
       icon,
     } = this.props;
+    //NEw
+    const dirClass = Direction.classFromProps(this.props);
     return (
       <div>
-        <div className={`${prefixCls}-inner-content`}>
-          <div className={`${prefixCls}-message`}>
+        <div className={`${prefixCls}-inner-content ${dirClass}`}>
+          <div className={`${prefixCls}-message  ${dirClass}`}>
             {icon}
-            <div className={`${prefixCls}-message-title`}>{title}</div>
+            <div className={`${prefixCls}-message-title `}>{title}</div>
           </div>
-          <div className={`${prefixCls}-buttons`}>
+          <div className={`${prefixCls}-buttons ${dirClass}`}>
             <Button onClick={this.onCancel} size="small" {...cancelButtonProps}>
               {cancelText || popconfirmLocale.cancelText}
             </Button>

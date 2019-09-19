@@ -48,6 +48,8 @@ export interface MessageType {
 }
 
 export interface ArgsProps {
+  // //NEw:
+  // isRtl?: boolean;
   content: React.ReactNode;
   duration: number | null;
   type: NoticeType;

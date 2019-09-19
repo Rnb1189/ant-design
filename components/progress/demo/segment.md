@@ -14,7 +14,7 @@ title:
 A standard progress bar.
 
 ```jsx
-import { Tooltip, Progress } from 'antd';
+import { Tooltip, Progress } from '../../index';
 
 ReactDOM.render(
   <div>
@@ -28,6 +28,22 @@ ReactDOM.render(
 
     <Tooltip title="3 done / 3 in progress / 4 to do">
       <Progress percent={60} successPercent={30} type="dashboard" />
+    </Tooltip>
+    <br />
+    <br />
+    <br />
+    <div style={{ backgroundColor: 'black', color: 'white' }}>Rtl</div>
+    <br />
+    <Tooltip title="3 done / 3 in progress / 4 to do">
+      <Progress isRtl={true} percent={60} successPercent={30} />
+    </Tooltip>
+
+    <Tooltip title="3 done / 3 in progress / 4 to do">
+      <Progress isRtl={true} percent={60} successPercent={30} type="circle" />
+    </Tooltip>
+
+    <Tooltip title="3 done / 3 in progress / 4 to do">
+      <Progress isRtl={true} percent={60} successPercent={30} type="dashboard" />
     </Tooltip>
   </div>,
   mountNode,

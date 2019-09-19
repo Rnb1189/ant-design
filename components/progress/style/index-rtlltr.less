@@ -1,0 +1,41 @@
+@import './index-shared.less';
+
+.@{progress-prefix-cls} {
+  &-outer {
+    margin-right: 0;
+    padding-right: 0;
+    .@{progress-prefix-cls}-show-info & {
+      margin-right: ~'calc(-2em - 8px)';
+      padding-right: ~'calc(2em + 8px)';
+    }
+  }
+
+  &-success-bg {
+    left: 0;
+  }
+
+  &-text {
+    margin-left: 8px;
+    text-align: left;
+  }
+
+  &-circle .@{progress-prefix-cls}-text {
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+  }
+}
+
+@{R}.@{progress-prefix-cls} {
+  direction: rtl;
+  &.@{progress-prefix-cls}-line .@{progress-prefix-cls}-text {
+    margin-left: 0;
+    margin-right: 8px;
+    text-align: right;
+  }
+}
+@{R}.@{progress-prefix-cls} {
+  &.@{progress-prefix-cls}-line .@{progress-prefix-cls}-success-bg {
+    right: 0;
+  }
+}

@@ -21,11 +21,25 @@
 }
 
 //NEw
-@{R}.@{ant-prefix}-row-flex {
-  flex-direction: row-reverse;
-  &::before,
-  &::after {
-    flex-direction: row-reverse;
+// @{R}.@{ant-prefix}-row-flex {
+//   flex-direction: row-reverse;
+//   &::before,
+//   &::after {
+//     flex-direction: row-reverse;
+//   }
+// }
+
+//NEwer
+@{L} {
+  &.@{ant-prefix}-row,
+  &.@{ant-prefix}-row-flex {
+    direction: ltr;
+  }
+}
+@{R} {
+  &.@{ant-prefix}-row,
+  &.@{ant-prefix}-row-flex {
+    direction: rtl;
   }
 }
 

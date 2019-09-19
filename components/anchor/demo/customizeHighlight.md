@@ -14,7 +14,7 @@ title:
 Customize the anchor highlight.
 
 ```jsx
-import { Anchor } from 'antd';
+import { Anchor } from '../../index';
 
 const { Link } = Anchor;
 

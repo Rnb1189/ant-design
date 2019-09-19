@@ -11,12 +11,14 @@ import warning from '../_util/warning';
 import { tuple } from '../_util/type';
 import { FIELD_META_PROP, FIELD_DATA_PROP } from './constants';
 import FormContext, { FormContextProps } from './context';
+import Direction from '../_util/direction';
 
 const ValidateStatuses = tuple('success', 'warning', 'error', 'validating', '');
 
 export type FormLabelAlign = 'left' | 'right';
 
 export interface FormItemProps {
+  isRtl?: boolean;
   prefixCls?: string;
   className?: string;
   id?: string;
@@ -409,7 +411,14 @@ export default class FormItem extends React.Component<FormItemProps, any> {
     };
 
     return (
-      <Row className={classNames(itemClassName)} style={style} key="row">
+      //NEw
+      // <Row className={classNames(itemClassName)} style={style} key="row">
+      <Row
+        isRtl={this.props.isRtl}
+        className={classNames(itemClassName, Direction.classFromProps(this.props))}
+        style={style}
+        key="row"
+      >
         {children}
       </Row>
     );

@@ -4,6 +4,7 @@ import { polyfill } from 'react-lifecycles-compat';
 import classNames from 'classnames';
 import { AntAnchor } from './Anchor';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
+import Direction from '../_util/direction';
 
 export interface AnchorLinkProps {
   prefixCls?: string;
@@ -55,9 +56,18 @@ class AnchorLink extends React.Component<AnchorLinkProps, any> {
     const { prefixCls: customizePrefixCls, href, title, children, className } = this.props;
     const prefixCls = getPrefixCls('anchor', customizePrefixCls);
     const active = this.context.antAnchor.activeLink === href;
-    const wrapperClassName = classNames(className, `${prefixCls}-link`, {
-      [`${prefixCls}-link-active`]: active,
-    });
+
+    //NEw
+    const dirClass = Direction.classFromProps(this.props);
+
+    const wrapperClassName = classNames(
+      className,
+      `${prefixCls}-link`,
+      {
+        [`${prefixCls}-link-active`]: active,
+      },
+      dirClass,
+    );
     const titleClassName = classNames(`${prefixCls}-link-title`, {
       [`${prefixCls}-link-title-active`]: active,
     });

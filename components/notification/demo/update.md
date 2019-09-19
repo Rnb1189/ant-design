@@ -14,7 +14,7 @@ title:
 Update content with unique key.
 
 ```jsx
-import { Button, notification } from 'antd';
+import { Button, notification } from '../../index';
 
 const key = 'updatable';
 
@@ -32,11 +32,34 @@ const openNotification = () => {
     });
   }, 1000);
 };
+const openNotificationRtl = () => {
+  notification.open({
+    isRtl: true,
+    key,
+    message: 'Notification Title',
+    description: 'description.',
+  });
+  setTimeout(() => {
+    notification.open({
+      isRtl: true,
+      key,
+      message: 'New Title',
+      description: 'New description.',
+    });
+  }, 1000);
+};
 
 ReactDOM.render(
-  <Button type="primary" onClick={openNotification}>
-    Open the notification box
-  </Button>,
+  <div>
+    <Button type="primary" onClick={openNotification}>
+      Open the notification box
+    </Button>
+    <br />
+    <br />
+    <Button type="primary" onClick={openNotificationRtl}>
+      Rtl
+    </Button>
+  </div>,
   mountNode,
 );
 ```

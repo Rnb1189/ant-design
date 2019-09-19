@@ -14,7 +14,7 @@ title:
 A notification box with a icon at the left side.
 
 ```jsx
-import { Button, notification } from 'antd';
+import { Button, notification } from '../../index';
 
 const openNotificationWithIcon = type => {
   notification[type]({
@@ -24,12 +24,29 @@ const openNotificationWithIcon = type => {
   });
 };
 
+const openNotificationWithIconRtl = type => {
+  notification[type]({
+    isRtl: true,
+    message: 'Notification Title',
+    description:
+      'This is the content of the notification 1 2 3 4 5 6 7 8 9 0. This is the content of the notification. This is the content of the notification.',
+  });
+};
+
 ReactDOM.render(
   <div>
     <Button onClick={() => openNotificationWithIcon('success')}>Success</Button>
     <Button onClick={() => openNotificationWithIcon('info')}>Info</Button>
     <Button onClick={() => openNotificationWithIcon('warning')}>Warning</Button>
     <Button onClick={() => openNotificationWithIcon('error')}>Error</Button>
+    <br />
+    <br />
+    <br />
+
+    <Button onClick={() => openNotificationWithIconRtl('success')}>Success Rtl</Button>
+    <Button onClick={() => openNotificationWithIconRtl('info')}>Info Rtl</Button>
+    <Button onClick={() => openNotificationWithIconRtl('warning')}>Warning Rtl</Button>
+    <Button onClick={() => openNotificationWithIconRtl('error')}>Error Rtl</Button>
   </div>,
   mountNode,
 );

@@ -14,13 +14,21 @@ title:
 By setting `strokeLinecap="square"`, you can change the linecaps from round to square.
 
 ```jsx
-import { Progress } from 'antd';
+import { Progress } from '../../index';
 
 ReactDOM.render(
   <div>
     <Progress strokeLinecap="square" percent={75} />
     <Progress strokeLinecap="square" type="circle" percent={75} />
     <Progress strokeLinecap="square" type="dashboard" percent={75} />
+    <br />
+    <br />
+    <br />
+    <div style={{ backgroundColor: 'black', color: 'white' }}>Rtl</div>
+    <br />
+    <Progress isRtl={true} strokeLinecap="square" percent={75} />
+    <Progress isRtl={true} strokeLinecap="square" type="circle" percent={75} />
+    <Progress isRtl={true} strokeLinecap="square" type="dashboard" percent={75} />
   </div>,
   mountNode,
 );

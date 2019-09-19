@@ -14,7 +14,7 @@ title:
 The basic example.
 
 ```jsx
-import { Popconfirm, message } from 'antd';
+import { Popconfirm, message } from '../../index';
 
 function confirm(e) {
   console.log(e);
@@ -27,15 +27,29 @@ function cancel(e) {
 }
 
 ReactDOM.render(
-  <Popconfirm
-    title="Are you sure delete this task?"
-    onConfirm={confirm}
-    onCancel={cancel}
-    okText="Yes"
-    cancelText="No"
-  >
-    <a href="#">Delete</a>
-  </Popconfirm>,
+  <div>
+    <Popconfirm
+      title="Are you sure delete this task?"
+      onConfirm={confirm}
+      onCancel={cancel}
+      okText="Yes"
+      cancelText="No"
+    >
+      <a href="#">Delete</a>
+    </Popconfirm>
+    <br />
+    <br />
+    <Popconfirm
+      isRtl={true}
+      title="Are you sure delete this task?"
+      onConfirm={confirm}
+      onCancel={cancel}
+      okText="Yes"
+      cancelText="No"
+    >
+      <a href="#">Delete Rtl</a>
+    </Popconfirm>
+  </div>,
   mountNode,
 );
 ```

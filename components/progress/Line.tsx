@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { validProgress } from './utils';
 import { ProgressProps, ProgressGradient, StringGradients } from './progress';
+import Direction from '../_util/direction';
 
 interface LineProps extends ProgressProps {
   prefixCls: string;
@@ -48,8 +49,11 @@ export const sortGradient = (gradients: ProgressGradient) => {
  * And...
  * Besides women, there is the code.
  */
-export const handleGradient = (strokeColor: ProgressGradient) => {
-  const { from = '#1890ff', to = '#1890ff', direction = 'to right', ...rest } = strokeColor;
+export const handleGradient = (strokeColor: ProgressGradient, isRtl: boolean) => {
+  //NEw
+  const gradientDirection = isRtl ? 'to left' : 'to right';
+  const { from = '#1890ff', to = '#1890ff', direction = gradientDirection, ...rest } = strokeColor;
+  // const { from = '#1890ff', to = '#1890ff', direction = 'to right', ...rest } = strokeColor;
   if (Object.keys(rest).length !== 0) {
     const sortedGradients = sortGradient(rest as StringGradients);
     return { backgroundImage: `linear-gradient(${direction}, ${sortedGradients})` };
@@ -70,7 +74,9 @@ const Line: React.SFC<LineProps> = props => {
   } = props;
   let backgroundProps;
   if (strokeColor && typeof strokeColor !== 'string') {
-    backgroundProps = handleGradient(strokeColor);
+    //NEw
+    // backgroundProps = handleGradient(strokeColor);
+    backgroundProps = handleGradient(strokeColor, !!props.isRtl);
   } else {
     backgroundProps = {
       background: strokeColor,
@@ -91,8 +97,13 @@ const Line: React.SFC<LineProps> = props => {
     successPercent !== undefined ? (
       <div className={`${prefixCls}-success-bg`} style={successPercentStyle} />
     ) : null;
+
+  //NEw
+  const dirClass = Direction.classFromProps(props);
+
   return (
-    <div>
+    // <div>
+    <div className={dirClass}>
       <div className={`${prefixCls}-outer`}>
         <div className={`${prefixCls}-inner`}>
           <div className={`${prefixCls}-bg`} style={percentStyle} />

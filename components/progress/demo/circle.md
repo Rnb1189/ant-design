@@ -14,13 +14,21 @@ title:
 A circular progress bar.
 
 ```jsx
-import { Progress } from 'antd';
+import { Progress } from '../../index';
 
 ReactDOM.render(
   <div>
     <Progress type="circle" percent={75} />
     <Progress type="circle" percent={70} status="exception" />
     <Progress type="circle" percent={100} />
+    <br />
+    <br />
+    <br />
+    <div style={{ backgroundColor: 'black', color: 'white' }}>Rtl</div>
+    <br />
+    <Progress isRtl={true} type="circle" percent={75} />
+    <Progress isRtl={true} type="circle" percent={70} status="exception" />
+    <Progress isRtl={true} type="circle" percent={100} />
   </div>,
   mountNode,
 );

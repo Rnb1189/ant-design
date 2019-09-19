@@ -14,7 +14,7 @@ title:
 The arrow points to the center of the target element, which set `arrowPointAtCenter`.
 
 ```jsx
-import { Popover, Button } from 'antd';
+import { Popover, Button } from '../../index';
 
 const text = <span>Title</span>;
 const content = (
@@ -30,6 +30,14 @@ ReactDOM.render(
       <Button>Align edge / 边缘对齐</Button>
     </Popover>
     <Popover placement="topLeft" title={text} content={content} arrowPointAtCenter>
+      <Button>Arrow points to center / 箭头指向中心</Button>
+    </Popover>
+    <br />
+    <br />
+    <Popover isRtl={true} placement="topLeft" title={text} content={content}>
+      <Button>Align edge / 边缘对齐</Button>
+    </Popover>
+    <Popover isRtl={true} placement="topLeft" title={text} content={content} arrowPointAtCenter>
       <Button>Arrow points to center / 箭头指向中心</Button>
     </Popover>
   </div>,

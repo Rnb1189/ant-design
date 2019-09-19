@@ -1,0 +1,32 @@
+@import './index-shared.less';
+
+@popover-prefix-cls: ~'@{ant-prefix}-popover';
+
+@{R}.@{popover-prefix-cls} {
+  &-title {
+    direction: rtl;
+    text-align: right;
+  }
+
+  &-inner-content {
+    direction: rtl;
+    text-align: right;
+  }
+
+  &-message {
+    direction: rtl;
+    text-align: right;
+    .@{popover-prefix-cls}-message-title {
+      padding-left: 0;
+      padding-right: @font-size-base + 8px;
+    }
+  }
+
+  &-buttons {
+    text-align: left;
+    button {
+      margin-left: 0;
+      margin-right: 8px;
+    }
+  }
+}

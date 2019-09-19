@@ -14,19 +14,34 @@ title:
 The simplest usage.
 
 ```jsx
-import { Anchor } from 'antd';
+import { Anchor } from '../../index';
 
 const { Link } = Anchor;
 
 ReactDOM.render(
-  <Anchor>
-    <Link href="#components-anchor-demo-basic" title="Basic demo" />
-    <Link href="#components-anchor-demo-static" title="Static demo" />
-    <Link href="#API" title="API">
-      <Link href="#Anchor-Props" title="Anchor Props" />
-      <Link href="#Link-Props" title="Link Props" />
-    </Link>
-  </Anchor>,
+  <div>
+    <Anchor>
+      <Link href="#components-anchor-demo-basic" title="Basic demo" />
+      <Link href="#components-anchor-demo-static" title="Static demo" />
+      <Link href="#API" title="API">
+        <Link href="#Anchor-Props" title="Anchor Props" />
+        <Link href="#Link-Props" title="Link Props" />
+      </Link>
+    </Anchor>
+    <br />
+    <br />
+    <br />
+    <div style={{ backgroundColor: 'black', color: 'white' }}>Rtl</div>
+    <br />
+    <Anchor isRtl={true}>
+      <Link isRtl={true} href="#components-anchor-demo-basic" title="Basic demo" />
+      <Link isRtl={true} href="#components-anchor-demo-static" title="Static demo" />
+      <Link isRtl={true} href="#API" title="API">
+        <Link isRtl={true} href="#Anchor-Props" title="Anchor Props" />
+        <Link isRtl={true} href="#Link-Props" title="Link Props" />
+      </Link>
+    </Anchor>
+  </div>,
   mountNode,
 );
 ```
