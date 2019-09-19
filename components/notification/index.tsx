@@ -3,7 +3,6 @@ import Notification from 'rc-notification';
 import Icon from '../icon';
 import Direction from './../_util/direction';
 import classNames from 'classnames';
-import { classNames } from 'classnames';
 
 export type NotificationPlacement = 'topLeft' | 'topRight' | 'bottomLeft' | 'bottomRight';
 
