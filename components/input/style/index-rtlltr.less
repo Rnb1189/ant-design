@@ -3,15 +3,21 @@
 @import './index-shared.less';
 @import './mixin-rtlltr.less';
 
-.@{ant-prefix}-input {
-  .reset-component;
-  .input();
-  @{L}& {
-    .ltr-input();
-  }
-  @{R}& {
-    .rtl-input();
-  }
+// .@{ant-prefix}-input {
+//   .reset-component;
+//   .input();
+//   @{L}& {
+//     .ltr-input();
+//   }
+//   @{R}& {
+//     .rtl-input();
+//   }
+// }
+@{L}.@{ant-prefix}-input {
+  .ltr-input();
+}
+@{R}.@{ant-prefix}-input {
+  .rtl-input();
 }
 
 //== Style for input-group: input with label, with button or dropdown...

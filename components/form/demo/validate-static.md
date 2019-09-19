@@ -22,7 +22,17 @@ We provide properties like `validateStatus` `help` `hasFeedback` to customize yo
 3. `help`: display validate message.
 
 ```jsx
-import { Form, Input, DatePicker, TimePicker, Select, Cascader, InputNumber } from 'antd';
+import {
+  Form,
+  Input,
+  DatePicker,
+  TimePicker,
+  Select,
+  Cascader,
+  InputNumber,
+  Icon,
+  Tooltip,
+} from 'antd';
 
 const { Option } = Select;
 
@@ -33,7 +43,7 @@ const formItemLayout = {
   },
   wrapperCol: {
     xs: { span: 24 },
-    sm: { span: 12 },
+    sm: { span: 18 },
   },
 };
 
@@ -46,6 +56,37 @@ ReactDOM.render(
         help="Should be combination of numbers & alphabets"
       >
         <Input placeholder="unavailable choice" id="error" />
+      </Form.Item>
+      <Form.Item label="Fail2" validateStatus="error" help="addon test">
+        <Input
+          placeholder="unavailable choice"
+          id="error2"
+          addonBefore="Http://"
+          addonAfter=".com"
+          defaultValue="mysite"
+        />
+      </Form.Item>
+      <Form.Item label="Fail3" validateStatus="error" help="addon test2">
+        <Input
+          placeholder="Enter your username"
+          prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+          suffix={
+            <Tooltip title="Extra information">
+              <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
+            </Tooltip>
+          }
+        />
+      </Form.Item>
+
+      <Form.Item label="Fail4" validateStatus="error" help="addon test2">
+        <Input.Group compact id="dummy">
+          <Select defaultValue="Option1">
+            <Option value="Option1">Option1</Option>
+            <Option value="Option2">Option2</Option>
+          </Select>
+          <Input style={{ width: '50%' }} defaultValue="input content" />
+          <InputNumber />
+        </Input.Group>
       </Form.Item>
 
       <Form.Item label="Warning" validateStatus="warning">
@@ -130,6 +171,46 @@ ReactDOM.render(
         help="Should be combination of numbers & alphabets"
       >
         <Input isRtl={true} placeholder="unavailable choice" id="error" />
+      </Form.Item>
+
+      <Form.Item
+        isRtl={true}
+        label="Fail2"
+        validateStatus="error"
+        help="Should be combination of numbers & alphabets"
+      >
+        <Input
+          isRtl={true}
+          placeholder="unavailable choice"
+          id="error2"
+          addonBefore="Http://"
+          addonAfter=".com"
+          defaultValue="mysite"
+        />
+      </Form.Item>
+
+      <Form.Item isRtl={true} label="Fail3" validateStatus="error" help="addon test2">
+        <Input
+          isRtl={true}
+          placeholder="Enter your username"
+          prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+          suffix={
+            <Tooltip title="Extra information">
+              <Icon type="info-circle" style={{ color: 'rgba(0,0,0,.45)' }} />
+            </Tooltip>
+          }
+        />
+      </Form.Item>
+
+      <Form.Item isRtl={true} label="Fail4" validateStatus="error" help="addon test2">
+        <Input.Group isRtl={true} compact id="dummy">
+          <Select isRtl={true} defaultValue="Option1">
+            <Option value="Option1">Option1</Option>
+            <Option value="Option2">Option2</Option>
+          </Select>
+          <Input isRtl={true} style={{ width: '50%' }} defaultValue="input content" />
+          <InputNumber isRtl={true} />
+        </Input.Group>
       </Form.Item>
 
       <Form.Item isRtl={true} label="Warning" validateStatus="warning">
