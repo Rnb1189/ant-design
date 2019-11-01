@@ -6,6 +6,7 @@ import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
 import warning from '../_util/warning';
 import Icon from '../icon';
 import { tuple } from '../_util/type';
+import omit from 'omit.js';
 
 const Placements = tuple(
   'topLeft',
@@ -161,12 +162,17 @@ export default class Dropdown extends React.Component<DropDownProps, any> {
         .replace('Right', 'Left')
         .replace('dummy', 'Right') as Placement;
     }
+
+    //NEw
+    const props = omit(this.props, ['isRtl']);
+
     return (
       <RcDropdown
         //NEw:
-        isRtl={this.props.isRtl}
+        // isRtl={this.props.isRtl}
         alignPoint={alignPoint}
-        {...this.props}
+        // {...this.props}
+        {...props}
         //NEw
         placement={placement}
         prefixCls={prefixCls}

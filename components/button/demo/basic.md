@@ -42,6 +42,12 @@ class App extends React.Component {
           <Button isRtl={this.state.isRtl} type="danger">
             Danger
           </Button>
+          <Button isRtl={this.state.isRtl} type="success">
+            success(new)
+          </Button>
+          <Button isRtl={this.state.isRtl} type="warning">
+            warning(new)
+          </Button>
           <Button isRtl={this.state.isRtl} type="link">
             Link
           </Button>

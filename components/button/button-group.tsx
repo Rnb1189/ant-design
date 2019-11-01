@@ -2,6 +2,7 @@ import * as React from 'react';
 import classNames from 'classnames';
 import { ButtonSize } from './button';
 import { ConfigConsumer, ConfigConsumerProps } from '../config-provider';
+import omit from 'omit.js';
 
 export interface ButtonGroupProps {
   //NEw:
@@ -52,7 +53,9 @@ const ButtonGroup: React.SFC<ButtonGroupProps> = props => (
         return result;
       });
 
-      return <div {...others} className={classes} />;
+      //OMid
+      // return <div {...others} className={classes} />;
+      return <div {...omit(others, ['isRtl'])} className={classes} />;
     }}
   </ConfigConsumer>
 );

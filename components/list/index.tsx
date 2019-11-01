@@ -284,7 +284,9 @@ export default class List<T> extends React.Component<ListProps<T>, ListState> {
     const paginationPosition = paginationProps.position || 'bottom';
 
     return (
-      <div className={classString} {...omit(rest, ['rowKey', 'renderItem', 'locale'])}>
+      //OMid
+      // <div className={classString} {...omit(rest, ['rowKey', 'renderItem', 'locale'])}>
+      <div className={classString} {...omit(rest, ['isRtl', 'rowKey', 'renderItem', 'locale'])}>
         {(paginationPosition === 'top' || paginationPosition === 'both') && paginationContent}
         {header && <div className={`${prefixCls}-header ${dirClass}`}>{header}</div>}
         <Spin {...loadingProp}>

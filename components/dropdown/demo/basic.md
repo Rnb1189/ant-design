@@ -54,7 +54,7 @@ class App extends React.Component {
         <Switch checkedChildren="Rtl" unCheckedChildren="Ltr" onChange={this.toggleRtl} />
         <br />
         <div style={{ paddingLeft: 30 }}>
-          <Dropdown isRtl={isRtl} overlay={menu} Dummy={true}>
+          <Dropdown isRtl={isRtl} overlay={menu}>
             <a className="ant-dropdown-link" href="#">
               Hover me <Icon type="down" />
             </a>

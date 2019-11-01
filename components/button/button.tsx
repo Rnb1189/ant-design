@@ -64,7 +64,19 @@ function spaceChildren(children: React.ReactNode, needInserted: boolean) {
   );
 }
 
-const ButtonTypes = tuple('default', 'primary', 'ghost', 'dashed', 'danger', 'link');
+//OMid:
+// const ButtonTypes = tuple('default', 'primary', 'ghost', 'dashed', 'danger', 'link');
+const ButtonTypes = tuple(
+  'default',
+  'primary',
+  'ghost',
+  'dashed',
+  'danger',
+  'link',
+  'success',
+  'danger',
+);
+
 export type ButtonType = (typeof ButtonTypes)[number];
 const ButtonShapes = tuple('circle', 'circle-outline', 'round');
 export type ButtonShape = (typeof ButtonShapes)[number];
@@ -295,7 +307,9 @@ class Button extends React.Component<ButtonProps, ButtonState> {
 
     const buttonNode = (
       <button
-        {...(omit(otherProps, ['loading']) as NativeButtonProps)}
+        //OMid
+        // {...(omit(otherProps, ['loading']) as NativeButtonProps)}
+        {...(omit(otherProps, ['loading', 'isRtl']) as NativeButtonProps)}
         type={htmlType}
         className={classes}
         onClick={this.handleClick}
